@@ -1,6 +1,6 @@
 using System.Collections;
 using UnityEngine;
-public class AnimalIdle : AnimalAbility
+public class AnimalDead : AnimalAbility
 {
     public override void Init()
     {
@@ -12,9 +12,9 @@ public class AnimalIdle : AnimalAbility
     }
     IEnumerator Activate()
     {
-        
-        yield return new WaitForSeconds(Random.Range(1.5f, 4f));
-        animal.NextState();
+
+
+        yield return null;
     }
     
 }

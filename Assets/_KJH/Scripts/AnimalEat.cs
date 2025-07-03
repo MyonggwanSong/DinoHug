@@ -1,6 +1,6 @@
 using System.Collections;
 using UnityEngine;
-public class AnimalIdle : AnimalAbility
+public class AnimalEat : AnimalAbility
 {
     public override void Init()
     {
@@ -12,8 +12,9 @@ public class AnimalIdle : AnimalAbility
     }
     IEnumerator Activate()
     {
-        
-        yield return new WaitForSeconds(Random.Range(1.5f, 4f));
+        if (animal.target != null && animal.target.isPlace)
+        animal.target.root.gameObject.SetActive(false);
+        yield return new WaitForSeconds(Random.Range(0f, 1f));
         animal.NextState();
     }
     
