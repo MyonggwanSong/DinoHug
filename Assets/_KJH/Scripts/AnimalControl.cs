@@ -40,8 +40,8 @@ public class AnimalControl : MonoBehaviour
         Wander,
         GoTo,
         Eat,
-        Handle,
         Drink,
+        Handle,
         Play,
     }
     // 아래는 StateMachine패턴입니다. state가 바뀌면 해당하는 스크립트를 활성화시키고. 나머지는 비활성화 시킵니다.

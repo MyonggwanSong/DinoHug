@@ -179,6 +179,7 @@ GameObject:
   - component: {fileID: 3890318078323597679}
   - component: {fileID: 8519855555240502821}
   - component: {fileID: 1143615993811169973}
+  - component: {fileID: 3641051432603205317}
   m_Layer: 0
   m_Name: Animal
   m_TagString: Untagged
@@ -254,8 +255,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bond: 40
-  hungry: 20
-  thirsty: 20
+  hungry: 59
+  thirsty: 59
   bored: 20
 --- !u!114 &4791769101389781689
 MonoBehaviour:
@@ -315,6 +316,18 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8000c7128c4b22249afbf646cadb59da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3641051432603205317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6440855494840042070}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7712ba1e9d72d7c49a738206ab778adb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &6502178451396119861
