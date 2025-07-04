@@ -18,4 +18,9 @@ public class ParticleHandler : MonoBehaviour
     {
         particle.gameObject.transform.position = position;
     }
+
+    public void SpawnParticle(Vector3 position)
+    {
+        Instantiate(particle, position, Quaternion.identity);
+    }
 }

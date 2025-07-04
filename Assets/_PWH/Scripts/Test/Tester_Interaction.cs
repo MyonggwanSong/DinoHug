@@ -3,17 +3,16 @@ using UnityEngine;
 public class Tester_Interaction : MonoBehaviour
 {
     [SerializeField] InteractionEventHandler interactionEventHandler;
-    [SerializeField] ParticleHandler particleHandler;
+
+    [Header("Paticle Prefab")]
+    [SerializeField] PoolableParticle particle;
 
     bool isHover;
 
     void Awake()
     {
         TryGetComponent(out interactionEventHandler);
-        TryGetComponent(out particleHandler);
-
         isHover = false;
-        particleHandler.SetActiveParticle(false);
     }
 
     void OnEnable()
@@ -31,11 +30,15 @@ public class Tester_Interaction : MonoBehaviour
     void InteractorHoverHandler(bool on)
     {
         isHover = on;
-        particleHandler.SetActiveParticle(on);
     }
 
     void UpdateParticlePosition(Vector3 hitPoint)
     {
-        particleHandler.UpdateTransform(hitPoint);
+        Debug.Log($"Interactor Point : {interactionEventHandler.interactor.gameObject.transform.position}");
+        Vector3 targetDir = interactionEventHandler.interactor.gameObject.transform.position - hitPoint;
+        Quaternion quat = Quaternion.LookRotation(targetDir);
+
+        Debug.Log($"Quaternion : {quat}");
+        PoolManager.Instance.Spawn(particle, hitPoint, quat, this.gameObject.transform);
     }
 }

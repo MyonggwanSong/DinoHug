@@ -10,7 +10,10 @@ public enum HandType
 
 public abstract class InteractionEventHandler : MonoBehaviour
 {
+    protected int handCount = 0;
+
     protected XRBaseInteractable interactable;
+    public XRBaseInteractor interactor;
 
     public UnityAction<bool> OnHoverCheck;
     public UnityAction<Vector3> OnHoverPointUpdate;
@@ -32,7 +35,15 @@ public abstract class InteractionEventHandler : MonoBehaviour
         interactable.hoverExited.RemoveListener(OnHoverExit);
     }
 
-    public virtual void OnHoverEnter(HoverEnterEventArgs args) { }
+    protected virtual void OnHoverEnter(HoverEnterEventArgs args)
+    {
+        handCount++;
+        this.interactor = args.interactorObject as XRBaseInteractor;
+    }
 
-    public virtual void OnHoverExit(HoverExitEventArgs args) { }
+    protected virtual void OnHoverExit(HoverExitEventArgs args)
+    {
+        handCount--;
+        interactable = null;
+    }
 }

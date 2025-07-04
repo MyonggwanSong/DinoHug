@@ -1,5 +1,5 @@
-using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -7,7 +7,8 @@ public class PoolManager : BehaviourSingleton<PoolManager>
 {
     protected override bool IsDontDestroy() => false;
 
-    List<PoolBehaviour> pools;
+    //Key(instance), Value(key)
+    Dictionary<PoolBehaviour, PoolBehaviour> pools;
     Dictionary<PoolBehaviour, ObjectPool<PoolBehaviour>> poolDic;
 
     protected override void Awake()
@@ -18,14 +19,19 @@ public class PoolManager : BehaviourSingleton<PoolManager>
         poolDic = new();
     }
 
+    // pool은 Prefab
     public void CreatePool(PoolBehaviour pool, int size = 10)
     {
-        if (pools.Contains(pool)) return;               //이미 저장 되어있는 pool이면 무시
+        // if (pools.Values..Contains(pool)) return;               //이미 저장 되어있는 pool이면 무시
+        if (pools.Values.ToList().Contains(pool)) return;
+
+        Debug.Log("Create Pool!");
 
         var poolInstance = new ObjectPool<PoolBehaviour>(
             createFunc: () =>
             {
                 PoolBehaviour p = Instantiate(pool);
+                pools[p] = pool;
                 return p;
             },
             actionOnGet: (v) =>
@@ -42,12 +48,16 @@ public class PoolManager : BehaviourSingleton<PoolManager>
             },
             maxSize: size);
 
-        poolDic[pool] = poolInstance;      
+        poolDic[pool] = poolInstance;
     }
 
+    //pool은 prefab으로 Key가 된다.
     public PoolBehaviour Spawn(PoolBehaviour pool, Vector3 position, Quaternion rot, Transform parent)
     {
-        if (!pools.Contains(pool)) return null;
+        if (!pools.Values.ToList().Contains(pool))
+        {
+            CreatePool(pool, 20);
+        }
 
         var instance = poolDic[pool].Get();
 
@@ -58,11 +68,14 @@ public class PoolManager : BehaviourSingleton<PoolManager>
         return instance;
     }
 
+    // 여기서의 매개 변수는 instance
     public void Despawn(PoolBehaviour pool)
     {
-        if (pool == null && !pools.Contains(pool)) return;
+        if (pool == null || !pools.Keys.ToList().Contains(pool)) return;
 
-        poolDic[pool].Release(pool);
+        var keyPool = pools[pool];
+
+        poolDic[keyPool].Release(pool);
         pool.gameObject.SetActive(false);
     }
 }
