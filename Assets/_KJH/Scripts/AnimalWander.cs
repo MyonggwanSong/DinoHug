@@ -1,6 +1,6 @@
 using System.Collections;
 using UnityEngine;
-public class AnimalIdle : AnimalAbility
+public class AnimalWander : AnimalAbility
 {
     public override void Init()
     {
@@ -15,10 +15,6 @@ public class AnimalIdle : AnimalAbility
         while (true)
         {
             yield return null;
-            // //anim.CrossFade("Idle", 0.15f);
-            // yield return new WaitForSeconds(Random.Range(10f,20f));
-            // //anim.CrossFade("Idle2", 0.15f);
-            // yield return new WaitForSeconds(Random.Range(10f,20f));
         }
     }
     

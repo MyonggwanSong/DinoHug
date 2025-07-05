@@ -4,18 +4,18 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Animal
+  - Interactable
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
   - 
   - 
-  - Animal
-  - AnimalPart
+  - 
+  - 
   - 
   - 
   - 

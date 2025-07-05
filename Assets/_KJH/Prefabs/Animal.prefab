@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5227715060671945454}
   - component: {fileID: 31558708346021676}
   - component: {fileID: 5490272469266675258}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,9 +173,13 @@ GameObject:
   - component: {fileID: 8329125222165350711}
   - component: {fileID: 4709065688597302980}
   - component: {fileID: 899035968858391802}
+  - component: {fileID: 3315966847358131676}
   - component: {fileID: 4791769101389781689}
-  - component: {fileID: 8166431620879540888}
-  m_Layer: 8
+  - component: {fileID: 1900461508757865332}
+  - component: {fileID: 3890318078323597679}
+  - component: {fileID: 8519855555240502821}
+  - component: {fileID: 1143615993811169973}
+  m_Layer: 0
   m_Name: Animal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -212,11 +216,11 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 1.8
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 1
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
@@ -233,7 +237,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
+  target: {fileID: 0}
   effect: 0
+--- !u!114 &3315966847358131676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6440855494840042070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bf04d607745e2a41bdad7f99c3c1765, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  love: 40
+  hungry: 20
+  thirsty: 20
+  bored: 20
 --- !u!114 &4791769101389781689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,21 +262,57 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6440855494840042070}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cce206d843d195341987e34fab438f69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8166431620879540888
+--- !u!114 &1900461508757865332
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6440855494840042070}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39fb9fe6ba055394fb96651d71614204, type: 3}
+  m_Script: {fileID: 11500000, guid: 6fcbe0778e01fb84caf116b633cbe025, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3890318078323597679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6440855494840042070}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1bec580680f48843a29e37e3f50f7a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8519855555240502821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6440855494840042070}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 296bff0d729e19c418502eddb88d6351, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1143615993811169973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6440855494840042070}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8000c7128c4b22249afbf646cadb59da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &6502178451396119861
@@ -270,7 +327,7 @@ GameObject:
   - component: {fileID: 2386465167714181022}
   - component: {fileID: 3883449566911965049}
   - component: {fileID: 1209743494799424612}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -286,7 +343,7 @@ Transform:
   m_GameObject: {fileID: 6502178451396119861}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.06919432, y: 1.23, z: -0.91}
+  m_LocalPosition: {x: 0.06919432, y: 1.23, z: 0.8}
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children: []
