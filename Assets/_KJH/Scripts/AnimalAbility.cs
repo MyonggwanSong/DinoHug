@@ -3,7 +3,12 @@ public abstract class AnimalAbility : MonoBehaviour
 {
     public abstract void Init();
     public abstract void UnInit();
-    protected AnimalControl.State state;
-    protected AnimalControl.Effect effect;
+    protected AnimalControl animal;
     protected Animator anim;
+    protected virtual void Awake()
+    {
+        TryGetComponent(out animal);
+        anim = GetComponentInChildren<Animator>();
+    }
+    protected virtual void Start(){}
 }
