@@ -58,7 +58,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: aniClip2
+  m_Name: Idle
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -71,7 +71,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 0d3d37a33ddce2d41a2d7f609a4a131d, type: 2}
+  m_Motion: {fileID: -8945691123924629249, guid: 2784651109851c6449ed0635a980a4f8, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
