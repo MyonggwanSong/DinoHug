@@ -2,16 +2,9 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public enum HandType
-{
-    Left,
-    Right
-}
-
 public abstract class InteractionEventHandler : MonoBehaviour
 {
     protected int handCount = 0;
-
     protected XRBaseInteractable interactable;
     public XRBaseInteractor interactor;
 
