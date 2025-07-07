@@ -14,12 +14,16 @@ public class AnimalWander : AnimalAbility
     }
     public override void Init()
     {
-        Debug.Log("공룡 Wander 시작");
-        StartCoroutine(Wander());
+        //Debug.Log("공룡 Wander] 시작");
+        StopCoroutine(nameof(Wander));
+        StartCoroutine(nameof(Wander));
+        agent.isStopped = false;
     }
     public override void UnInit()
     {
         //Debug.Log("공룡 Wander 끝");
+        StopCoroutine(nameof(Wander));
+        agent.isStopped = true;
     }
     IEnumerator Wander()
     {
@@ -43,20 +47,24 @@ public class AnimalWander : AnimalAbility
         }
         if (target.x >= 999)
         {
-            //Debug.Log("공룡 Wander --> 100번의 땅 검사를 했는데도 target을 찾지 못했습니다. Idle로 전환합니다.");
+            //Debug.Log("공룡 Wander] 100번의 땅검사를 했는데도 target을 찾지 못했습니다. Idle로 전환합니다.");
             animal.ChangeState(AnimalControl.State.Idle);
             yield break;
         }
         agent.destination = target;
         float expectTime = Vector3.Distance(target, transform.position) / agent.speed;
         float startTime = Time.time;
+        anim.CrossFade("Move", 0.1f);
+        agent.isStopped = false;
         while (true)
         {
             // 이동중......
             float sqrDistance = (target - transform.position).sqrMagnitude;
-            // 거리가 0.1 보다 가까워지거나.. expectTime의 1.5배보다 오래 걸릴경우(예를들어 벽에 끼여서 제자리 이동중인 경우) 루프 탈출
-            if (sqrDistance <= 0.01f || Time.time - startTime > expectTime * 1.5f)
+            // 거리가 1.5m보다 가까워지거나.. expectTime의 1.5배보다 오래 걸릴경우(예를들어 벽에 끼여서 제자리 이동중인 경우) 루프 탈출
+            if (sqrDistance <= 2.25f || Time.time - startTime > expectTime * 1.5f)
             {
+                anim.CrossFade("Idle", 0.1f);
+                agent.isStopped = true;
                 break;
             }
             yield return null;

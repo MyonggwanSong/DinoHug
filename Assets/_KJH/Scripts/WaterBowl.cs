@@ -2,12 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
-public class Food : MonoBehaviour
+public class WaterBowl : MonoBehaviour
 {
     public AnimalControl animalControl;
     public bool isPlaced;
-
-
+    public bool isFilled;
     XRGrabInteractable xRGrab;
     bool isGrabbed;
     Vector3 startPosition;
@@ -35,7 +34,6 @@ public class Food : MonoBehaviour
             if (!isGrabbed)
             {
                 isPlaced = true;
-                animalControl.ChangeState(AnimalControl.State.Eat);
             }
         }
     }
@@ -54,7 +52,13 @@ public class Food : MonoBehaviour
         transform.rotation = startRotation;
         isPlaced = false;
         isGrabbed = false;
+        isFilled = false;
     }
+    public void Fill()
+    {
+        
+    }
+    
 
 
 
