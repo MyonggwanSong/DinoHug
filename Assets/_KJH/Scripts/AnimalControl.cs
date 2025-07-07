@@ -1,10 +1,10 @@
-using System.Collections;
 using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 public class AnimalControl : MonoBehaviour
 {
-    public State state;
-    public Effect effect;
+    [ReadOnlyInspector] public State state;
+    [ReadOnlyInspector] public Effect effect;
     public enum State
     {
         Idle,
@@ -79,7 +79,17 @@ public class AnimalControl : MonoBehaviour
         dictionary[newState].Init();
         // Debug.Log($"변경후 newState : {newState}, prevState : {prevState}, state : {state}");
     }
-    
-    
+
+
+#if UNITY_EDITOR
+    // 에디터상에서 강제로 공룡의 상태를 변경시켜서 테스트하고싶을때 아래 버튼을 눌러서 테스트합니다.
+    [Header("에디터에서 상태 강제변경 테스트하려면 아래 버튼으로")]
+    [SerializeField] State testState;
+    [Button]
+    public void Test()
+    {
+        ChangeState(testState);
+    }
+#endif
 
 }
