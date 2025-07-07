@@ -7,8 +7,6 @@ public class Throw : MonoBehaviour
     public float force = 5f;
     public float angle = 30f;
 
-    public Transform direction;
-
     private Rigidbody rb;
     private Vector3 init_vel;
 
