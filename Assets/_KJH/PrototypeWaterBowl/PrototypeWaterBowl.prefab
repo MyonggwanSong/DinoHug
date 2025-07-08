@@ -48,6 +48,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6151556266767842861, guid: 1fe421388ecc8c74e873ce33f1565291, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 83567193cdcaeb04a9e28a9793af8622, type: 2}
     - target: {fileID: 919132149155446097, guid: 1fe421388ecc8c74e873ce33f1565291, type: 3}
       propertyPath: m_Name
       value: PrototypeWaterBowl
@@ -68,6 +72,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1fe421388ecc8c74e873ce33f1565291, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3652729707201401027}
+    - targetCorrespondingSourceObject: {fileID: -6475698432325073768, guid: 1fe421388ecc8c74e873ce33f1565291, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1772387716164103650}
   m_SourcePrefab: {fileID: 100100000, guid: 1fe421388ecc8c74e873ce33f1565291, type: 3}
 --- !u!1 &1595455048357033778 stripped
 GameObject:
@@ -173,10 +180,34 @@ MonoBehaviour:
       m_Calls: []
   m_SelectEntered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3652729707201401027}
+        m_TargetAssemblyTypeName: WaterBowl, Assembly-CSharp
+        m_MethodName: OnGrabStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_SelectExited:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3652729707201401027}
+        m_TargetAssemblyTypeName: WaterBowl, Assembly-CSharp
+        m_MethodName: OnGrabEnd
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_FirstFocusEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -289,4 +320,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animalControl: {fileID: 0}
   isPlaced: 0
-  isFilled: 0
+  fillRange: {x: 0.4, y: 0.55}
+  liquid: {fileID: 0}
+--- !u!23 &3477922485475216304 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -6151556266767842861, guid: 1fe421388ecc8c74e873ce33f1565291, type: 3}
+  m_PrefabInstance: {fileID: 1938052213005978211}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4378882770031890171 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -6475698432325073768, guid: 1fe421388ecc8c74e873ce33f1565291, type: 3}
+  m_PrefabInstance: {fileID: 1938052213005978211}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1772387716164103650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4378882770031890171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0266c2249b3bac45b041fbeab9c8d16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  updateMode: 0
+  MaxWobble: 0.03
+  WobbleSpeedMove: 1
+  fillAmount: 0.4
+  Recovery: 1
+  Thickness: 1
+  CompensateShapeAmount: 0
+  mesh: {fileID: -8542463572726036090, guid: 1fe421388ecc8c74e873ce33f1565291, type: 3}
+  rend: {fileID: 3477922485475216304}
