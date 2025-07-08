@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 public class WaterBottle : MonoBehaviour
 {
+    public AnimalControl animalControl;
     XRGrabInteractable xRGrab;
     bool isGrabbed;
     Vector3 startPosition;
@@ -10,12 +11,19 @@ public class WaterBottle : MonoBehaviour
     Rigidbody rigid;
     Transform grabbingXRController;
     int shakeCount = 0;
+    GameObject particleObj;
+    ParticleSystem particle;
+    Transform childParticle;
+    bool isChangeState = false;
     void Awake()
     {
         TryGetComponent(out xRGrab);
         TryGetComponent(out rigid);
         startPosition = transform.position;
         startRotation = transform.rotation;
+        particleObj = transform.Find("Bottle").GetChild(0).gameObject;
+        particleObj.TryGetComponent(out particle);
+        childParticle = particleObj.transform.GetChild(0);
     }
     public void OnGrabStart()
     {
@@ -24,12 +32,19 @@ public class WaterBottle : MonoBehaviour
         isGrabbed = true;
         StopCoroutine(nameof(Holding));
         StartCoroutine(nameof(Holding));
+        isChangeState = false;
     }
     public void OnGrabEnd()
     {
         isGrabbed = false;
         StopCoroutine(nameof(Holding));
         grabbingXRController = null;
+        if (coResetShake != null)
+        {
+            StopCoroutine(coResetShake);
+            coResetShake = null;
+        }
+        StopWaterFillOut();
     }
     IEnumerator Holding()
     {
@@ -45,16 +60,16 @@ public class WaterBottle : MonoBehaviour
             {
                 //Debug.Log($"angle : {grabbingXRController.rotation.eulerAngles.z}, vertical : {rigid.velocity.y}, horizontal : {horizontal}");
                 //컨트롤러를 적당한 속도와 적당한 주기로 위아래(수직)으로 흔들경우
-                if (rigid.velocity.y > 3.5f)
+                if (rigid.velocity.y > 3f)
                 {
                     if (shakeCount == 0)
                     {
                         isShakeUpStart = true;
                         shakeCount++;
-                        if (co != null)
+                        if (coResetShake != null)
                         {
-                            StopCoroutine(co);
-                            co = null;
+                            StopCoroutine(coResetShake);
+                            coResetShake = null;
                         }
                         //Debug.Log(shakeCount);
                     }
@@ -63,10 +78,10 @@ public class WaterBottle : MonoBehaviour
                         if (shakeCount % 2 == 0)
                         {
                             shakeCount++;
-                            if (co != null)
+                            if (coResetShake != null)
                             {
-                                StopCoroutine(co);
-                                co = null;
+                                StopCoroutine(coResetShake);
+                                coResetShake = null;
                             }
                             //Debug.Log(shakeCount);
                         }
@@ -76,25 +91,25 @@ public class WaterBottle : MonoBehaviour
                         if (shakeCount % 2 == 1)
                         {
                             shakeCount++;
-                            if (co != null)
+                            if (coResetShake != null)
                             {
-                                StopCoroutine(co);
-                                co = null;
+                                StopCoroutine(coResetShake);
+                                coResetShake = null;
                             }
                             //Debug.Log(shakeCount);
                         }
                     }
                 }
-                else if (rigid.velocity.y < -3.5f)
+                else if (rigid.velocity.y < -3f)
                 {
                     if (shakeCount == 0)
                     {
                         isShakeUpStart = false;
                         shakeCount++;
-                        if (co != null)
+                        if (coResetShake != null)
                         {
-                            StopCoroutine(co);
-                            co = null;
+                            StopCoroutine(coResetShake);
+                            coResetShake = null;
                         }
                         //Debug.Log(shakeCount);
                     }
@@ -103,10 +118,10 @@ public class WaterBottle : MonoBehaviour
                         if (shakeCount % 2 == 1)
                         {
                             shakeCount++;
-                            if (co != null)
+                            if (coResetShake != null)
                             {
-                                StopCoroutine(co);
-                                co = null;
+                                StopCoroutine(coResetShake);
+                                coResetShake = null;
                             }
                             //Debug.Log(shakeCount);
                         }
@@ -116,10 +131,10 @@ public class WaterBottle : MonoBehaviour
                         if (shakeCount % 2 == 0)
                         {
                             shakeCount++;
-                            if (co != null)
+                            if (coResetShake != null)
                             {
-                                StopCoroutine(co);
-                                co = null;
+                                StopCoroutine(coResetShake);
+                                coResetShake = null;
                             }
                             //Debug.Log(shakeCount);
                         }
@@ -127,28 +142,34 @@ public class WaterBottle : MonoBehaviour
                 }
                 else
                 {
-                    if (co == null)
+                    if (coResetShake == null)
                     {
-                        co = StartCoroutine(ResetShakeCount());
+                        coResetShake = StartCoroutine(ResetShakeCount());
                     }
                 }
             }
             else
             {
-                if (co == null)
+                if (coResetShake == null)
                 {
-                    co = StartCoroutine(ResetShakeCount());
+                    coResetShake = StartCoroutine(ResetShakeCount());
                 }
+                if (!(angle >= 110 && angle <= 250))
+                    StopWaterFillOut();
             }
             yield return null;
             if (shakeCount >= 4)
             {
-                Debug.Log("물 따르기 시작");
+                if (coWaterFill == null)
+                {
+                    //Debug.Log("물 따르기 시작");
+                    coWaterFill = StartCoroutine(WaterFillOut());
+                }
                 shakeCount = 0;
             }
         }
     }
-    Coroutine co;
+    Coroutine coResetShake;
     IEnumerator ResetShakeCount()
     {
         yield return new WaitForSeconds(0.5f);
@@ -169,10 +190,68 @@ public class WaterBottle : MonoBehaviour
         transform.rotation = startRotation;
         isGrabbed = false;
     }
-    void FillOut()
+    Coroutine coWaterFill;
+    IEnumerator WaterFillOut()
     {
-        
-
+        particleObj.SetActive(true);
+        particle.Play();
+        yield return null;
+        particle.Stop(true);
+        yield return new WaitForSeconds(0.5f);
+        particle.Play();
+        Ray ray = new Ray();
+        RaycastHit hit;
+        Collider[] colliders = new Collider[10];
+        ray.direction = Vector3.down;
+        WaterBowl bowl = null;
+        isChangeState = false;
+        while (true)
+        {
+            ray.origin = particleObj.transform.position;
+            bowl = null;
+            if (Physics.Raycast(ray, out hit, 100f, 1 << 3, QueryTriggerInteraction.Ignore))
+            {
+                childParticle.position = hit.point + 0.1f * Vector3.up;
+                childParticle.up = hit.normal;
+                int count = Physics.OverlapSphereNonAlloc(hit.point, 0.2f, colliders);
+                for (int i = 0; i < count; i++)
+                {
+                    if (colliders[i].TryGetComponent(out bowl))
+                    {
+                        break;
+                    }
+                }
+            }
+            if (bowl == null)
+            {
+                //Debug.Log("아래에 Bowl이 없습니다.");
+                //StopWaterFillOut();
+            }
+            else
+            {
+                float range = bowl.fillRange.y - bowl.fillRange.x;
+                bowl.liquid.fillAmount += range * 0.01f;
+                bowl.liquid.fillAmount = Mathf.Clamp(bowl.liquid.fillAmount, bowl.fillRange.x, bowl.fillRange.y);
+                if (bowl.liquid.fillAmount >= bowl.fillRange.y && !isChangeState)
+                {
+                    isChangeState = true;
+                    animalControl.ChangeState(AnimalControl.State.Drink);
+                    StopWaterFillOut();
+                }
+            }
+            yield return new WaitForSeconds(0.05f);
+        }
+    }
+    public void StopWaterFillOut()
+    {
+        if (coWaterFill != null)
+        {
+            //Debug.Log("물 따르기 끝");
+            particle.Stop(true);
+            particleObj.SetActive(false);
+            StopCoroutine(coWaterFill);
+            coWaterFill = null;
+        }
     }
 
 
