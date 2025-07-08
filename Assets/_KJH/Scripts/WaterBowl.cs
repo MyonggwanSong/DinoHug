@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 public class WaterBowl : MonoBehaviour
@@ -54,17 +53,12 @@ public class WaterBowl : MonoBehaviour
         isGrabbed = false;
         isFilled = false;
     }
-    public void Fill()
+    public void FillIn()
     {
-        
+
     }
-    
-
-
 
 
 
     
-
-
 }
