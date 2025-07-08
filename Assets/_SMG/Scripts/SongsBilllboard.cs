@@ -3,13 +3,14 @@ using UnityEngine;
 
 public class SongsBilllboard : MonoBehaviour
 {
-    private Transform mainCam;
+    [SerializeField] private Transform mainCam;
     [SerializeField] Transform offset;
     [SerializeField] float offsetfoce;
     IEnumerator Start()
     {
         yield return new WaitUntil(() => Camera.main != null);
         mainCam = Camera.main.transform;
+        gameObject.SetActive(false);
 
     }
 
