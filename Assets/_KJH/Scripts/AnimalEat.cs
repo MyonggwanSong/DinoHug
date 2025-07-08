@@ -23,12 +23,17 @@ public class AnimalEat : AnimalAbility
     {
         StopCoroutine(nameof(GoToFood));
         agent.isStopped = true;
+        if (target != null)
+        {
+            target.EnableGrab();
+        }
     }
+    Food target = null;
     IEnumerator GoToFood()
     {
         int count = Physics.OverlapSphereNonAlloc(transform.position, 50f, colliders, ~0, QueryTriggerInteraction.Ignore);
         int find = -1;
-        Food target;
+        target = null;
         for (int i = 0; i < count; i++)
         {
             if (colliders[i].TryGetComponent(out Food food))
@@ -106,7 +111,7 @@ public class AnimalEat : AnimalAbility
         // 여기에 Food 오브젝트를 최초 상태로 리셋 처리
         target.Reset();
         // 여기에 배고픔 게이지 하강 처리
-        Debug.Log("공룡 Eat] 'Food 먹기 성공. 이 줄에서 배고픔 게이지 감소 처리 필요");
+        Debug.Log("공룡 Eat] 'Food 먹기 성공. 이 줄에서 배고픔 게이지 감소 처리");
         // 모든 과정 완료후 정상적인 종료일시
         // 30% 확률로 Idle 실행, 70% 확률로 Wander 실행
         if (Random.value < 0.3f)

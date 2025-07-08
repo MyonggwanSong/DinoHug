@@ -18,7 +18,7 @@ public class AnimalIdle : AnimalAbility
     {
         anim.CrossFade("Idle", 0.1f);
         // Idle 애니매이션 길이에 따라 아랫줄 시간 변경
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(3f);
         // 잠깐 대기
         yield return new WaitForSeconds(Random.Range(0f, 2f));
         // Idle이 시간이 다 되어서 정상적인 종료일시
