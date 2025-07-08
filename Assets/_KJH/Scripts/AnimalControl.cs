@@ -82,8 +82,7 @@ public class AnimalControl : MonoBehaviour
 
 
 #if UNITY_EDITOR
-    // 에디터상에서 강제로 공룡의 상태를 변경시켜서 테스트하고싶을때 아래 버튼을 눌러서 테스트합니다.
-    [Header("에디터에서 상태 강제변경 테스트하려면 아래 버튼으로")]
+    [Header("에디터에서 상태강제변경 테스트하려면 아래 버튼으로")]
     [SerializeField] State testState;
     [Button]
     public void Test()
