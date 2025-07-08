@@ -320,7 +320,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animalControl: {fileID: 0}
   isPlaced: 0
-  fillRange: {x: 0.37, y: 0.55}
+  fillRange: {x: 0.4, y: 0.55}
   liquid: {fileID: 0}
 --- !u!23 &3477922485475216304 stripped
 MeshRenderer:
@@ -347,7 +347,7 @@ MonoBehaviour:
   updateMode: 0
   MaxWobble: 0.03
   WobbleSpeedMove: 1
-  fillAmount: 0.3
+  fillAmount: 0.4
   Recovery: 1
   Thickness: 1
   CompensateShapeAmount: 0
