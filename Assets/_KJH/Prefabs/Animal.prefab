@@ -128,6 +128,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5fc3e0498497fd4982aac19bd39c822, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stopDistance: 1.5
+  ballpos: {fileID: 0}
+  carry: {fileID: 0}
+  player: {fileID: 0}
+  target: {fileID: 0}
+  Collider: []
 --- !u!114 &8811127603895603328
 MonoBehaviour:
   m_ObjectHideFlags: 0
