@@ -1,13 +1,10 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 public class Food : MonoBehaviour
 {
     public AnimalControl animalControl;
     public bool isPlaced;
-
-
     XRGrabInteractable xRGrab;
     bool isGrabbed;
     Vector3 startPosition;
@@ -55,10 +52,6 @@ public class Food : MonoBehaviour
         isPlaced = false;
         isGrabbed = false;
     }
-
-
-
-
 
     
 

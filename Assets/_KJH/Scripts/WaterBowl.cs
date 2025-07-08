@@ -1,21 +1,22 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 public class WaterBowl : MonoBehaviour
 {
     public AnimalControl animalControl;
     public bool isPlaced;
-    public bool isFilled;
+    public Vector2 fillRange = new Vector2(0.4f, 0.8f);
     XRGrabInteractable xRGrab;
     bool isGrabbed;
     Vector3 startPosition;
     Quaternion startRotation;
+    [HideInInspector] public Liquid liquid;
     void Awake()
     {
         TryGetComponent(out xRGrab);
         startPosition = transform.position;
         startRotation = transform.rotation;
+        liquid = GetComponentInChildren<Liquid>();
     }
     public void OnGrabStart()
     {
@@ -34,6 +35,10 @@ public class WaterBowl : MonoBehaviour
             if (!isGrabbed)
             {
                 isPlaced = true;
+                if (liquid.fillAmount >= Mathf.Lerp(fillRange.x, fillRange.y, 0.5f))
+                {
+                    animalControl.ChangeState(AnimalControl.State.Drink);
+                }
             }
         }
     }
@@ -52,19 +57,10 @@ public class WaterBowl : MonoBehaviour
         transform.rotation = startRotation;
         isPlaced = false;
         isGrabbed = false;
-        isFilled = false;
     }
-    public void Fill()
-    {
-        
-    }
-    
 
 
 
-
-
-    
 
 
 }
