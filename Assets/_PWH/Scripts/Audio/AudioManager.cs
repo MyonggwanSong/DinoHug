@@ -1,31 +1,39 @@
 using System;
 using UnityEngine;
+using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class AudioManager : BehaviourSingleton<AudioManager>
 {
-    protected override bool IsDontDestroy() => false;
+    protected override bool IsDontDestroy() => true;
+
+    [SerializeField] AudioMixer mixer;
 
     //배경 음악 
     [Header("Audio Source")]
     [SerializeField] AudioSource masterAudio;
     [SerializeField] AudioSource effectAudio;
 
-    [Header("Volume Test")]
-    [Range(0, 1)] public float master_Volume;
-    [Range(0, 1)] public float effect_Volume;
+    [Header("Init Volume")]
+    [Range(-80, 0)] public float init_Master;
+    [Range(-80, 0)] public float init_Effect;
 
-    [Header("Effect volume Test Clip")]
-    AudioClip effectTester;
-
-    void Start()
+    public void PlayMaster(AudioClip clip)
     {
-        masterAudio.volume = master_Volume;
-        effectAudio.volume = effect_Volume;
+        masterAudio.clip = clip;
     }
 
-    void Update()
+    public void PlayEffect(AudioClip clip)
     {
-        masterAudio.volume = master_Volume;
-        effectAudio.volume = effect_Volume;
+        effectAudio.clip = clip;
     }
+
+    public void SetVolume(SoundType type, float volume)
+    {
+        mixer.SetFloat(type.ToString(), volume);
+    }
+}
+
+public enum SoundType {
+    BGM, EFFECT,
 }
