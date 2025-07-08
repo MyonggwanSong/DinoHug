@@ -23,6 +23,7 @@ public class AnimalControl : MonoBehaviour
         Hungry = 1 << 0,
         Thirsty = 1 << 1,
         Bored = 1 << 2,
+        Lonely = 1 << 3,
     }
     public bool HasEffect(Effect checkEffect)
     {
