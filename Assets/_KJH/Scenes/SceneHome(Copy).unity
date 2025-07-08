@@ -933,6 +933,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 467049093}
     m_Modifications:
+    - target: {fileID: 6579237757260920981, guid: 48ed329953550d34584a4ed1f9dcb2dc, type: 3}
+      propertyPath: animalControl
+      value: 
+      objectReference: {fileID: 1530171946}
     - target: {fileID: 7330683332793470651, guid: 48ed329953550d34584a4ed1f9dcb2dc, type: 3}
       propertyPath: m_Name
       value: PrototypeWaterBottle

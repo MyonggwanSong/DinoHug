@@ -4,6 +4,7 @@ using UnityEngine.AI;
 public class AnimalDrink : AnimalAbility
 {
     [SerializeField] float drinkDistance = 1.5f;
+    [SerializeField] float drinkTime = 5f;
     NavMeshAgent agent;
     Collider[] colliders = new Collider[20];
     protected override void Awake()
@@ -27,12 +28,12 @@ public class AnimalDrink : AnimalAbility
     {
         int count = Physics.OverlapSphereNonAlloc(transform.position, 50f, colliders, ~0, QueryTriggerInteraction.Ignore);
         int find = -1;
-        Food target;
+        WaterBowl target;
         for (int i = 0; i < count; i++)
         {
-            if (colliders[i].TryGetComponent(out Food food))
+            if (colliders[i].TryGetComponent(out WaterBowl bowl))
             {
-                if (food.isPlaced)
+                if (bowl.isPlaced && bowl.liquid.fillAmount >= Mathf.Lerp(bowl.fillRange.x,bowl.fillRange.y,0.5f))
                 {
                     find = i;
                     break;
@@ -62,7 +63,7 @@ public class AnimalDrink : AnimalAbility
                 agent.isStopped = true;
                 break;
             }
-            if (target == null || !target.gameObject.activeInHierarchy || !target.isPlaced)
+            if (target == null || !target.gameObject.activeInHierarchy || !target.isPlaced || target.liquid.fillAmount <= target.fillRange.x)
             {
                 Debug.Log("공룡 Drink] 'Bowl오브젝트가 파괴 되었거나' 또는 '플레이어가 Grab 했습니다'. Idle로 전환합니다.");
                 animal.ChangeState(AnimalControl.State.Idle);
@@ -101,8 +102,18 @@ public class AnimalDrink : AnimalAbility
         anim.CrossFade("Drink", 0.1f);
         target.DisableGrab();
         // Drink 애니매이션 길이에 따라 아랫줄 시간 변경
-        yield return new WaitForSeconds(3f);
-        // 여기에 Food 오브젝트를 최초 상태로 리셋 처리
+        startTime = Time.time;
+        float range = target.fillRange.y - target.fillRange.x;
+        while (Time.time - startTime < drinkTime)
+        {
+            target.liquid.fillAmount -= range * Time.deltaTime;
+            if (target.liquid.fillAmount <= target.fillRange.x)
+            {
+                break;
+            }
+            yield return null;
+        }
+        // 여기에 WaterBowl 오브젝트를 최초 상태로 리셋 처리
         target.Reset();
         // 여기에 배고픔 게이지 하강 처리
         Debug.Log("공룡 Drink] 'Water 먹기 성공. 이 줄에서 목마름 게이지 감소 처리 필요");

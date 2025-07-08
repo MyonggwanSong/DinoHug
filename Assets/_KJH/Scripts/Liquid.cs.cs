@@ -14,7 +14,7 @@ public class Liquid : MonoBehaviour
     float WobbleSpeedMove = 1f;
     [Range(0, 1)]
     [SerializeField]
-    float fillAmount = 0.5f;
+    public float fillAmount = 0.5f;
     [SerializeField]
     float Recovery = 1f;
     [SerializeField]
