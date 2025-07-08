@@ -1,10 +1,10 @@
-using System.Collections;
 using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 public class AnimalControl : MonoBehaviour
 {
-    public State state;
-    public Effect effect;
+    [ReadOnlyInspector] public State state;
+    [ReadOnlyInspector] public Effect effect;
     public enum State
     {
         Idle,
@@ -80,7 +80,16 @@ public class AnimalControl : MonoBehaviour
         dictionary[newState].Init();
         // Debug.Log($"변경후 newState : {newState}, prevState : {prevState}, state : {state}");
     }
-    
-    
+
+
+#if UNITY_EDITOR
+    [Header("에디터에서 상태강제변경 테스트하려면 아래 버튼으로")]
+    [SerializeField] State testState;
+    [Button]
+    public void Test()
+    {
+        ChangeState(testState);
+    }
+#endif
 
 }
