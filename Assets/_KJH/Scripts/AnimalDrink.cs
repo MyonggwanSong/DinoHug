@@ -100,7 +100,7 @@ public class AnimalDrink : AnimalAbility
         }
         // 먹는 애니매이션 재생 + 먹고있는 동안 XR그랩 못하게
         anim.CrossFade("Drink", 0.1f);
-        target.DisableGrab();
+        //target.DisableGrab();
         // Drink 애니매이션 길이에 따라 아랫줄 시간 변경
         startTime = Time.time;
         float range = target.fillRange.y - target.fillRange.x;
@@ -111,10 +111,16 @@ public class AnimalDrink : AnimalAbility
             {
                 break;
             }
+            if (target == null || !target.gameObject.activeInHierarchy || !target.isPlaced || target.liquid.fillAmount <= target.fillRange.x)
+            {
+                Debug.Log("공룡 Drink] 'Bowl오브젝트가 파괴 되었거나' 또는 '플레이어가 Grab 했습니다'. Idle로 전환합니다.");
+                animal.ChangeState(AnimalControl.State.Idle);
+                yield break;
+            }
             yield return null;
         }
         // 여기에 WaterBowl 오브젝트를 최초 상태로 리셋 처리
-        target.Reset();
+        //target.Reset();
         // 여기에 배고픔 게이지 하강 처리
         Debug.Log("공룡 Drink] 'Water 먹기 성공. 목마름 게이지 감소 처리");
         // 모든 과정 완료후 정상적인 종료일시
