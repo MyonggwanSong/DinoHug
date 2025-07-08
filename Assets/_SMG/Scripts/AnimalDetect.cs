@@ -23,8 +23,10 @@ public class AnimalDetect : MonoBehaviour
             Debug.Log("들어옴");
             controller = other.GetComponentInParent<XRController>();        // 진동 효과 및 자이로스코프 활용 용
             popUpKey.SetActive(true);
-          
-                animal.ChangeState(AnimalControl.State.Handle);
+
+            
+            animal.ChangeState(AnimalControl.State.Idle);
+             
             
 
         }
