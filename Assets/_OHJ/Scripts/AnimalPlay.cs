@@ -15,12 +15,13 @@ public class AnimalPlay : AnimalAbility
     private bool isPlay = false;
 
     /*
-     * °øÀ» ´øÁö¸é Ä³¸¯ÅÍ´Â °øÀ» µû¶ó°¡¼­ °øÀ» ÁÖ¿ì·¯ °£´Ù.
-     * ¹üÀ§ ³»¿¡¼­ °øÀ» Ã£´Â´Ù.
-     * °øÀ» Áý¾î¼­ µ¹¾Æ¿Â´Ù.
+     * ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½Í´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ó°¡¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¿ì·¯ ï¿½ï¿½ï¿½ï¿½.
+     * ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½Â´ï¿½.
+     * ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½î¼­ ï¿½ï¿½ï¿½Æ¿Â´ï¿½.
      */
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         TryGetComponent(out agent);
         player = GameObject.FindGameObjectWithTag("Player");
     }
@@ -48,11 +49,11 @@ public class AnimalPlay : AnimalAbility
     private IEnumerator PlayBall()
     {
         isPlay = true;
-        state = AnimalControl.State.Play;
-        // ¹üÀ§ ÁöÁ¤
+        animal.state = AnimalControl.State.Play;
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         Collider = Physics.OverlapSphere(transform.position, 80f);
 
-        // °øÃ£±â
+        // ï¿½ï¿½Ã£ï¿½ï¿½
         for (int i = 0; i < Collider.Length; i++)
         {
             if (Collider[i].CompareTag("Ball"))
@@ -63,7 +64,7 @@ public class AnimalPlay : AnimalAbility
             }
         }
 
-        // ¸ñÀûÁö
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         agent.SetDestination(target.transform.position);
 
         while(true)
@@ -81,20 +82,20 @@ public class AnimalPlay : AnimalAbility
 
         //yield return new WaitForSeconds(2f);
         //yield return new WaitUntil(() => Vector3.Distance(transform.position, target.transform.position) < stopDistance);
-        //Debug.Log($"{stopDistance} ¾Õ¿¡¼­ ¸ØÃã");
+        //Debug.Log($"{stopDistance} ï¿½Õ¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
         //agent.isStopped = true;
 
 
 
-        // °Å¸®°¡ °¡±î¿öÁú ¶§
+        // ï¿½Å¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
         if (Vector3.Distance(transform.position, target.transform.position) < 30f)
         {
-            // targetÀ» carry¶ó´Â ÀÓ½Ã º¯¼ö¿¡ ´ëÀÔ
+            // targetï¿½ï¿½ carryï¿½ï¿½ï¿½ ï¿½Ó½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             carry = target;
 
             carry.transform.SetParent(ballpos);
 
-            //ÀÚ¿¬½º·´°Ô ¿òÁ÷ÀÌ±â
+            //ï¿½Ú¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì±ï¿½
             float elapsed = 0f;
             float duration = 1f;
 
@@ -106,7 +107,7 @@ public class AnimalPlay : AnimalAbility
                 yield return null;
             }
 
-            //°ø Áß·Â ²ô±â
+            //ï¿½ï¿½ ï¿½ß·ï¿½ ï¿½ï¿½ï¿½ï¿½
             Rigidbody ball_rb = carry.GetComponent<Rigidbody>();
             if (ball_rb != null) ball_rb.isKinematic = true;
             
@@ -119,20 +120,20 @@ public class AnimalPlay : AnimalAbility
         //    carry.transform.SetParent(ballpos);
         //    carry.transform.localPosition = Vector3.Lerp(carry.transform.position, new Vector3(0.01f, 0.1f, 0.5f), 2f);
 
-        //    // °ø Áß·Â ²ô±â
+        //    // ï¿½ï¿½ ï¿½ß·ï¿½ ï¿½ï¿½ï¿½ï¿½
         //    Rigidbody ball_rb = carry.GetComponent<Rigidbody>();
         //    if(ball_rb != null)
         //        ball_rb.isKinematic = true;
 
         //    yield return null;
 
-        //    //¾Ö´Ï¸ÞÀÌ¼Ç ½ÇÇà
+        //    //ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½
 
         //    //carry.transform.localPosition = new Vector3(-1f, 0f, -0.5f);
 
 
         //    Debug.Log("1");
-        //    // 2ÃÊ µ¿¾È ¸ØÃã
+        //    // 2ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         //    Debug.Log("2");
 
         //    yield return new WaitForSeconds(3f);
@@ -147,7 +148,7 @@ public class AnimalPlay : AnimalAbility
         //        ball_rb.isKinematic = false;
 
         //        yield return null;
-        //        //¾Ö´Ï¸ÞÀÌ¼Ç ½ÇÇà
+        //        //ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½
         //    }
 
 
@@ -155,7 +156,7 @@ public class AnimalPlay : AnimalAbility
         isPlay = false;
 
 
-        Debug.Log("½ÇÇà Á¾·á");
-        state = AnimalControl.State.Idle;
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
+        animal.state = AnimalControl.State.Idle;
     }
 }
