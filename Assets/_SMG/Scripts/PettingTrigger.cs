@@ -108,6 +108,7 @@ public class PettingTrigger : MonoBehaviour
             // 유예시간이 아직 지나지 않았으면 false로 바꾸지 않음
             if (Time.time - pettingStartTime < pettingGracePeriod)
             {
+                Debug.Log($"유예시간 중 - 남은시간: {pettingGracePeriod - (Time.time - pettingStartTime):F1}초");
                 return;
             }
         }
