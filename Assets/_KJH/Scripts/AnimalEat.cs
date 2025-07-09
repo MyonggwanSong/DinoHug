@@ -23,12 +23,17 @@ public class AnimalEat : AnimalAbility
     {
         StopCoroutine(nameof(GoToFood));
         agent.isStopped = true;
+        if (target != null)
+        {
+            target.EnableGrab();
+        }
     }
+    Food target = null;
     IEnumerator GoToFood()
     {
         int count = Physics.OverlapSphereNonAlloc(transform.position, 50f, colliders, ~0, QueryTriggerInteraction.Ignore);
         int find = -1;
-        Food target;
+        target = null;
         for (int i = 0; i < count; i++)
         {
             if (colliders[i].TryGetComponent(out Food food))

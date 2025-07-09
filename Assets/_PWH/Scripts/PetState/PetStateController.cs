@@ -68,7 +68,7 @@ public class PetStateController : MonoBehaviour
         // 대기상태나 배회 상태인 경우에만 수행.
         if (animal.state.Equals(AnimalControl.State.Idle) || animal.state.Equals(AnimalControl.State.Wander))
         {
-            nonInteractionElapsedTime += Time.deltaTime;
+            nonInteractionElapsedTime += Time.time;
         }
 
         //n초 이상 상호작용이 없으면 프레임마다 {_figure_Bond}씩 하락
