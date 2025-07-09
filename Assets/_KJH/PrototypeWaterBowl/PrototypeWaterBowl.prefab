@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3652729707201401027}
   - component: {fileID: 6373675395391178885}
   - component: {fileID: 3799925563171257905}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: PrototypeWaterBowl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -321,7 +321,7 @@ GameObject:
   - component: {fileID: 8584078610347890740}
   - component: {fileID: 3477922485475216304}
   - component: {fileID: 1772387716164103650}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -425,7 +425,7 @@ GameObject:
   - component: {fileID: 6434143158820688753}
   - component: {fileID: 1618456992927322278}
   - component: {fileID: 3860534250903102028}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: PrototypeWaterBowl
   m_TagString: Untagged
   m_Icon: {fileID: 0}

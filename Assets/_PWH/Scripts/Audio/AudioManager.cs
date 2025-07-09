@@ -39,11 +39,14 @@ public class AudioManager : BehaviourSingleton<AudioManager>
             Debug.Log($"{clipName} 라는 이름의 효과음은 없습니다.");
             return null;
         }
-        PoolBehaviour pb = PoolManager.Instance.Spawn(sfxPrefab, pos, Quaternion.identity, transform);
-        SFX casting = pb as SFX;
-        casting.clip = effectAudio[find];
-        casting.Play(pos, spatialBlend);
-        return casting;
+        if (find == -1) return null;
+        PoolBehaviour pb = PoolManager.Instance?.Spawn(sfxPrefab, pos, Quaternion.identity, transform);
+        SFX _pb = pb as SFX;
+        _pb.transform.position = pos;
+        _pb.aus.loop = false;
+        _pb.aus.spatialBlend = spatialBlend;
+        _pb.Play(effectAudio[find], fixLength);
+        return _pb;
     }
     // 외부에서 효과음을 재생시킬때 쓰는 메소드. 위 메소드랑 비슷한데. 타겟 트랜스폼 버전으로 오버로딩 한것 
     // isTracking 이 false일시 효과음소리가 타겟 트랜스폼을 안따라다니고 최초 스폰지점에서 정지, true일경우 재생하는동안 포지션 추적)
@@ -56,10 +59,19 @@ public class AudioManager : BehaviourSingleton<AudioManager>
             return null;
         }
         PoolBehaviour pb = PoolManager.Instance.Spawn(sfxPrefab, target.position, Quaternion.identity, transform);
-        SFX casting = pb as SFX;
-        casting.clip = effectAudio[find];
-        casting.Play(target, spatialBlend, isTracking);
-        return casting;
+        SFX _pb = pb as SFX;
+        _pb.transform.position = target.position;
+        _pb.aus.loop = false;
+        _pb.aus.spatialBlend = spatialBlend;
+        if (isTracking)
+        {
+            _pb.Play(effectAudio[find], fixLength, target);
+        }
+        else
+        {
+            _pb.Play(effectAudio[find], fixLength);
+        }
+        return _pb;
     }
     
 }

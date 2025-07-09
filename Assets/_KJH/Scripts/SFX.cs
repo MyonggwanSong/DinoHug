@@ -1,81 +1,77 @@
-using System.Collections;
+using System.Threading;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
 [RequireComponent(typeof(AudioSource))]
 public class SFX : PoolBehaviour
 {
-    AudioSource audioSource;
-    public AudioClip clip;
+    #region UniTask Setting
+    CancellationTokenSource cts;
+    void OnEnable()
+    {
+        cts = new CancellationTokenSource();
+        Application.quitting += UniTaskCancel;
+    }
+    void OnDisable() { UniTaskCancel(); }
+    void OnDestroy() { UniTaskCancel(); }
+    void UniTaskCancel()
+    {
+        try
+        {
+            cts?.Cancel();
+            cts?.Dispose();
+        }
+        catch (System.Exception e)
+        {
+
+            Debug.Log(e);
+        }
+        cts = null;
+    }
+    #endregion
+    public AudioSource aus;
     void Awake()
     {
-        TryGetComponent(out audioSource);
+        TryGetComponent(out aus);
     }
-    void OnDisable()
+    public void Play(AudioClip clip, float fixLength)
     {
-        Stop();
+        cts?.Cancel();
+        cts = new CancellationTokenSource();
+        AutoDespawn(clip, fixLength, cts.Token).Forget();
+    }
+    public void Play(AudioClip clip, float fixLength, Transform trackingTarget)
+    {
+        cts?.Cancel();
+        cts = new CancellationTokenSource();
+        AutoDespawn(clip, fixLength, cts.Token).Forget();
+        TrackingTarget(trackingTarget, cts.Token).Forget();
+    }
+    async UniTask AutoDespawn(AudioClip clip, float fixLength, CancellationToken token)
+    {
+        if (fixLength == -1) fixLength = clip.length;
+        await UniTask.Delay(1, ignoreTimeScale: true, cancellationToken: token);
+        aus.loop = false;
+        aus.clip = clip;
+        if (!gameObject.activeInHierarchy) gameObject.SetActive(true);
+        if (!aus.enabled) aus.enabled = true;
+        await UniTask.Delay(1, ignoreTimeScale: true, cancellationToken: token);
+        aus.Play();
+        await UniTask.Delay((int)(1000f * (fixLength + 0.15f)), ignoreTimeScale: true, cancellationToken: token);
+        base.Despawn();
+    }
+    async UniTask TrackingTarget(Transform trackingTarget, CancellationToken token)
+    {
+        while (!token.IsCancellationRequested)
+        {
+            await UniTask.Delay(1, ignoreTimeScale: true, cancellationToken: token);
+        }
     }
     public void Stop()
-    {  
-        try
-        {
-            audioSource.Stop();
-            StopCoroutine(nameof(AutoDespawn));
-            StopCoroutine(nameof(TrackingTarget));
-            Despawn();
-        }
-        catch
-        {
-
-        }
-    }
-    public void Play(Vector3 pos, float spatialBlend, float fixLength = -1)
     {
-        audioSource.Stop();
-        transform.position = pos;
-        audioSource.spatialBlend = spatialBlend;
-        audioSource.clip = clip;
-        audioSource.loop = false;
-        audioSource.Play();
-        StartCoroutine(nameof(AutoDespawn), fixLength);
+        aus.Stop();
+        UniTaskCancel();
+        Despawn();
     }
-    public void Play(Transform target, float spatialBlend, bool isTracking = true, float fixLength = -1)
-    {
-        audioSource.Stop();
-        transform.position = target.transform.position;
-        audioSource.spatialBlend = spatialBlend;
-        audioSource.clip = clip;
-        audioSource.loop = false;
-        audioSource.Play();
-        StartCoroutine(nameof(AutoDespawn), fixLength);
-        if (isTracking)
-        {
-            StartCoroutine(nameof(TrackingTarget));
-        }
-    }
-    IEnumerator AutoDespawn(float fixLength)
-    {
-        float length = clip.length + 0.1f;
-        if (fixLength != -1)
-            length = fixLength;
-        yield return new WaitForSeconds(length);
-        try
-        {
-            Despawn();
-        }
-        catch
-        {
-
-        }
-    }
-    IEnumerator TrackingTarget(Transform target)
-    {
-        float startTime = Time.time;
-        while (Time.time - startTime < clip.length + 0.1f)
-        {
-            transform.position = target.position;
-            yield return null;
-        }
-    }
-
 
 
 }

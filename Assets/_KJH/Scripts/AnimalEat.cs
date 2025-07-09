@@ -6,7 +6,7 @@ public class AnimalEat : AnimalAbility
 {
     [SerializeField] float eatDistance = 1.5f;
     NavMeshAgent agent;
-    Collider[] colliders = new Collider[20];
+    Collider[] colliders = new Collider[80];
     protected override void Awake()
     {
         base.Awake();

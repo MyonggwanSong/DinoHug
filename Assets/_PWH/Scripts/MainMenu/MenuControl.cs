@@ -1,5 +1,6 @@
+using UnityEditor;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class MenuControl : MonoBehaviour
 {
     [SerializeField] GameObject view_Main;
@@ -8,6 +9,7 @@ public class MenuControl : MonoBehaviour
     public void OnClickGameStartButton()
     {
         Debug.Log("OnClick Game Start");
+        SceneManager.LoadScene(1);
     }
 
     public void OnClickEnvironmentButton()
@@ -26,5 +28,10 @@ public class MenuControl : MonoBehaviour
     {
         Debug.Log("OnClick Game Exit");
         gameObject.SetActive(false);
+#if UNITY_EDITOR
+        EditorApplication.ExitPlaymode();
+#else
+        Application.Quit();
+#endif
     }
 }

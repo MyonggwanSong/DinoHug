@@ -20,7 +20,7 @@ public class PoolManager : BehaviourSingleton<PoolManager>
     }
 
     // pool은 Prefab
-    public void CreatePool(PoolBehaviour pool, int size = 10)
+    public void CreatePool(PoolBehaviour pool, int size = 30)
     {
         // if (pools.Values..Contains(pool)) return;               //이미 저장 되어있는 pool이면 무시
         if (pools.Values.ToList().Contains(pool)) return;
