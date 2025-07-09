@@ -57,7 +57,14 @@ public class SFX : PoolBehaviour
         if (fixLength != -1)
             length = fixLength;
         yield return new WaitForSeconds(length);
-        Despawn();
+        try
+        {
+            Despawn();
+        }
+        catch
+        {
+
+        }
     }
     IEnumerator TrackingTarget(Transform target)
     {

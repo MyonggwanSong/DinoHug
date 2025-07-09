@@ -4670,24 +4670,28 @@ MonoBehaviour:
   nonInteractionElapsedTime: 0
   add_Play:
     bond: 6
-    bored: -5
-    thirsty: 0.3
     hunger: 0.3
+    thirsty: 0.3
+    bored: -5
   add_Petting:
     bond: 4
-    bored: -2
-    thirsty: 0
     hunger: 0
+    thirsty: 0
+    bored: -2
   add_Feed:
     bond: 2
-    bored: 0
-    thirsty: 0
     hunger: -10
+    thirsty: 0
+    bored: 0
   add_GiveWater:
     bond: 2
-    bored: 0
-    thirsty: -10
     hunger: 0
+    thirsty: -10
+    bored: 0
+  deadline_Bond: 0
+  deadline_Hunger: 0
+  deadline_Thirsty: 0
+  deadline_Bored: 0
 --- !u!1 &1656890892
 GameObject:
   m_ObjectHideFlags: 0
