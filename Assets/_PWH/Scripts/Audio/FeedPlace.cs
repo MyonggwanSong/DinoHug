@@ -15,6 +15,7 @@ public class FeedPlace : MonoBehaviour
     void StartEatPerform()
     {
         Debug.Log("Eat...");
+        audio.volume = AudioManager.Instance.effect_Volume;
         audio.Play();
     }
 }

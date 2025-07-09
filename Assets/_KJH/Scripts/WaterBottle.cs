@@ -13,7 +13,6 @@ public class WaterBottle : MonoBehaviour
     int shakeCount = 0;
     GameObject particleObj;
     ParticleSystem particle;
-    Transform childParticle;
     bool isChangeState = false;
     void Awake()
     {
@@ -23,7 +22,6 @@ public class WaterBottle : MonoBehaviour
         startRotation = transform.rotation;
         particleObj = transform.Find("Bottle").GetChild(0).gameObject;
         particleObj.TryGetComponent(out particle);
-        childParticle = particleObj.transform.GetChild(0);
     }
     public void OnGrabStart()
     {
@@ -211,8 +209,6 @@ public class WaterBottle : MonoBehaviour
             bowl = null;
             if (Physics.Raycast(ray, out hit, 100f, 1 << 3, QueryTriggerInteraction.Ignore))
             {
-                childParticle.position = hit.point + 0.1f * Vector3.up;
-                childParticle.up = hit.normal;
                 int count = Physics.OverlapSphereNonAlloc(hit.point, 0.2f, colliders);
                 for (int i = 0; i < count; i++)
                 {

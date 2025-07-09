@@ -35,7 +35,7 @@ public class AnimalWander : AnimalAbility
             randomPos.y = 100f;
             ray.origin = randomPos;
             //Debug.DrawRay(ray.origin, 200f * ray.direction, Color.white, 5f);
-            if (Physics.Raycast(ray, out hit, 200f, ~(1<<2), QueryTriggerInteraction.Ignore))
+            if (Physics.Raycast(ray, out hit, 200f, ~0, QueryTriggerInteraction.Ignore))
             {
                 if (hit.collider.gameObject.layer == 3)
                 {
