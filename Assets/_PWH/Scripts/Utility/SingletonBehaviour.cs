@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public abstract class BehaviourSingleton<T> : MonoBehaviour where T : MonoBehaviour
+public abstract class SingletonBehaviour<T> : MonoBehaviour where T : MonoBehaviour
 {
     private static T instance;
 
-    public static T Instance
+    public static T I
     {
         get
         {
@@ -22,12 +22,11 @@ public abstract class BehaviourSingleton<T> : MonoBehaviour where T : MonoBehavi
             return instance;
         }
     }
-
     protected abstract bool IsDontDestroy();
 
     protected virtual void Awake()
     {
-        if (Instance != null && Instance != this)
+        if (I != null && I != this)
         {
             Destroy(gameObject);
             return;

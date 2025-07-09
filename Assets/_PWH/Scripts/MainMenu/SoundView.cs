@@ -15,8 +15,8 @@ public class SoundView : MonoBehaviour
 
     void Start()
     {
-        slider_BGM.value = AudioManager.Instance.init_Master;
-        slider_Effect.value = AudioManager.Instance.init_Effect;
+        slider_BGM.value = AudioManager.I.init_Master;
+        slider_Effect.value = AudioManager.I.init_SFX;
 
         pre_BGM = slider_BGM.value;
         pre_Effect = slider_Effect.value;
@@ -29,16 +29,16 @@ public class SoundView : MonoBehaviour
 
     public void OnUpdateValueMaster()
     {
-        if (AudioManager.Instance == null) return;
+        if (AudioManager.I == null) return;
 
-        AudioManager.Instance.SetVolume(SoundType.BGM, slider_BGM.value);
+        AudioManager.I.SetVolume(SoundType.BGM, slider_BGM.value);
     }
 
     public void OnUpdateValueEffect()
     {
-        if (AudioManager.Instance == null) return;
+        if (AudioManager.I == null) return;
 
-        AudioManager.Instance.SetVolume(SoundType.EFFECT, slider_Effect.value);
+        AudioManager.I.SetVolume(SoundType.EFFECT, slider_Effect.value);
     }
 
     public void OnClickApplyButton()
@@ -63,8 +63,8 @@ public class SoundView : MonoBehaviour
 
     private void UpdateVolume()
     {
-        AudioManager.Instance.SetVolume(SoundType.BGM, pre_BGM);
-        AudioManager.Instance.SetVolume(SoundType.EFFECT, pre_Effect);
+        AudioManager.I.SetVolume(SoundType.BGM, pre_BGM);
+        AudioManager.I.SetVolume(SoundType.EFFECT, pre_Effect);
     }
 
     void OnEnable()
