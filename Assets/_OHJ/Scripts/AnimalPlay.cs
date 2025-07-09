@@ -26,12 +26,6 @@ public class AnimalPlay : AnimalAbility
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    private void Update()
-    {
-        if(!isPlay)
-            Init();
-    }
-
     public override void Init()
     {
         StopCoroutine(nameof(PlayBall));
@@ -157,6 +151,8 @@ public class AnimalPlay : AnimalAbility
 
 
         Debug.Log("���� ����");
-        animal.state = AnimalControl.State.Idle;
+        animal.ChangeState(AnimalControl.State.Idle);
+
+        //animal.ChangeState(AnimalControl.State.Play);
     }
 }
