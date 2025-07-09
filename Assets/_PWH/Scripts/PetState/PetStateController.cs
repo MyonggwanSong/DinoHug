@@ -83,7 +83,7 @@ public class PetStateController : MonoBehaviour
     }
 
     //Animal Control에 Observer를 통해 상호작용중 여부 확인하기.
-    public void UpdateIsInteraction(bool on)
+    void UpdateIsInteraction(bool on)
     {
         isInteraction = on;
     }
