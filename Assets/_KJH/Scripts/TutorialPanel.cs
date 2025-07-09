@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class TutorialPanel : MonoBehaviour
 {
-    [SerializeField] GameObject animal;
+    [SerializeField] AnimalControl animal;
     [SerializeField] Transform interactableObjects;
     [SerializeField] GameObject[] pops;
-    [SerializeField] PetStateController petStateController;
     public int progress = 0;
     public bool isComplete;
-    void Awake()
+    void OnEnable()
     {
-        petStateController.UpdateIsInteraction(true);
-        animal.SetActive(false);
+        animal.petStateController.UpdateIsInteraction(true);
+        animal.gameObject.SetActive(false);
         for (int i = 0; i < interactableObjects.childCount; i++)
         {
             interactableObjects.GetChild(i).gameObject.SetActive(false);
@@ -43,8 +42,8 @@ public class TutorialPanel : MonoBehaviour
         isComplete = true;
         pops[progress].SetActive(false);
         // 게임 진행
-        petStateController.UpdateIsInteraction(false);
-        animal.SetActive(true);
+        animal.petStateController.UpdateIsInteraction(false);
+        animal.gameObject.SetActive(true);
         for (int i = 0; i < interactableObjects.childCount; i++)
         {
             interactableObjects.GetChild(i).gameObject.SetActive(true);

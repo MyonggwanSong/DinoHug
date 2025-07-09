@@ -195,7 +195,7 @@ public class WaterBottle : MonoBehaviour
     IEnumerator WaterFillOut()
     {
         sfx = null;
-        yield return new WaitForSeconds(1.2f);
+        yield return new WaitForSeconds(0.7f);
         sfx = AudioManager.Instance.PlayEffect("WaterFill", transform.position, 0.65f);
         particleObj.SetActive(true);
         particle.Stop(true);

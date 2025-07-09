@@ -5,9 +5,9 @@ using UnityEngine;
 using UnityEngine.Events;
 public class AnimalControl : MonoBehaviour
 {
-    public PetStateController petStateController;
     [ReadOnlyInspector] public State state;
     [ReadOnlyInspector] public Effect effect;
+    [HideInInspector] public PetStateController petStateController;
     public enum State
     {
         Idle,
@@ -59,12 +59,14 @@ public class AnimalControl : MonoBehaviour
     Dictionary<State, AnimalAbility> dictionary = new Dictionary<State, AnimalAbility>();
     void Awake()
     {
+        TryGetComponent(out petStateController);
         AnimalAbility[] animalAbilities = GetComponents<AnimalAbility>();
         for (int i = 0; i < animalAbilities.Length; i++)
         {
             dictionary.Add((State)i, animalAbilities[i]);
             animalAbilities[i].enabled = false;
         }
+        
     }
     void Start()
     {
