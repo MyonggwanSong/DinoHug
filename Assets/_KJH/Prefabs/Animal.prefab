@@ -132,9 +132,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stopDistance: 1.5
-  ballpos: {fileID: 0}
-  carry: {fileID: 0}
-  player: {fileID: 0}
+  ballpos: {fileID: 1502786589370029013}
+  playerCam: {fileID: 0}
+  isBite: 0
   target: {fileID: 0}
   Collider: []
 --- !u!114 &8811127603895603328
@@ -348,6 +348,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 2132772786265862972}
   m_SourcePrefab: {fileID: 100100000, guid: 716c1b4e39996b94abe0b939c5e0ef7b, type: 3}
+--- !u!4 &1502786589370029013 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8686121944458577942, guid: 716c1b4e39996b94abe0b939c5e0ef7b, type: 3}
+  m_PrefabInstance: {fileID: 7805219275659205571}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2992320201627112843 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5032612936959872584, guid: 716c1b4e39996b94abe0b939c5e0ef7b, type: 3}

@@ -7,7 +7,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class AnimalPet : AnimalAbility
 {
 
-    public ActionBasedController controller;
+    [ReadOnlyInspector] public ActionBasedController controller;
     public bool isPetting = false;
 
     
