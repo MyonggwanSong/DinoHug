@@ -21,6 +21,7 @@ public class AnimalEat : AnimalAbility
     }
     public override void UnInit()
     {
+        sfx?.Stop();
         StopCoroutine(nameof(GoToFood));
         agent.isStopped = true;
         if (target != null)
@@ -105,10 +106,13 @@ public class AnimalEat : AnimalAbility
         }
         // 먹는 애니매이션 재생 + 먹고있는 동안 XR그랩 못하게
         anim.CrossFade("Eat", 0.1f);
+        // 효과음 재생
+        sfx = AudioManager.Instance.PlayEffect("EatMeat", transform.position, 0.65f);
         target.DisableGrab();
         // Eat 애니매이션 길이에 따라 아랫줄 시간 변경
         yield return new WaitForSeconds(3f);
         // 여기에 Food 오브젝트를 최초 상태로 리셋 처리
+        sfx?.Stop();
         target.Reset();
         // 여기에 배고픔 게이지 하강 처리
         //Debug.Log("공룡 Eat] 'Food 먹기 성공. 이 줄에서 배고픔 게이지 감소 처리");
@@ -124,6 +128,7 @@ public class AnimalEat : AnimalAbility
             animal.ChangeState(AnimalControl.State.Wander);
         }
     }
+    SFX sfx;
 
 
 
