@@ -191,9 +191,12 @@ public class WaterBottle : MonoBehaviour
         isGrabbed = false;
     }
     Coroutine coWaterFill;
+    SFX sfx;
     IEnumerator WaterFillOut()
     {
+        sfx = null;
         yield return new WaitForSeconds(1.2f);
+        sfx = AudioManager.Instance.PlayEffect("WaterFill", transform.position, 0.65f);
         particleObj.SetActive(true);
         particle.Stop(true);
         particle.Play();
@@ -244,6 +247,7 @@ public class WaterBottle : MonoBehaviour
     {
         if (coWaterFill != null)
         {
+            sfx?.Stop();
             //Debug.Log("물 따르기 끝");
             particle.Stop(true);
             particleObj.SetActive(false);

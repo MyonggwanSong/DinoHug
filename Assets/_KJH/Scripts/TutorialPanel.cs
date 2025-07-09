@@ -24,6 +24,7 @@ public class TutorialPanel : MonoBehaviour
     public void NextButton()
     {
         if (progress >= pops.Length) return;
+        AudioManager.Instance.PlayEffect("UIClick1", transform.position, 0.65f);
         pops[progress].SetActive(false);
         progress++;
         pops[progress].SetActive(true);
@@ -31,12 +32,14 @@ public class TutorialPanel : MonoBehaviour
     public void PrevButton()
     {
         if (progress == 0) return;
+        AudioManager.Instance.PlayEffect("UIClick1", transform.position, 0.65f);
         pops[progress].SetActive(false);
         progress--;
         pops[progress].SetActive(true);
     }
     public void CompleteButton()
     {
+        AudioManager.Instance.PlayEffect("UIClick1", transform.position, 0.65f);
         isComplete = true;
         pops[progress].SetActive(false);
         // 게임 진행
