@@ -4674,10 +4674,10 @@ MonoBehaviour:
     thirsty: 0.3
     bored: -5
   add_Petting:
-    bond: 4
+    bond: 0.4
     hunger: 0
     thirsty: 0
-    bored: -2
+    bored: -1
   add_Feed:
     bond: 2
     hunger: -10

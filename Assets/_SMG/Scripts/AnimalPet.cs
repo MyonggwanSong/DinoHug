@@ -29,11 +29,11 @@ public class AnimalPet : AnimalAbility
     {
         yield return new WaitUntil(() => isPetting);
         anim.CrossFade("aniClip1", 0.2f);
-        Debug.Log("쓰다듬는 중");
+        //Debug.Log("쓰다듬는 중");
         
         yield return new WaitUntil(() => !isPetting);
         anim.CrossFade("Idle", 0.2f);
-        Debug.Log("쓰다듬기 끝");
+        //Debug.Log("쓰다듬기 끝");
 
         // yield return null;
         // if (isPetting)

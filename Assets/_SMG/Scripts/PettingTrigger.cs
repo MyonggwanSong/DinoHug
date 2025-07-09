@@ -58,7 +58,7 @@ public class PettingTrigger : MonoBehaviour
             return;
 
         float input = controller.activateAction.action.ReadValue<float>();
-        Debug.Log($"Input: {input}");
+        //Debug.Log($"Input: {input}");
 
         if (input == 1f) // 버튼이 눌린 상태
         {
@@ -66,7 +66,7 @@ public class PettingTrigger : MonoBehaviour
             if (ac.state != AnimalControl.State.Handle)
             {
                 ac.ChangeState(AnimalControl.State.Handle);
-                Debug.Log("상태 변경: Handle");
+                //Debug.Log("상태 변경: Handle");
             }
 
             // 2. 위치 추적 및 속도 계산
@@ -108,7 +108,7 @@ public class PettingTrigger : MonoBehaviour
             // 유예시간이 아직 지나지 않았으면 false로 바꾸지 않음
             if (Time.time - pettingStartTime < pettingGracePeriod)
             {
-                Debug.Log($"유예시간 중 - 남은시간: {pettingGracePeriod - (Time.time - pettingStartTime):F1}초");
+                //Debug.Log($"유예시간 중 - 남은시간: {pettingGracePeriod - (Time.time - pettingStartTime):F1}초");
                 return;
             }
         }
@@ -124,9 +124,10 @@ public class PettingTrigger : MonoBehaviour
             controller.SendHapticImpulse(0.5f, 0.2f);
             pettingStartTime = Time.time;
             Debug.Log("쓰다듬기 시작 - 유예시간 시작");
+            ac.petStateController.Petting();
         }
 
-        Debug.Log($"쓰다듬기 상태 변경: {shouldPet}");
+        //Debug.Log($"쓰다듬기 상태 변경: {shouldPet}");
     }
 
     bool IsValidPettingDirection(Vector3 delta)
@@ -134,14 +135,14 @@ public class PettingTrigger : MonoBehaviour
         // 1. 최소 움직임 크기 체크 (너무 작으면 방향 설정 안함)
         if (delta.magnitude < 0.01f)
         {
-            Debug.Log("움직임이 너무 작음");
+            //Debug.Log("움직임이 너무 작음");
             return false;
         }
 
         // 2. 상하 움직임 제한 (Y축 움직임이 30도 이상이면 안됨)
         if (Math.Abs(velocity.y) > 0.5f)
         {
-            Debug.Log("상하 움직임이 너무 큼");
+            //Debug.Log("상하 움직임이 너무 큼");
             return false;
         }
 
@@ -149,11 +150,11 @@ public class PettingTrigger : MonoBehaviour
         float horizontalMovement = Mathf.Sqrt(velocity.x * velocity.x + velocity.z * velocity.z);
         if (horizontalMovement < 0.7f) // 전체 움직임의 70% 이상이 좌우 움직임이어야 함
         {
-            Debug.Log($"좌우 움직임 부족: {horizontalMovement:F3}");
+            //Debug.Log($"좌우 움직임 부족: {horizontalMovement:F3}");
             return false;
         }
 
-        Debug.Log($"유효한 쓰다듬기 방향 - 수평이동: {horizontalMovement:F3}");
+        //Debug.Log($"유효한 쓰다듬기 방향 - 수평이동: {horizontalMovement:F3}");
         return true;
     }
 
@@ -195,7 +196,7 @@ public class PettingTrigger : MonoBehaviour
         if (Math.Abs(velocity.y) > 0.5f)
         {
             UpdatePettingState(false);
-            Debug.Log("상하 움직임 감지 - 쓰다듬기 중단");
+            //Debug.Log("상하 움직임 감지 - 쓰다듬기 중단");
             return;
         }
 
@@ -206,11 +207,11 @@ public class PettingTrigger : MonoBehaviour
             {
                 firstDirection = velocity;
                 isFirstMove = false;
-                Debug.Log($"첫 번째 방향 설정: {firstDirection}");
+                //Debug.Log($"첫 번째 방향 설정: {firstDirection}");
             }
             else
             {
-                Debug.Log("유효하지 않은 방향 - firstDirection 설정 안함");
+                //Debug.Log("유효하지 않은 방향 - firstDirection 설정 안함");
             }
         }
 
@@ -228,7 +229,7 @@ public class PettingTrigger : MonoBehaviour
         // 쓰다듬기 상태 업데이트 (딜레이 적용)
         UpdatePettingState(shouldPet);
 
-        Debug.Log($" Horizontal: {horizontal:F3}, IsPetting: {ap.isPetting}, ShouldPet: {shouldPet}");
+        //Debug.Log($" Horizontal: {horizontal:F3}, IsPetting: {ap.isPetting}, ShouldPet: {shouldPet}");
     }
 
     void OnTriggerExit(Collider other)
@@ -238,7 +239,7 @@ public class PettingTrigger : MonoBehaviour
 
     void ResetToIdle(bool disconnect)
     {
-        Debug.Log("Idle 상태로 리셋");
+        //Debug.Log("Idle 상태로 리셋");
 
         // 위치 데이터 초기화
         prevPosition = Vector3.zero;
