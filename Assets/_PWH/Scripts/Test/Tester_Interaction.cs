@@ -39,6 +39,6 @@ public class Tester_Interaction : MonoBehaviour
         Quaternion quat = Quaternion.LookRotation(targetDir);
 
         Debug.Log($"Quaternion : {quat}");
-        PoolManager.I.Spawn(particle, hitPoint, quat, this.gameObject.transform);
+        PoolManager.Instance.Spawn(particle, hitPoint, quat, this.gameObject.transform);
     }
 }

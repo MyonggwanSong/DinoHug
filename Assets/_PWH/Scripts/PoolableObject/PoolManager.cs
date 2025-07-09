@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class PoolManager : SingletonBehaviour<PoolManager>
+public class PoolManager : BehaviourSingleton<PoolManager>
 {
     protected override bool IsDontDestroy() => false;
 
