@@ -30,14 +30,20 @@ public class PetStateController : MonoBehaviour
     public float nonInteractionTime;
     public float nonInteractionElapsedTime;
 
-    [Header("Effect Apply")]
-    public AdditiveState add_Play;
+    [Header("Perform Apply")]
+    public PetState add_Play;
     [Space(10)]
-    public AdditiveState add_Petting;
+    public PetState add_Petting;
     [Space(10)]
-    public AdditiveState add_Feed;
+    public PetState add_Feed;
     [Space(10)]
-    public AdditiveState add_GiveWater;
+    public PetState add_GiveWater;
+
+    [Header("Additive Effect Apply [특수 효과 적용]")]
+    [SerializeField] float deadline_Bond;
+    [SerializeField] float deadline_Hunger;
+    [SerializeField] float deadline_Thirsty;
+    [SerializeField] float deadline_Bored;
 
     #region 가중치 합산 Value
     private float totalBondVal;
@@ -52,7 +58,7 @@ public class PetStateController : MonoBehaviour
     {
         nonInteractionElapsedTime = 0f;
         model = new(view, _init_Bond, _init_Hunger, _init_Thirsty, _init_Bored);
-
+        currentState = new(_init_Bond, _init_Hunger, _init_Thirsty, _init_Bored);
         //Remove...
         totalBondVal = _figure_Bond_Origin;
         totalHungerVal = _figure_Hunger_Origin;
@@ -74,13 +80,50 @@ public class PetStateController : MonoBehaviour
         //n초 이상 상호작용이 없으면 프레임마다 {_figure_Bond}씩 하락
         if (nonInteractionElapsedTime >= nonInteractionTime)
         {
-            model.UpdateBond(-1 * totalBondVal);
+            UpdateBond(-1 * totalBondVal);
         }
 
-        model.UpdateHunger(totalHungerVal);
-        model.UpdateThirsty(totalThirstyVal);
-        model.UpdateBored(totalBoredVal);
+        UpdateHunger(totalHungerVal);
+        UpdateThirsty(totalThirstyVal);
+        UpdateBored(totalBoredVal);
+
+        CheckEffects();
     }
+
+    #region Update State
+
+    public void UpdateBond(float amount)
+    {
+        if (view == null) return;
+        currentState.bond += amount;
+        currentState.bond = Mathf.Clamp(currentState.bond, 0, 100);
+        model.UpdateBond(currentState.bond);
+    }
+
+    public void UpdateHunger(float amount)
+    {
+        if (view == null) return;
+        currentState.hunger += amount;
+        currentState.hunger = Mathf.Clamp(currentState.hunger, 0, 100);
+        model.UpdateHunger(currentState.hunger);
+    }
+
+    public void UpdateThirsty(float amount)
+    {
+        if (view == null) return;
+        currentState.thirsty += amount;
+        currentState.thirsty = Mathf.Clamp(currentState.thirsty, 0, 100);
+        model.UpdateThirsty(currentState.thirsty);
+    }
+
+    public void UpdateBored(float amount)
+    {
+        if (view == null) return;
+        currentState.bored += amount;
+        currentState.bored = Mathf.Clamp(currentState.bored, 0, 100);
+        model.UpdateBored(currentState.bored);
+    }
+    #endregion
 
     //Animal Control에 Observer를 통해 상호작용중 여부 확인하기.
     public void UpdateIsInteraction(bool on)
@@ -106,11 +149,15 @@ public class PetStateController : MonoBehaviour
         if (animal.HasEffect(AnimalControl.Effect.Lonely)) res += _figure_Bond_Additive;         //비교군을 Lonely로 변경하기.
     }
 
+    #region Current Pet State
+    public PetState currentState { get; private set; }
+    #endregion
+
     #region Interaction Part
     // 놀아주기
     public void Play()
     {
-        add_Play.Apply(model);
+        currentState += add_Play;
         nonInteractionElapsedTime = 0f;
         model.UpdateView();
     }
@@ -118,7 +165,7 @@ public class PetStateController : MonoBehaviour
     // 쓰다듬기
     public void Petting()
     {
-        add_Petting.Apply(model);
+        currentState += add_Petting;
         nonInteractionElapsedTime = 0f;
         model.UpdateView();
     }
@@ -126,7 +173,7 @@ public class PetStateController : MonoBehaviour
     // 먹이주기
     public void Feed()
     {
-        add_Feed.Apply(model);
+        currentState += add_Feed;
         nonInteractionElapsedTime = 0f;
         model.UpdateView();
     }
@@ -134,18 +181,26 @@ public class PetStateController : MonoBehaviour
     //물 주기
     public void Drink()
     {
-        add_GiveWater.Apply(model);
+        currentState += add_GiveWater;
         nonInteractionElapsedTime = 0f;
         model.UpdateView();
     }
     #endregion
 
-    #region Getter
-    public float GetBond() => model.bond;
-    public float GetHungry() => model.hunger;
-    public float GetThirsty() => model.thirsty;
-    public float GetBored() => model.bored;
-    #endregion
+    public void CheckEffects()
+    {
+        if (currentState.bond <= deadline_Bond) animal.AddEffect(AnimalControl.Effect.Lonely);
+        else animal.RemoveEffect(AnimalControl.Effect.Lonely);
+
+        if (currentState.hunger >= deadline_Hunger) animal.AddEffect(AnimalControl.Effect.Hungry);
+        else animal.RemoveEffect(AnimalControl.Effect.Hungry);
+
+        if (currentState.thirsty >= deadline_Thirsty) animal.AddEffect(AnimalControl.Effect.Thirsty);
+        else animal.RemoveEffect(AnimalControl.Effect.Thirsty);
+        
+        if (currentState.bored >= deadline_Bored) animal.AddEffect(AnimalControl.Effect.Bored);
+        else animal.RemoveEffect(AnimalControl.Effect.Bored);
+    }
 }
 
 public class PetStateModel
@@ -169,35 +224,31 @@ public class PetStateModel
         UpdateView();
     }
 
-    public void UpdateBond(float amount)
+    public void UpdateBond(float bond)
     {
         if (view == null) return;
-        bond += amount;
-        bond = Mathf.Clamp(bond, 0, 100);
+        this.bond = bond;
         UpdateView();
     }
 
-    public void UpdateHunger(float amount)
+    public void UpdateHunger(float hunger)
     {
         if (view == null) return;
-        hunger += amount;
-        hunger = Mathf.Clamp(hunger, 0, 100);
+        this.hunger = hunger;
         UpdateView();
     }
 
-    public void UpdateThirsty(float amount)
+    public void UpdateThirsty(float thirsty)
     {
         if (view == null) return;
-        thirsty += amount;
-        thirsty = Mathf.Clamp(thirsty, 0, 100);
+        this.thirsty = thirsty;
         UpdateView();
     }
 
-    public void UpdateBored(float amount)
+    public void UpdateBored(float bored)
     {
         if (view == null) return;
-        bored += amount;
-        bored = Mathf.Clamp(bored, 0, 100);
+        this.bored = bored;
         UpdateView();
     }
 
@@ -211,18 +262,23 @@ public class PetStateModel
 }
 
 [Serializable]
-public class AdditiveState
+public class PetState
 {
     public float bond;
-    public float bored;
-    public float thirsty;
     public float hunger;
+    public float thirsty;
+    public float bored;
 
-    public void Apply(PetStateModel model)
+    public PetState(float bond, float hunger, float thirsty, float bored)
     {
-        model.bond += bond;
-        model.bored += bored;
-        model.thirsty += thirsty;
-        model.hunger += hunger; 
+        this.bond = bond;
+        this.hunger = hunger;
+        this.thirsty = thirsty;
+        this.bored = bored;
+    }
+
+    public static PetState operator+ (PetState p1, PetState p2)
+    {
+        return new PetState(p1.bond + p2.bond, p1.hunger + p2.hunger, p1.thirsty + p2.thirsty, p1.bored + p2.bored);
     }
 }
