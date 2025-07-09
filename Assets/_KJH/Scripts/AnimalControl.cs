@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.Events;
 public class AnimalControl : MonoBehaviour
 {
-    public PetStateController petStateController;
     [ReadOnlyInspector] public State state;
     [ReadOnlyInspector] public Effect effect;
     public enum State

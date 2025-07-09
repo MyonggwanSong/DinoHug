@@ -14,7 +14,7 @@ public class AnimalEat : AnimalAbility
     }
     public override void Init()
     {
-        //Debug.Log("공룡 Eat] 시작");
+        Debug.Log("공룡 Eat] 시작");
         StopCoroutine(nameof(GoToFood));
         StartCoroutine(nameof(GoToFood));
         agent.isStopped = false;
@@ -70,7 +70,7 @@ public class AnimalEat : AnimalAbility
             }
             if (target == null || !target.gameObject.activeInHierarchy || !target.isPlaced)
             {
-                //Debug.Log("공룡 Eat] 'Food 오브젝트가 파괴 되었거나' 또는 '플레이어가 Grab 했습니다'. Idle로 전환합니다.");
+                Debug.Log("공룡 Eat] 'Food 오브젝트가 파괴 되었거나' 또는 '플레이어가 Grab 했습니다'. Idle로 전환합니다.");
                 animal.ChangeState(AnimalControl.State.Idle);
                 yield break;
             }
@@ -93,13 +93,13 @@ public class AnimalEat : AnimalAbility
         float distance = Vector3.Distance(target.transform.position, transform.position);
         if (distance > eatDistance)
         {
-            //Debug.Log("공룡 Eat] Food를 향해서 이동 했으나 'Food가 너무 멀리있어서 닿지 않습니다. Idle로 전환합니다.");
+            Debug.Log("공룡 Eat] Food를 향해서 이동 했으나 'Food가 너무 멀리있어서 닿지 않습니다. Idle로 전환합니다.");
             animal.ChangeState(AnimalControl.State.Idle);
             yield break;
         }
         if (target == null || !target.gameObject.activeInHierarchy || !target.isPlaced)
         {
-            //Debug.Log("공룡 Eat] 'Food 오브젝트가 파괴 되었거나' 또는 '플레이어가 Grab 했습니다'. Idle로 전환합니다.");
+            Debug.Log("공룡 Eat] 'Food 오브젝트가 파괴 되었거나' 또는 '플레이어가 Grab 했습니다'. Idle로 전환합니다.");
             animal.ChangeState(AnimalControl.State.Idle);
             yield break;
         }
@@ -111,8 +111,7 @@ public class AnimalEat : AnimalAbility
         // 여기에 Food 오브젝트를 최초 상태로 리셋 처리
         target.Reset();
         // 여기에 배고픔 게이지 하강 처리
-        //Debug.Log("공룡 Eat] 'Food 먹기 성공. 이 줄에서 배고픔 게이지 감소 처리");
-        animal.petStateController.Feed();
+        Debug.Log("공룡 Eat] 'Food 먹기 성공. 이 줄에서 배고픔 게이지 감소 처리");
         // 모든 과정 완료후 정상적인 종료일시
         // 30% 확률로 Idle 실행, 70% 확률로 Wander 실행
         if (Random.value < 0.3f)

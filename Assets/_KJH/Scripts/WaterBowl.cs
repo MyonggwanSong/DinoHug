@@ -22,7 +22,6 @@ public class WaterBowl : MonoBehaviour
     {
         isGrabbed = true;
         isPlaced = false;
-        StopCoroutine(nameof(Retry));
     }
     public void OnGrabEnd()
     {
@@ -39,18 +38,8 @@ public class WaterBowl : MonoBehaviour
                 if (liquid.fillAmount >= Mathf.Lerp(fillRange.x, fillRange.y, 0.5f))
                 {
                     animalControl.ChangeState(AnimalControl.State.Drink);
-                    StartCoroutine(nameof(Retry));
                 }
             }
-        }
-    }
-    IEnumerator Retry()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(2f);
-            yield return new WaitUntil(() => animalControl.state == AnimalControl.State.Idle || animalControl.state == AnimalControl.State.Wander);
-            animalControl.ChangeState(AnimalControl.State.Drink);
         }
     }
     public void DisableGrab()
@@ -68,7 +57,6 @@ public class WaterBowl : MonoBehaviour
         transform.rotation = startRotation;
         isPlaced = false;
         isGrabbed = false;
-        StopCoroutine(nameof(Retry));
     }
 
 

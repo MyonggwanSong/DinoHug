@@ -75,12 +75,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f61718b4cb80dce4c93c9875ee773608, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  petStateController: {fileID: 0}
   state: 0
   effect: 0
   prevState: 0
   testState: 0
-  testEffect: 0
 --- !u!114 &4791769101389781689
 MonoBehaviour:
   m_ObjectHideFlags: 0
