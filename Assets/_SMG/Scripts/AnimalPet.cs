@@ -7,10 +7,6 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class AnimalPet : AnimalAbility
 {
 
-    XRSimpleInteractable xRSimpleInteractable;
-    //XRController controller;
-    Collider headCollider;
-    Collider bodyCollider;
     public ActionBasedController controller;
     public bool isPetting = false;
 
@@ -31,22 +27,27 @@ public class AnimalPet : AnimalAbility
 
     IEnumerator Pet()
     {
-        //yield return new WaitForSeconds(2f);
+        yield return new WaitUntil(() => isPetting);
+        anim.CrossFade("aniClip1", 0.2f);
+        Debug.Log("쓰다듬는 중");
+        
+        yield return new WaitUntil(() => !isPetting);
+        anim.CrossFade("Idle", 0.2f);
+        Debug.Log("쓰다듬기 끝");
 
-
-        yield return null;
-        if (isPetting)
-        {
-            anim.CrossFade("aniClip1", 0.2f);
-            Debug.Log("쓰다듬는 중");
-        }
-        else
-        {
-            anim.CrossFade("Idle", 0.2f);
-               Debug.Log("쓰다듬기 끝");
-        }
+        // yield return null;
+        // if (isPetting)
+        // {
+        //     anim.CrossFade("aniClip1", 0.2f);
+        //     Debug.Log("쓰다듬는 중");
+        // }
+        // else
+        // {
+        //     anim.CrossFade("Idle", 0.2f);
+        //        Debug.Log("쓰다듬기 끝");
+        // }
 
 
     }
-  
+
 }
