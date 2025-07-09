@@ -14,7 +14,7 @@ public class AnimalDrink : AnimalAbility
     }
     public override void Init()
     {
-        Debug.Log("공룡 Drink] 시작");
+        //Debug.Log("공룡 Drink] 시작");
         StopCoroutine(nameof(GoToFood));
         StartCoroutine(nameof(GoToFood));
         agent.isStopped = false;
@@ -42,7 +42,7 @@ public class AnimalDrink : AnimalAbility
         }
         if (find == -1)
         {
-            Debug.Log("공룡 Drink] 주변에 placed & filled 된 Bowl오브젝트가 없습니다. Idle로 전환합니다.");
+            //Debug.Log("공룡 Drink] 주변에 placed & filled 된 Bowl오브젝트가 없습니다. Idle로 전환합니다.");
             animal.ChangeState(AnimalControl.State.Idle);
             yield break;
         }
@@ -65,7 +65,7 @@ public class AnimalDrink : AnimalAbility
             }
             if (target == null || !target.gameObject.activeInHierarchy || !target.isPlaced || target.liquid.fillAmount <= target.fillRange.x)
             {
-                Debug.Log("공룡 Drink] 'Bowl오브젝트가 파괴 되었거나' 또는 '플레이어가 Grab 했습니다'. Idle로 전환합니다.");
+                //Debug.Log("공룡 Drink] 'Bowl오브젝트가 파괴 되었거나' 또는 '플레이어가 Grab 했습니다'. Idle로 전환합니다.");
                 animal.ChangeState(AnimalControl.State.Idle);
                 yield break;
             }
@@ -88,13 +88,13 @@ public class AnimalDrink : AnimalAbility
         float distance = Vector3.Distance(target.transform.position, transform.position);
         if (distance > drinkDistance)
         {
-            Debug.Log("공룡 Drink] Bowl을 향해서 이동 했으나 'Bowl이 너무 멀리있어서 닿지 않습니다. Idle로 전환합니다.");
+            //Debug.Log("공룡 Drink] Bowl을 향해서 이동 했으나 'Bowl이 너무 멀리있어서 닿지 않습니다. Idle로 전환합니다.");
             animal.ChangeState(AnimalControl.State.Idle);
             yield break;
         }
         if (target == null || !target.gameObject.activeInHierarchy || !target.isPlaced)
         {
-            Debug.Log("공룡 Drink] 'Bowl 오브젝트가 파괴 되었거나' 또는 '플레이어가 Grab 했습니다'. Idle로 전환합니다.");
+            //Debug.Log("공룡 Drink] 'Bowl 오브젝트가 파괴 되었거나' 또는 '플레이어가 Grab 했습니다'. Idle로 전환합니다.");
             animal.ChangeState(AnimalControl.State.Idle);
             yield break;
         }
@@ -113,7 +113,7 @@ public class AnimalDrink : AnimalAbility
             }
             if (target == null || !target.gameObject.activeInHierarchy || !target.isPlaced || target.liquid.fillAmount <= target.fillRange.x)
             {
-                Debug.Log("공룡 Drink] 'Bowl오브젝트가 파괴 되었거나' 또는 '플레이어가 Grab 했습니다'. Idle로 전환합니다.");
+                //Debug.Log("공룡 Drink] 'Bowl오브젝트가 파괴 되었거나' 또는 '플레이어가 Grab 했습니다'. Idle로 전환합니다.");
                 animal.ChangeState(AnimalControl.State.Idle);
                 yield break;
             }
@@ -122,7 +122,8 @@ public class AnimalDrink : AnimalAbility
         // 여기에 WaterBowl 오브젝트를 최초 상태로 리셋 처리
         //target.Reset();
         // 여기에 배고픔 게이지 하강 처리
-        Debug.Log("공룡 Drink] 'Water 먹기 성공. 목마름 게이지 감소 처리");
+        //Debug.Log("공룡 Drink] 'Water 먹기 성공. 목마름 게이지 감소 처리");
+        animal.petStateController.Drink();
         // 모든 과정 완료후 정상적인 종료일시
         // 30% 확률로 Idle 실행, 70% 확률로 Wander 실행
         if (Random.value < 0.3f)

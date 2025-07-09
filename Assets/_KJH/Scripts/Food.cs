@@ -19,6 +19,7 @@ public class Food : MonoBehaviour
     {
         isGrabbed = true;
         isPlaced = false;
+        StopCoroutine(nameof(Retry));
     }
     public void OnGrabEnd()
     {
@@ -33,7 +34,17 @@ public class Food : MonoBehaviour
             {
                 isPlaced = true;
                 animalControl.ChangeState(AnimalControl.State.Eat);
+                StartCoroutine(nameof(Retry));
             }
+        }
+    }
+    IEnumerator Retry()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(2f);
+            yield return new WaitUntil(() => animalControl.state == AnimalControl.State.Idle || animalControl.state == AnimalControl.State.Wander);
+            animalControl.ChangeState(AnimalControl.State.Eat);
         }
     }
     public void DisableGrab()
@@ -51,6 +62,7 @@ public class Food : MonoBehaviour
         transform.rotation = startRotation;
         isPlaced = false;
         isGrabbed = false;
+        StopCoroutine(nameof(Retry));
     }
 
     

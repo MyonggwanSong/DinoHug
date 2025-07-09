@@ -193,11 +193,9 @@ public class WaterBottle : MonoBehaviour
     Coroutine coWaterFill;
     IEnumerator WaterFillOut()
     {
+        yield return new WaitForSeconds(1.2f);
         particleObj.SetActive(true);
-        particle.Play();
-        yield return null;
         particle.Stop(true);
-        yield return new WaitForSeconds(0.5f);
         particle.Play();
         Ray ray = new Ray();
         RaycastHit hit;
