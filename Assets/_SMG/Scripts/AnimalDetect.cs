@@ -20,8 +20,7 @@ public class AnimalDetect : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            Debug.Log("들어옴");
-            controller = other.GetComponentInParent<XRController>();        // 진동 효과 및 자이로스코프 활용 용
+               controller = other.GetComponentInParent<XRController>();        // 진동 효과 활용 용
             popUpKey.SetActive(true);
 
             
@@ -35,7 +34,6 @@ public class AnimalDetect : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            Debug.Log("나감");
             controller = null;
             popUpKey.SetActive(false);
             animal.ChangeState(AnimalControl.State.Idle);
@@ -77,9 +75,5 @@ public class AnimalDetect : MonoBehaviour
 
     // }
 
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawSphere(transform.position, 2f);
-    }
+
 }
