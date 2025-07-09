@@ -21,9 +21,11 @@ public class AnimalDrink : AnimalAbility
     }
     public override void UnInit()
     {
+        sfx?.Stop();
         StopCoroutine(nameof(GoToFood));
         agent.isStopped = true;
     }
+    SFX sfx;
     IEnumerator GoToFood()
     {
         int count = Physics.OverlapSphereNonAlloc(transform.position, 50f, colliders, ~0, QueryTriggerInteraction.Ignore);
@@ -100,6 +102,8 @@ public class AnimalDrink : AnimalAbility
         }
         // 먹는 애니매이션 재생 + 먹고있는 동안 XR그랩 못하게
         anim.CrossFade("Drink", 0.1f);
+        // 효과음 재생
+        sfx = AudioManager.Instance.PlayEffect("Drink", transform.position, 0.65f);
         //target.DisableGrab();
         // Drink 애니매이션 길이에 따라 아랫줄 시간 변경
         startTime = Time.time;
@@ -109,10 +113,12 @@ public class AnimalDrink : AnimalAbility
             target.liquid.fillAmount -= range * Time.deltaTime;
             if (target.liquid.fillAmount <= target.fillRange.x)
             {
+                sfx?.Stop();
                 break;
             }
             if (target == null || !target.gameObject.activeInHierarchy || !target.isPlaced || target.liquid.fillAmount <= target.fillRange.x)
             {
+                sfx?.Stop();
                 Debug.Log("공룡 Drink] 'Bowl오브젝트가 파괴 되었거나' 또는 '플레이어가 Grab 했습니다'. Idle로 전환합니다.");
                 animal.ChangeState(AnimalControl.State.Idle);
                 yield break;
