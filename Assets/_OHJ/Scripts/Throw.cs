@@ -9,6 +9,12 @@ public class Throw : MonoBehaviour
 
     private Rigidbody rb;
     private Vector3 init_vel;
+    Toy toy;
+
+    private void Awake()
+    {
+        TryGetComponent(out toy);
+    }
 
     public void Throwarc()
     {
@@ -32,6 +38,8 @@ public class Throw : MonoBehaviour
 
         // ÈûÀû¿ë
         rb.AddForce(init_vel, ForceMode.VelocityChange);
+
+        toy.isThrow = true;
     }
 
 }

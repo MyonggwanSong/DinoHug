@@ -4,8 +4,8 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class Food : MonoBehaviour
 {
     public AnimalControl animalControl;
-    public bool isPlaced;
     XRGrabInteractable xRGrab;
+    public bool isPlaced;
     bool isGrabbed;
     Vector3 startPosition;
     Quaternion startRotation;
