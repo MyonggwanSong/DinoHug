@@ -9,6 +9,7 @@ public class AnimalDead : AnimalAbility
     }
     public override void UnInit()
     {
+        base.UnInit();
 
     }
 

@@ -11,6 +11,7 @@ public class AnimalIdle : AnimalAbility
     }
     public override void UnInit()
     {
+        base.UnInit();
         //Debug.Log("공룡 Idle 끝");
         StopCoroutine(nameof(Idle));
     }

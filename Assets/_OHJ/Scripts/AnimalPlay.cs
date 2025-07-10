@@ -34,6 +34,7 @@ public class AnimalPlay : AnimalAbility
     }
     public override void UnInit()
     {
+        base.UnInit();
         StopCoroutine(nameof(PlayBall));
         agent.isStopped = true;
     }

@@ -21,6 +21,7 @@ public class AnimalWander : AnimalAbility
     }
     public override void UnInit()
     {
+        base.UnInit();
         //Debug.Log("공룡 Wander 끝");
         StopCoroutine(nameof(Wander));
         agent.isStopped = true;

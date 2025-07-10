@@ -21,6 +21,7 @@ public class AnimalDrink : AnimalAbility
     }
     public override void UnInit()
     {
+        base.UnInit();
         sfx?.Stop();
         StopCoroutine(nameof(GoToFood));
         agent.isStopped = true;

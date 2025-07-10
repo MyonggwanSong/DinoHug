@@ -98,7 +98,7 @@ public class AnimalControl : MonoBehaviour
 
 
 #if UNITY_EDITOR
-    [Header("에디터에서 상태강제변경 테스트하려면 아래 버튼으로")]
+    [Header("에디터에서 강제변경 테스트하려면 아래 버튼으로")]
     [SerializeField] State testState;
     [Button]
     public void Test()
