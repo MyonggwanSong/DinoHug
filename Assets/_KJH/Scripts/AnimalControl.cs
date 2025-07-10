@@ -77,7 +77,7 @@ public class AnimalControl : MonoBehaviour
     }
     // 외부에서 공룡의 상태를 변경하고 싶다면 아래 메소드를 이용한다.
     public void ChangeState(State newState)
-    {
+    {     
         //Debug.Log($"변경전 newState : {newState}, prevState : {prevState}, state : {state}");
         // 이전 state 스크립트는 Disable 처리
         dictionary[prevState].UnInit();

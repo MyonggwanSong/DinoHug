@@ -103,15 +103,21 @@ public class PettingTrigger : MonoBehaviour
         }
     }
 
+    float elapsed = 0f;
+    [SerializeField] float frequency = 0.2f;
+
     void UpdateParticlePosition()
     {
         if (controller == null) return;
-        center = controller.transform.position;
 
-        // Quaternion quat = Quaternion.LookRotation(controller.transform.position);
+        elapsed += Time.deltaTime;
 
-        // Debug.Log($"Quaternion : {quat}");
-        ParticleManager.Instance.SpawnParticle(ParticleFlag.Petting, center, Quaternion.identity, this.gameObject.transform);
+        if (elapsed >= frequency)
+        {
+            elapsed = 0;
+            center = controller.transform.position;
+            ParticleManager.Instance.SpawnParticle(ParticleFlag.Petting, center, Quaternion.identity, this.gameObject.transform);
+        }
     }
 
     #endregion
