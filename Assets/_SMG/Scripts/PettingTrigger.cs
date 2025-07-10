@@ -92,6 +92,31 @@ public class PettingTrigger : MonoBehaviour
         }
     }
 
+    #region _PWH        
+    Vector3 center = new Vector3(0, 0, 0);
+
+    void Update()
+    {
+        if (ap.isPetting)
+        {
+            UpdateParticlePosition();
+        }
+    }
+
+    void UpdateParticlePosition()
+    {
+        if (controller == null) return;
+        center = controller.transform.position;
+
+        // Quaternion quat = Quaternion.LookRotation(controller.transform.position);
+
+        // Debug.Log($"Quaternion : {quat}");
+        ParticleManager.Instance.SpawnParticle(ParticleFlag.Petting, center, Quaternion.identity, this.gameObject.transform);
+    }
+
+    #endregion
+
+
     void UpdatePettingState(bool shouldPet)
     {
         // 현재 상태와 원하는 상태가 같으면 아무것도 하지 않음
