@@ -237,6 +237,9 @@ public class WaterBottle : MonoBehaviour
                 {
                     isChangeState = true;
                     animalControl.ChangeState(AnimalControl.State.Drink);
+                }
+                else if (bowl.liquid.fillAmount >= bowl.fillRange.y)
+                {
                     StopWaterFillOut();
                 }
             }
