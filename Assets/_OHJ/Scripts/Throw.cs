@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
 public class Throw : MonoBehaviour
 {
     public float force = 5f;
@@ -26,17 +23,17 @@ public class Throw : MonoBehaviour
 
         Vector3 forward = transform.forward.normalized;
 
-        //°¢µµ¸¦ ¶óµð¾ÈÀ¸·Î
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         float rad = angle * Mathf.Deg2Rad;
 
-        // ¼Óµµ °è»ê
-        float horzForce = Mathf.Cos(rad) * force;   //¼öÆò
-        float vertForce = Mathf.Sin(rad) * force;   //¼öÁ÷
+        // ï¿½Óµï¿½ ï¿½ï¿½ï¿½
+        float horzForce = Mathf.Cos(rad) * force;   //ï¿½ï¿½ï¿½ï¿½
+        float vertForce = Mathf.Sin(rad) * force;   //ï¿½ï¿½ï¿½ï¿½
 
-        //ÃÊ±â ¼Óµµ
+        //ï¿½Ê±ï¿½ ï¿½Óµï¿½
         init_vel = horzForce * forward + Vector3.up * vertForce;
 
-        // ÈûÀû¿ë
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         rb.AddForce(init_vel, ForceMode.VelocityChange);
 
         toy.isThrow = true;
