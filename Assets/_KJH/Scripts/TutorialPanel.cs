@@ -12,8 +12,9 @@ public class TutorialPanel : MonoBehaviour
     public bool isComplete;
     SFX sfx;
     Tween tweenPop;
-    void OnEnable()
+    IEnumerator Start()
     {
+        yield return YieldInstructionCache.WaitForSeconds(0.2f);
         animal.petStateController.UpdateIsInteraction(true);
         animal.gameObject.SetActive(false);
         for (int i = 0; i < interactableObjects.childCount; i++)
@@ -21,9 +22,6 @@ public class TutorialPanel : MonoBehaviour
             interactableObjects.GetChild(i).gameObject.SetActive(false);
         }
         isComplete = false;
-    }
-    IEnumerator Start()
-    {
         yield return YieldInstructionCache.WaitForSeconds(0.5f);
         pops[0].SetActive(true);
         tmpTexts[0].gameObject.SetActive(false);

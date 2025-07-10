@@ -1263,10 +1263,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PrototypeWaterBowl
       objectReference: {fileID: 0}
-    - target: {fileID: 1595455048357033778, guid: 573ed6f1f93e2764eabf38bed0b9ec27, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2121161637306887560, guid: 573ed6f1f93e2764eabf38bed0b9ec27, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.87617886
@@ -1590,10 +1586,6 @@ PrefabInstance:
     - target: {fileID: 2013254401110671474, guid: 57377d99ff8d21942a57bdb3ae3a9349, type: 3}
       propertyPath: m_Name
       value: TutorialPanel
-      objectReference: {fileID: 0}
-    - target: {fileID: 8926255283811775231, guid: 57377d99ff8d21942a57bdb3ae3a9349, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4776,10 +4768,6 @@ PrefabInstance:
     - target: {fileID: 2321972132248247373, guid: 541aef2813872cf4da1eb1aad6f08e19, type: 3}
       propertyPath: m_Name
       value: AudioManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 2321972132248247373, guid: 541aef2813872cf4da1eb1aad6f08e19, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
