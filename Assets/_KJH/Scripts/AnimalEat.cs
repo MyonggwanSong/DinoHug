@@ -108,7 +108,7 @@ public class AnimalEat : AnimalAbility
         // 먹는 애니매이션 재생 + 먹고있는 동안 XR그랩 못하게
         anim.CrossFade("Eat", 0.1f);
         // 효과음 재생
-        sfx = AudioManager.Instance.PlayEffect("EatMeat", transform.position, 0.65f);
+        sfx = AudioManager.Instance.PlayEffect("EatMeat", transform.position, 1.0f);
         target.DisableGrab();
         // Eat 애니매이션 길이에 따라 아랫줄 시간 변경
         yield return YieldInstructionCache.WaitForSeconds(3f);

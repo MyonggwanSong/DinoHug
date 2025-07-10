@@ -6,7 +6,7 @@ using UnityEngine.Audio;
 using UnityEngine.UI;
 public class AudioManager : BehaviourSingleton<AudioManager>
 {
-    protected override bool IsDontDestroy() => true;
+    protected override bool IsDontDestroy() => false;
     [SerializeField] AudioMixer mixer;
     //배경 음악 
     [Header("Audio Source")]

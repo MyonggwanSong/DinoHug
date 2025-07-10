@@ -31,7 +31,7 @@ public class TutorialPanel : MonoBehaviour
         pops[0].transform.localScale = 0.85f * Vector3.one;
         tweenPop = pops[0].transform.DOScale(1f, 0.4f).SetEase(Ease.OutBounce);
         yield return YieldInstructionCache.WaitForSeconds(0.5f);
-        sfx = AudioManager.Instance.PlayEffect("Tuto1", transform.position, 0.65f);
+        sfx = AudioManager.Instance.PlayEffect("Tuto1", transform.position, 1.0f);
         if (coShowText != null)
         {
             StopCoroutine(coShowText);
@@ -42,7 +42,7 @@ public class TutorialPanel : MonoBehaviour
     {
         if (progress >= pops.Length) return;
         sfx?.Stop();
-        AudioManager.Instance.PlayEffect("UIClick1", transform.position, 0.65f);
+        AudioManager.Instance.PlayEffect("UIClick1", transform.position, 1.0f);
         pops[progress].SetActive(false);
         progress++;
         pops[progress].SetActive(true);
@@ -52,14 +52,14 @@ public class TutorialPanel : MonoBehaviour
         tweenPop = pops[progress].transform.DOScale(1f, 0.4f).SetEase(Ease.OutBounce);
         if (progress == 1)
         {
-            sfx = AudioManager.Instance.PlayEffect($"Tuto{progress + 1}", transform.position, 0.65f);
+            sfx = AudioManager.Instance.PlayEffect($"Tuto{progress + 1}", transform.position, 1.0f);
         }
     }
     public void PrevButton()
     {
         if (progress == 0) return;
         sfx?.Stop();
-        AudioManager.Instance.PlayEffect("UIClick1", transform.position, 0.65f);
+        AudioManager.Instance.PlayEffect("UIClick1", transform.position, 1.0f);
         pops[progress].SetActive(false);
         progress--;
         pops[progress].SetActive(true);
@@ -68,13 +68,13 @@ public class TutorialPanel : MonoBehaviour
         tweenPop = pops[progress].transform.DOScale(1f, 0.4f).SetEase(Ease.OutBounce);
         if (progress == 0)
         {
-            sfx = AudioManager.Instance.PlayEffect($"Tuto{progress + 1}", transform.position, 0.65f);
+            sfx = AudioManager.Instance.PlayEffect($"Tuto{progress + 1}", transform.position, 1.0f);
         }
     }
     public void CompleteButton()
     {
         sfx?.Stop();
-        AudioManager.Instance.PlayEffect("UIClick1", transform.position, 0.65f);
+        AudioManager.Instance.PlayEffect("UIClick1", transform.position, 1.0f);
         isComplete = true;
         pops[progress].SetActive(false);
         // 게임 진행

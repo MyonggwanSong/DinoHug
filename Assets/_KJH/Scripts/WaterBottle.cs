@@ -196,7 +196,7 @@ public class WaterBottle : MonoBehaviour
     {
         sfx = null;
         yield return YieldInstructionCache.WaitForSeconds(0.7f);
-        sfx = AudioManager.Instance.PlayEffect("WaterFill", transform.position, 0.65f);
+        sfx = AudioManager.Instance.PlayEffect("WaterFill", transform.position, 1.0f);
         particleObj.SetActive(true);
         particle.Stop(true);
         particle.Play();
