@@ -64,7 +64,7 @@ public class PoolManager : BehaviourSingleton<PoolManager>
         instance.transform.position = position;
         instance.transform.rotation = rot;
         instance.transform.SetParent(parent ?? transform, true);
-
+        instance.transform.localScale = Vector3.one * 0.5f;
         return instance;
     }
 
