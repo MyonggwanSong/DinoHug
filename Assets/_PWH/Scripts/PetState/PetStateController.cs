@@ -1,4 +1,5 @@
 using System;
+using UnityEditorInternal;
 using UnityEngine;
 
 public class PetStateController : MonoBehaviour
@@ -103,6 +104,9 @@ public class PetStateController : MonoBehaviour
     public void UpdateHunger(float amount)
     {
         if (view == null) return;
+
+        if (animal.state.Equals(AnimalControl.State.Eat)) return;
+
         currentState.hunger += amount;
         currentState.hunger = Mathf.Clamp(currentState.hunger, 0, 100);
         model.UpdateHunger(currentState.hunger);
@@ -111,6 +115,7 @@ public class PetStateController : MonoBehaviour
     public void UpdateThirsty(float amount)
     {
         if (view == null) return;
+        if (animal.state.Equals(AnimalControl.State.Drink)) return;
         currentState.thirsty += amount;
         currentState.thirsty = Mathf.Clamp(currentState.thirsty, 0, 100);
         model.UpdateThirsty(currentState.thirsty);
@@ -119,6 +124,7 @@ public class PetStateController : MonoBehaviour
     public void UpdateBored(float amount)
     {
         if (view == null) return;
+        if (animal.state.Equals(AnimalControl.State.Handle)) return;
         currentState.bored += amount;
         currentState.bored = Mathf.Clamp(currentState.bored, 0, 100);
         model.UpdateBored(currentState.bored);

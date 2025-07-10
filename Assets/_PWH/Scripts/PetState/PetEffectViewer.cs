@@ -25,6 +25,10 @@ public class PetEffectViewer : MonoBehaviour
 
     void Start()
     {
+        if (animal == null)
+        {
+            animal = GetComponentInParent<AnimalControl>();
+        }
         animal.OnUpdateEffect += UpdateImoticon;
 
         InitEmoticonDic();
@@ -45,7 +49,11 @@ public class PetEffectViewer : MonoBehaviour
     }
 
     void OnEnable()
-    {
+    {   
+        if (animal == null)
+        {
+            animal = GetComponentInParent<AnimalControl>();
+        }
         animal.OnUpdateEffect += UpdateImoticon;
     }
 
