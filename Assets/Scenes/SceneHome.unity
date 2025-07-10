@@ -1157,6 +1157,34 @@ PrefabInstance:
       propertyPath: view
       value: 
       objectReference: {fileID: 4964560584167853119}
+    - target: {fileID: 4025931618204120511, guid: 221a8c49e75a1af49a9a9ebfa1962849, type: 3}
+      propertyPath: _init_Bond
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 4025931618204120511, guid: 221a8c49e75a1af49a9a9ebfa1962849, type: 3}
+      propertyPath: _init_Bored
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4025931618204120511, guid: 221a8c49e75a1af49a9a9ebfa1962849, type: 3}
+      propertyPath: add_Petting.bond
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4025931618204120511, guid: 221a8c49e75a1af49a9a9ebfa1962849, type: 3}
+      propertyPath: _figure_Bond_Origin
+      value: 0.0025
+      objectReference: {fileID: 0}
+    - target: {fileID: 4025931618204120511, guid: 221a8c49e75a1af49a9a9ebfa1962849, type: 3}
+      propertyPath: _figure_Bored_Origin
+      value: 0.00215
+      objectReference: {fileID: 0}
+    - target: {fileID: 4025931618204120511, guid: 221a8c49e75a1af49a9a9ebfa1962849, type: 3}
+      propertyPath: _figure_Hunger_Origin
+      value: 0.00178
+      objectReference: {fileID: 0}
+    - target: {fileID: 4025931618204120511, guid: 221a8c49e75a1af49a9a9ebfa1962849, type: 3}
+      propertyPath: _figure_Thirsty_Origin
+      value: 0.00202
+      objectReference: {fileID: 0}
     - target: {fileID: 4305527949468078662, guid: 221a8c49e75a1af49a9a9ebfa1962849, type: 3}
       propertyPath: target
       value: 
@@ -1164,6 +1192,22 @@ PrefabInstance:
     - target: {fileID: 6440855494840042070, guid: 221a8c49e75a1af49a9a9ebfa1962849, type: 3}
       propertyPath: m_Name
       value: Animal
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505362437119392644, guid: 221a8c49e75a1af49a9a9ebfa1962849, type: 3}
+      propertyPath: m_Radius
+      value: 0.0031402085
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505362437119392644, guid: 221a8c49e75a1af49a9a9ebfa1962849, type: 3}
+      propertyPath: m_Center.x
+      value: 1.4840804e-11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505362437119392644, guid: 221a8c49e75a1af49a9a9ebfa1962849, type: 3}
+      propertyPath: m_Center.y
+      value: 1.2558617e-11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505362437119392644, guid: 221a8c49e75a1af49a9a9ebfa1962849, type: 3}
+      propertyPath: m_Center.z
+      value: 0.00016996771
       objectReference: {fileID: 0}
     - target: {fileID: 8329125222165350711, guid: 221a8c49e75a1af49a9a9ebfa1962849, type: 3}
       propertyPath: m_LocalPosition.x
