@@ -16,6 +16,16 @@ public class Throw : MonoBehaviour
         TryGetComponent(out toy);
     }
 
+    private void Update()
+    {
+        if(transform.position.y < 0)
+        {
+            Vector3 pos = transform.position;
+            pos.y = 0;
+            transform.position = pos;
+        }
+    }
+
     public void Throwarc()
     {
         rb = GetComponent<Rigidbody>();
