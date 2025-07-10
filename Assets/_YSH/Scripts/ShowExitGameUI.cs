@@ -22,7 +22,7 @@ public class ShowExitGameUI : MonoBehaviour
     // 게임 종료 버튼 (StartScene으로 이동)
     public void ExitGameButton()
     {
-        SceneManager.LoadScene(0);
+        Application.Quit();
     }
 
     // UI 끄기 버튼

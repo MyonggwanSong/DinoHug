@@ -1,15 +1,12 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-
 public class AnimalPlay : AnimalAbility
 {
     [SerializeField] float stopDistance = 1.5f;
     private NavMeshAgent agent;
     public Transform ballpos;
-   [ReadOnlyInspector] [SerializeField] Transform playerCam;
-
+    [ReadOnlyInspector] [SerializeField] Transform playerCam;
     private bool isPlay = false;
     public bool isBite = false;
 

@@ -233,7 +233,7 @@ public class WaterBottle : MonoBehaviour
                 float range = bowl.fillRange.y - bowl.fillRange.x;
                 bowl.liquid.fillAmount += range * 0.01f;
                 bowl.liquid.fillAmount = Mathf.Clamp(bowl.liquid.fillAmount, bowl.fillRange.x, bowl.fillRange.y);
-                if (bowl.liquid.fillAmount >= bowl.fillRange.y && !isChangeState)
+                if (bowl.liquid.fillAmount >= 0.3f * bowl.fillRange.x + 0.7f * bowl.fillRange.y && !isChangeState)
                 {
                     isChangeState = true;
                     animalControl.ChangeState(AnimalControl.State.Drink);
