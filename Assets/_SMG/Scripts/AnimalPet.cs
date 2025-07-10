@@ -22,6 +22,7 @@ public class AnimalPet : AnimalAbility
 
     public override void UnInit()
     {
+        base.UnInit();
         StopCoroutine(_co);
     }
 

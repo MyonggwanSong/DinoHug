@@ -48,9 +48,9 @@ MonoBehaviour:
   mixer: {fileID: 24100000, guid: cfe5802bf19b12e4f84e45a592688e90, type: 2}
   bgmAudio: {fileID: 6826244708188206063}
   effectAudio:
-  - {fileID: 8300000, guid: af533c3770ed47d41be75379ec0b1f25, type: 3}
+  - {fileID: 8300000, guid: 8a0be0caf68b86047b4e0f1025ec4356, type: 3}
   - {fileID: 8300000, guid: dd19ee6be8248064c89e1bce654462c9, type: 3}
-  - {fileID: 8300000, guid: 4b334cdba4da70646afdfa6b7938d0f4, type: 3}
+  - {fileID: 8300000, guid: bde5ee0c77dd3b14ab126ac1d38633f4, type: 3}
   - {fileID: 8300000, guid: 2d7720b85bc428c4ead94d6201c25620, type: 3}
   - {fileID: 8300000, guid: 6b062082b76559d4794bc2c334b7e641, type: 3}
   - {fileID: 8300000, guid: 36872291dadbe1d47ac5b4c1f309b445, type: 3}

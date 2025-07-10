@@ -57,7 +57,14 @@ public class SFX : PoolBehaviour
         await UniTask.Delay(1, ignoreTimeScale: true, cancellationToken: token);
         aus.Play();
         await UniTask.Delay((int)(1000f * (fixLength + 0.15f)), ignoreTimeScale: true, cancellationToken: token);
-        base.Despawn();
+        try
+        {
+            Despawn();
+        }
+        catch
+        {
+            gameObject.SetActive(false);
+        }
     }
     async UniTask TrackingTarget(Transform trackingTarget, CancellationToken token)
     {
@@ -70,7 +77,14 @@ public class SFX : PoolBehaviour
     {
         aus.Stop();
         UniTaskCancel();
-        Despawn();
+        try
+        {
+            Despawn();
+        }
+        catch
+        {
+            gameObject.SetActive(false);
+        }
     }
 
 

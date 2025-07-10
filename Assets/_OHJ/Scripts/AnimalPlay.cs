@@ -34,6 +34,7 @@ public class AnimalPlay : AnimalAbility
     }
     public override void UnInit()
     {
+        base.UnInit();
         StopCoroutine(nameof(PlayBall));
         agent.isStopped = true;
     }
@@ -113,6 +114,7 @@ public class AnimalPlay : AnimalAbility
                 ball_rb.isKinematic = false;
                 toy.isThrow = false;
                 Debug.Log("놀아주기 끝");
+                animal.petStateController.Play();
                 break;
             }
             yield return null;

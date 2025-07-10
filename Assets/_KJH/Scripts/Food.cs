@@ -42,7 +42,7 @@ public class Food : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(2f);
+            yield return YieldInstructionCache.WaitForSeconds(2f);
             yield return new WaitUntil(() => animalControl.state == AnimalControl.State.Idle || animalControl.state == AnimalControl.State.Wander);
             animalControl.ChangeState(AnimalControl.State.Eat);
         }
