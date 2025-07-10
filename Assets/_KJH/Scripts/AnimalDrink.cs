@@ -74,7 +74,8 @@ public class AnimalDrink : AnimalAbility
             yield return null;
         }
         // 도착하고 0.2~0.4초간 잠깐 대기
-        yield return new WaitForSeconds(Random.Range(0.2f, 0.4f));
+        yield return YieldInstructionCache.WaitForSeconds(Random.Range(0.2f, 0.4f));
+
         // 타겟을 향해 제자리에서 회전
         Vector3 targetForwardXZ = target.transform.position - transform.position;
         targetForwardXZ.y = 0f;

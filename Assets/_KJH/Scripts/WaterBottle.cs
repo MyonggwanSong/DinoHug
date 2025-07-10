@@ -172,7 +172,7 @@ public class WaterBottle : MonoBehaviour
     Coroutine coResetShake;
     IEnumerator ResetShakeCount()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return YieldInstructionCache.WaitForSeconds(0.5f);
         shakeCount = 0;
     }
     public void DisableGrab()
@@ -195,7 +195,7 @@ public class WaterBottle : MonoBehaviour
     IEnumerator WaterFillOut()
     {
         sfx = null;
-        yield return new WaitForSeconds(0.7f);
+        yield return YieldInstructionCache.WaitForSeconds(0.7f);
         sfx = AudioManager.Instance.PlayEffect("WaterFill", transform.position, 0.65f);
         particleObj.SetActive(true);
         particle.Stop(true);
@@ -240,7 +240,7 @@ public class WaterBottle : MonoBehaviour
                     StopWaterFillOut();
                 }
             }
-            yield return new WaitForSeconds(0.05f);
+            yield return YieldInstructionCache.WaitForSeconds(0.05f);
         }
     }
     public void StopWaterFillOut()

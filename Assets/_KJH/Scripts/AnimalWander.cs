@@ -70,7 +70,7 @@ public class AnimalWander : AnimalAbility
             yield return null;
         }
         // 도착하고 1~2초간 잠깐 대기
-        yield return new WaitForSeconds(Random.Range(1f, 2f));
+        yield return YieldInstructionCache.WaitForSeconds(Random.Range(1f, 2f));
         // 목적지에 도착해서 정상적인 종료일시
         // 30% 확률로 Idle 실행, 70% 확률로 Wander 실행
         if (Random.value < 0.3f)

@@ -78,7 +78,7 @@ public class AnimalEat : AnimalAbility
             yield return null;
         }
         // 도착하고 0.2~0.4초간 잠깐 대기
-        yield return new WaitForSeconds(Random.Range(0.2f, 0.4f));
+        yield return YieldInstructionCache.WaitForSeconds(Random.Range(0.2f, 0.4f));
         // 타겟을 향해 제자리에서 회전
         Vector3 targetForwardXZ = target.transform.position - transform.position;
         targetForwardXZ.y = 0f;
@@ -110,7 +110,7 @@ public class AnimalEat : AnimalAbility
         sfx = AudioManager.Instance.PlayEffect("EatMeat", transform.position, 0.65f);
         target.DisableGrab();
         // Eat 애니매이션 길이에 따라 아랫줄 시간 변경
-        yield return new WaitForSeconds(3f);
+        yield return YieldInstructionCache.WaitForSeconds(3f);
         // 여기에 Food 오브젝트를 최초 상태로 리셋 처리
         sfx?.Stop();
         target.Reset();
