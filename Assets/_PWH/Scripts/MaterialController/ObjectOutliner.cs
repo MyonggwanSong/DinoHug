@@ -37,7 +37,7 @@ public class ObjectOutliner : MonoBehaviour
     {
         if (renderer == null) return;
 
-        Debug.Log("Init Renderer");
+        //Debug.Log("Init Renderer");
 
         outlineFill = Instantiate(outlineFill_Prefab);
 

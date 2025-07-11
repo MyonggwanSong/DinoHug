@@ -82,6 +82,7 @@ public class TutorialPanel : MonoBehaviour
         {
             interactableObjects.GetChild(i).gameObject.SetActive(true);
         }
+        animal.ChangeState(AnimalControl.State.Idle);
     }
     // 임시
     Coroutine coShowText;

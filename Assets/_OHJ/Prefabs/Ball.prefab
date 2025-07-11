@@ -351,6 +351,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animal: {fileID: 0}
+  xRGrab: {fileID: 0}
+  t: {fileID: 0}
   isPlaced: 0
   isGrabbed: 0
   isThrow: 0
