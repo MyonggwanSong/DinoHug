@@ -23,6 +23,8 @@ public class AnimalDetect : MonoBehaviour
                controller = other.GetComponentInParent<XRController>();        // 진동 효과 활용 용
             popUpKey.SetActive(true);
 
+
+            if (animal.state != AnimalControl.State.Play) return;
             
             animal.ChangeState(AnimalControl.State.Idle);
              
@@ -36,6 +38,9 @@ public class AnimalDetect : MonoBehaviour
         {
             controller = null;
             popUpKey.SetActive(false);
+
+            if (animal.state != AnimalControl.State.Play) return;
+
             animal.ChangeState(AnimalControl.State.Idle);
         }
     }
