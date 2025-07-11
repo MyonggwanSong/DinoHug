@@ -268,7 +268,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.05
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 8c2942918197fbf47b156e8c0e94488c, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 92fb162c599febb47aaf7b6b88b5045b, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1 &702070616538028093
 GameObject:
@@ -1011,7 +1011,6 @@ GameObject:
   - component: {fileID: 6343463972972756241}
   - component: {fileID: 4025309846580232443}
   - component: {fileID: 6975631444161391914}
-  - component: {fileID: 6406945429769786066}
   m_Layer: 0
   m_Name: Rug
   m_TagString: Untagged
@@ -1085,29 +1084,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &6406945429769786066
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1738288468793497714}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &1750512881690477076
 GameObject:
   m_ObjectHideFlags: 0

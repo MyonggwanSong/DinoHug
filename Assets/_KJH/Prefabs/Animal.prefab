@@ -185,11 +185,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stopDistance: 1.5
-  ballpos: {fileID: 1502786589370029013}
-  playerCam: {fileID: 0}
-  isBite: 0
-  target: {fileID: 0}
-  Collider: []
+  maxTime: 15
+  ballPos: {fileID: 1502786589370029013}
+  toy: {fileID: 0}
 --- !u!114 &8811127603895603328
 MonoBehaviour:
   m_ObjectHideFlags: 0

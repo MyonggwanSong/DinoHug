@@ -45,7 +45,7 @@ public class AnimalDrink : AnimalAbility
         }
         if (find == -1)
         {
-            Debug.Log("공룡 Drink] 주변에 placed & filled 된 Bowl오브젝트가 없습니다. Idle로 전환합니다.");
+            //Debug.Log("공룡 Drink] 주변에 placed & filled 된 Bowl오브젝트가 없습니다. Idle로 전환합니다.");
             animal.ChangeState(AnimalControl.State.Idle);
             yield break;
         }
@@ -68,7 +68,7 @@ public class AnimalDrink : AnimalAbility
             }
             if (target == null || !target.gameObject.activeInHierarchy || !target.isPlaced || target.liquid.fillAmount <= target.fillRange.x)
             {
-                Debug.Log("공룡 Drink] 'Bowl오브젝트가 파괴 되었거나' 또는 '플레이어가 Grab 했습니다'. Idle로 전환합니다.");
+                //Debug.Log("공룡 Drink] 'Bowl오브젝트가 파괴 되었거나' 또는 '플레이어가 Grab 했습니다'. Idle로 전환합니다.");
                 animal.ChangeState(AnimalControl.State.Idle);
                 yield break;
             }
@@ -92,13 +92,13 @@ public class AnimalDrink : AnimalAbility
         float distance = Vector3.Distance(target.transform.position, transform.position);
         if (distance > drinkDistance)
         {
-            Debug.Log("공룡 Drink] Bowl을 향해서 이동 했으나 'Bowl이 너무 멀리있어서 닿지 않습니다. Idle로 전환합니다.");
+            //Debug.Log("공룡 Drink] Bowl을 향해서 이동 했으나 'Bowl이 너무 멀리있어서 닿지 않습니다. Idle로 전환합니다.");
             animal.ChangeState(AnimalControl.State.Idle);
             yield break;
         }
         if (target == null || !target.gameObject.activeInHierarchy || !target.isPlaced)
         {
-            Debug.Log("공룡 Drink] 'Bowl 오브젝트가 파괴 되었거나' 또는 '플레이어가 Grab 했습니다'. Idle로 전환합니다.");
+            //Debug.Log("공룡 Drink] 'Bowl 오브젝트가 파괴 되었거나' 또는 '플레이어가 Grab 했습니다'. Idle로 전환합니다.");
             animal.ChangeState(AnimalControl.State.Idle);
             yield break;
         }
@@ -121,7 +121,7 @@ public class AnimalDrink : AnimalAbility
             if (target == null || !target.gameObject.activeInHierarchy || !target.isPlaced || target.liquid.fillAmount <= target.fillRange.x)
             {
                 sfx?.Stop();
-                Debug.Log("공룡 Drink] 'Bowl오브젝트가 파괴 되었거나' 또는 '플레이어가 Grab 했습니다'. Idle로 전환합니다.");
+                //Debug.Log("공룡 Drink] 'Bowl오브젝트가 파괴 되었거나' 또는 '플레이어가 Grab 했습니다'. Idle로 전환합니다.");
                 animal.ChangeState(AnimalControl.State.Idle);
                 yield break;
             }

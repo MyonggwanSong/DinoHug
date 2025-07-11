@@ -384,8 +384,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.9396927, z: -0, w: -0.3420201}
   m_LocalPosition: {x: 0, y: 0, z: 5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.8, y: 1.8, z: 1.8}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4206569120874085692}
   - {fileID: 4147059475029384758}
@@ -402,7 +402,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 1.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -468,7 +468,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db6e34eb5b4c42140adae4d4b165aa6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eatDistance: 1.3
+  eatDistance: 2.3
 --- !u!114 &4119659469098547528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -481,12 +481,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5fc3e0498497fd4982aac19bd39c822, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stopDistance: 1.5
-  ballpos: {fileID: 6612349253805798084}
-  playerCam: {fileID: 0}
-  isBite: 0
-  target: {fileID: 0}
-  Collider: []
+  stopDistance: 2.5
+  maxTime: 20
+  ballPos: {fileID: 2095021363393768544}
+  toy: {fileID: 0}
 --- !u!114 &4330211342836846150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -525,7 +523,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82a0729c8d98000458224ea83d8bc520, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drinkDistance: 1.3
+  drinkDistance: 2.3
   drinkTime: 5
 --- !u!114 &5594584743370493817
 MonoBehaviour:
@@ -1327,10 +1325,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.005
-  m_Height: 0.008
+  m_Radius: 0.0023927821
+  m_Height: 0.0062896186
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: -0.000000003500881, y: 0.0004443447, z: 0.00027078728}
 --- !u!114 &3277100475955991372
 MonoBehaviour:
   m_ObjectHideFlags: 0

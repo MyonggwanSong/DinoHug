@@ -25,7 +25,7 @@ public class PoolManager : BehaviourSingleton<PoolManager>
         // if (pools.Values..Contains(pool)) return;               //이미 저장 되어있는 pool이면 무시
         if (pools.Values.ToList().Contains(pool)) return;
 
-        Debug.Log("Create Pool!");
+        //Debug.Log("Create Pool!");
 
         var poolInstance = new ObjectPool<PoolBehaviour>(
             createFunc: () =>

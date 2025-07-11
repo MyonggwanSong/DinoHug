@@ -280,7 +280,12 @@ public class PettingTrigger : MonoBehaviour
         // 상태 초기화
         isFirstMove = true;
         UpdatePettingState(false); // 딜레이 적용해서 false로 설정
-        ac.ChangeState(AnimalControl.State.Idle);
+
+        if(ac.state != AnimalControl.State.Play)
+        {
+            ac.ChangeState(AnimalControl.State.Idle);
+        }
+        
 
         // 타이머 리셋
         _elapsed = 0f;

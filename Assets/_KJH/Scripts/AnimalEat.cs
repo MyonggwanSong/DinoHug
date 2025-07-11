@@ -49,7 +49,7 @@ public class AnimalEat : AnimalAbility
         }
         if (find == -1)
         {
-            Debug.Log("공룡 Eat] 주변에 placed 된 Food 오브젝트가 없습니다. Idle로 전환합니다.");
+            //Debug.Log("공룡 Eat] 주변에 placed 된 Food 오브젝트가 없습니다. Idle로 전환합니다.");
             animal.ChangeState(AnimalControl.State.Idle);
             yield break;
         }
