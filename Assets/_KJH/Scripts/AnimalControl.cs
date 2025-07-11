@@ -80,6 +80,8 @@ public class AnimalControl : MonoBehaviour
     {
         //Debug.Log($"변경전 newState : {newState}, prevState : {prevState}, state : {state}");
         // 이전 state 스크립트는 Disable 처리
+        //// 선택사항) 상태변경은 Idle 이나 Wander에서만 가능
+        //if (prevState != State.Idle && prevState != State.Wander) return;
         dictionary[prevState].UnInit();
         dictionary[prevState].enabled = false;
         dictionary[state].UnInit();

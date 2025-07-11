@@ -1153,9 +1153,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4964560584167853119}
     - target: {fileID: 4305527949468078662, guid: 221a8c49e75a1af49a9a9ebfa1962849, type: 3}
-      propertyPath: target
+      propertyPath: toy
       value: 
-      objectReference: {fileID: 4152949085688550176}
+      objectReference: {fileID: 4152949085688550177}
     - target: {fileID: 6440855494840042070, guid: 221a8c49e75a1af49a9a9ebfa1962849, type: 3}
       propertyPath: m_Name
       value: Animal
@@ -1334,6 +1334,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PrototypeWaterBowl
       objectReference: {fileID: 0}
+    - target: {fileID: 1595455048357033778, guid: 573ed6f1f93e2764eabf38bed0b9ec27, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1595455048357033778, guid: 573ed6f1f93e2764eabf38bed0b9ec27, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2121161637306887560, guid: 573ed6f1f93e2764eabf38bed0b9ec27, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.87617886
@@ -1378,6 +1386,14 @@ PrefabInstance:
       propertyPath: animalControl
       value: 
       objectReference: {fileID: 1036977567}
+    - target: {fileID: 4378882770031890171, guid: 573ed6f1f93e2764eabf38bed0b9ec27, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6641197498451464435, guid: 573ed6f1f93e2764eabf38bed0b9ec27, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4001,6 +4017,10 @@ PrefabInstance:
       propertyPath: animal
       value: 
       objectReference: {fileID: 1036977567}
+    - target: {fileID: 3251012051572291835, guid: 3c2cfa5d835678d43aebd08e6e632001, type: 3}
+      propertyPath: animalControl
+      value: 
+      objectReference: {fileID: 1036977567}
     - target: {fileID: 4625136610226005686, guid: 3c2cfa5d835678d43aebd08e6e632001, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.5876851
@@ -4041,7 +4061,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7914855455956480137, guid: 3c2cfa5d835678d43aebd08e6e632001, type: 3}
+      propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7914855455956480137, guid: 3c2cfa5d835678d43aebd08e6e632001, type: 3}
+      propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8674506999654584391, guid: 3c2cfa5d835678d43aebd08e6e632001, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -4051,6 +4080,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4625136610226005686, guid: 3c2cfa5d835678d43aebd08e6e632001, type: 3}
   m_PrefabInstance: {fileID: 4152949085688550175}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4152949085688550177 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3251012051572291835, guid: 3c2cfa5d835678d43aebd08e6e632001, type: 3}
+  m_PrefabInstance: {fileID: 4152949085688550175}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 485aacc6c99cabe469f5e27073160331, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &4172963283155389491
 RectTransform:
   m_ObjectHideFlags: 0
