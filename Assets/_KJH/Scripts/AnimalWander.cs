@@ -4,14 +4,8 @@ using UnityEngine;
 using UnityEngine.AI;
 public class AnimalWander : AnimalAbility
 {
-    NavMeshAgent agent;
     RaycastHit hit;
     Ray ray = new Ray();
-    protected override void Awake()
-    {
-        base.Awake();
-        TryGetComponent(out agent);
-    }
     public override void Init()
     {
         //Debug.Log("공룡 Wander] 시작");
