@@ -1678,7 +1678,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75aaa60108e434c41824d475ed83d723, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animal: {fileID: 0}
   interactableObjects: {fileID: 0}
   pops:
   - {fileID: 8926255283811775231}
