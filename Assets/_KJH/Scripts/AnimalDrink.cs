@@ -19,7 +19,7 @@ public class AnimalDrink : AnimalAbility
         base.UnInit();
         sfx?.Stop();
         StopCoroutine(nameof(GoToFood));
-        agent.isStopped = true;
+        agent.isStopped = false;
     }
     SFX sfx;
     IEnumerator GoToFood()

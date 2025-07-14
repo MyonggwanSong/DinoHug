@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 public class Food : MonoBehaviour
 {
-    public AnimalControl animalControl;
+    //public AnimalControl animalControl;
     XRGrabInteractable xRGrab;
     public bool isPlaced;
     bool isGrabbed;
@@ -19,33 +19,11 @@ public class Food : MonoBehaviour
     {
         isGrabbed = true;
         isPlaced = false;
-        StopCoroutine(nameof(Retry));
+        //StopCoroutine(nameof(Retry));
     }
     public void OnGrabEnd()
     {
         isGrabbed = false;
-    }
-    void OnCollisionStay(Collision collision)
-    {
-        if (collision.gameObject.layer == 3)
-        {
-            if (isPlaced) return;
-            if (!isGrabbed)
-            {
-                isPlaced = true;
-                animalControl.ChangeState(AnimalControl.State.Eat);
-                StartCoroutine(nameof(Retry));
-            }
-        }
-    }
-    IEnumerator Retry()
-    {
-        while (true)
-        {
-            yield return YieldInstructionCache.WaitForSeconds(5f);
-            yield return new WaitUntil(() => animalControl.state == AnimalControl.State.Idle || animalControl.state == AnimalControl.State.Wander);
-            animalControl.ChangeState(AnimalControl.State.Eat);
-        }
     }
     public void DisableGrab()
     {
@@ -62,8 +40,34 @@ public class Food : MonoBehaviour
         transform.rotation = startRotation;
         isPlaced = false;
         isGrabbed = false;
-        StopCoroutine(nameof(Retry));
+        //StopCoroutine(nameof(Retry));
     }
+    void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.layer == 3)
+        {
+            if (isPlaced) return;
+            if (!isGrabbed)
+            {
+                isPlaced = true;
+                //animalControl.ChangeState(AnimalControl.State.Eat);
+                EventManager.Instance.ChangeStateAction.Invoke(AnimalControl.State.Eat);
+                //StartCoroutine(nameof(Retry));
+            }
+        }
+    }
+    // IEnumerator Retry()
+    // {
+    //     while (true)
+    //     {
+    //         yield return YieldInstructionCache.WaitForSeconds(5f);
+    //         //yield return new WaitUntil(() => animalControl.state == AnimalControl.State.Idle || animalControl.state == AnimalControl.State.Wander);
+    //         //animalControl.ChangeState(AnimalControl.State.Eat);
+    //     }
+    // }
+
+
+
 
     
 

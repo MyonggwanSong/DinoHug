@@ -1,11 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
-
 public class AnimalPlay : AnimalAbility
 {
-    NavMeshAgent agent;
     [SerializeField] float stopDistance = 1.5f;
     [SerializeField] float maxTime = 20f;
     [SerializeField] Transform ballPos;
@@ -13,7 +9,6 @@ public class AnimalPlay : AnimalAbility
     protected override void Awake()
     {
         base.Awake();
-        TryGetComponent(out agent);
         playerCam = Camera.main.transform;
     }
     public override void Init()

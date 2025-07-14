@@ -19,7 +19,7 @@ public class AnimalEat : AnimalAbility
         base.UnInit();
         sfx?.Stop();
         StopCoroutine(nameof(GoToFood));
-        agent.isStopped = true;
+        agent.isStopped = false;
         if (target != null)
         {
             target.EnableGrab();

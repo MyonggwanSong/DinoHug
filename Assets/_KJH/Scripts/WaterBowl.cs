@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 public class WaterBowl : MonoBehaviour
 {
-    public AnimalControl animalControl;
+    //public AnimalControl animalControl;
     public bool isPlaced;
     public Vector2 fillRange = new Vector2(0.4f, 0.8f);
     XRGrabInteractable xRGrab;
@@ -22,7 +22,7 @@ public class WaterBowl : MonoBehaviour
     {
         isGrabbed = true;
         isPlaced = false;
-        StopCoroutine(nameof(Retry));
+        //StopCoroutine(nameof(Retry));
     }
     public void OnGrabEnd()
     {
@@ -38,21 +38,22 @@ public class WaterBowl : MonoBehaviour
                 isPlaced = true;
                 if (liquid.fillAmount >= Mathf.Lerp(fillRange.x, fillRange.y, 0.5f))
                 {
-                    animalControl.ChangeState(AnimalControl.State.Drink);
-                    StartCoroutine(nameof(Retry));
+                    //animalControl.ChangeState(AnimalControl.State.Drink);
+                    EventManager.Instance.ChangeStateAction.Invoke(AnimalControl.State.Drink);
+                    //StartCoroutine(nameof(Retry));
                 }
             }
         }
     }
-    IEnumerator Retry()
-    {
-        while (true)
-        {
-            yield return YieldInstructionCache.WaitForSeconds(5f);
-            yield return new WaitUntil(() => animalControl.state == AnimalControl.State.Idle || animalControl.state == AnimalControl.State.Wander);
-            animalControl.ChangeState(AnimalControl.State.Drink);
-        }
-    }
+    // IEnumerator Retry()
+    // {
+    //     while (true)
+    //     {
+    //         yield return YieldInstructionCache.WaitForSeconds(5f);
+    //         yield return new WaitUntil(() => animalControl.state == AnimalControl.State.Idle || animalControl.state == AnimalControl.State.Wander);
+    //         animalControl.ChangeState(AnimalControl.State.Drink);
+    //     }
+    // }
     public void DisableGrab()
     {
         xRGrab.enabled = false;
@@ -68,7 +69,7 @@ public class WaterBowl : MonoBehaviour
         transform.rotation = startRotation;
         isPlaced = false;
         isGrabbed = false;
-        StopCoroutine(nameof(Retry));
+        //StopCoroutine(nameof(Retry));
     }
 
 

@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 public class WaterBottle : MonoBehaviour
 {
-    public AnimalControl animalControl;
     XRGrabInteractable xRGrab;
     bool isGrabbed;
     Vector3 startPosition;
@@ -236,7 +235,8 @@ public class WaterBottle : MonoBehaviour
                 if (bowl.liquid.fillAmount >= 0.3f * bowl.fillRange.x + 0.7f * bowl.fillRange.y && !isChangeState)
                 {
                     isChangeState = true;
-                    animalControl.ChangeState(AnimalControl.State.Drink);
+                    //animalControl.ChangeState(AnimalControl.State.Drink);
+                    EventManager.Instance.ChangeStateAction.Invoke(AnimalControl.State.Drink);
                 }
                 else if (bowl.liquid.fillAmount >= bowl.fillRange.y)
                 {
