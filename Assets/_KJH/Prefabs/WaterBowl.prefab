@@ -276,7 +276,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aeb8c6798945e064997a27e95f40b41d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animalControl: {fileID: 0}
   isPlaced: 0
   fillRange: {x: 0.4, y: 0.55}
   liquid: {fileID: 0}

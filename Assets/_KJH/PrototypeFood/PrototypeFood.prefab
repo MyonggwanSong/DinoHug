@@ -328,7 +328,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5902daa7e0c230b4e90dd26ce5769b1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animalControl: {fileID: 0}
   isPlaced: 0
 --- !u!114 &107701947830706527
 MonoBehaviour:

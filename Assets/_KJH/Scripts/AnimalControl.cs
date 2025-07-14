@@ -44,7 +44,8 @@ public class AnimalControl : MonoBehaviour
         Dead,
         Handle,
         Drink,
-        Call,
+        CallFollow,
+        CallIdle,
     }
     public void ChangeState(State newState)
     {
@@ -123,6 +124,18 @@ public class AnimalControl : MonoBehaviour
 
     #region PWH_ 
     public UnityAction<Effect> OnUpdateEffect;
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (state.Equals(State.Idle) || state.Equals(State.Wander) || state.Equals(State.CallFollow))
+            {
+                Debug.Log("Player Calling!!");
+                ChangeState(State.CallFollow);
+            }
+        }
+    }
     #endregion
 
 
@@ -145,5 +158,4 @@ public class AnimalControl : MonoBehaviour
         OnUpdateEffect?.Invoke(effect);
     }
 #endif
-
 }

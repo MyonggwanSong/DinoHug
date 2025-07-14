@@ -55,7 +55,7 @@ public class WaterBottle : MonoBehaviour
             float horizontal = Mathf.Abs(rigid.velocity.x) + Mathf.Abs(rigid.velocity.z);
             float angle = grabbingXRController.rotation.eulerAngles.z;
             // 컨트롤러를 기울이고 있을 경우 + 수평으로는 거의 안움직이고 있을경우
-            if (angle >= 110 && angle <= 250 && horizontal < 2)
+            if (angle >= 100 && angle <= 260 && horizontal < 5)
             {
                 //Debug.Log($"angle : {grabbingXRController.rotation.eulerAngles.z}, vertical : {rigid.velocity.y}, horizontal : {horizontal}");
                 //컨트롤러를 적당한 속도와 적당한 주기로 위아래(수직)으로 흔들경우
