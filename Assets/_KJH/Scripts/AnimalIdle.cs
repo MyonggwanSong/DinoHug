@@ -17,7 +17,7 @@ public class AnimalIdle : AnimalAbility
     }
     IEnumerator Idle()
     {
-        anim.CrossFade("Idle", 0.1f);
+        anim.SetInteger("animation", 1); // Idle모션
         // Idle 애니매이션 길이에 따라 아랫줄 시간 변경
         yield return YieldInstructionCache.WaitForSeconds(3f);
         // 잠깐 대기
