@@ -17,7 +17,8 @@ public class AnimalControl : MonoBehaviour
         Dead,
         Handle,
         Drink,
-        Call,
+        CallFollow,
+        CallIdle,
     }
     // Effect는 중복 될수있으므로 BitMask로 구현하였음. 외부에서 다른개발자가 1 << n 같은 시프트 연산을 직접하기 어려울수 있으므로
     // HasEffect(), AddEffect(), RemoveEffect() 라는 메소드를 만들어둘테니 직접 시프트 연산하지말고 이 메소드들을 이용하세요.
@@ -97,6 +98,18 @@ public class AnimalControl : MonoBehaviour
 
     #region PWH_ 
     public UnityAction<Effect> OnUpdateEffect;
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (state.Equals(State.Idle) || state.Equals(State.Wander) || state.Equals(State.CallFollow))
+            {
+                Debug.Log("Player Calling!!");
+                ChangeState(State.CallFollow);
+            }
+        }
+    }
     #endregion
 
 
@@ -118,5 +131,4 @@ public class AnimalControl : MonoBehaviour
         OnUpdateEffect?.Invoke(effect);
     }
 #endif
-
 }

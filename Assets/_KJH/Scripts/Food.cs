@@ -33,6 +33,9 @@ public class Food : MonoBehaviour
             if (!isGrabbed)
             {
                 isPlaced = true;
+
+                if (animalControl.state.Equals(AnimalControl.State.CallFollow)) return;
+                
                 animalControl.ChangeState(AnimalControl.State.Eat);
                 StartCoroutine(nameof(Retry));
             }

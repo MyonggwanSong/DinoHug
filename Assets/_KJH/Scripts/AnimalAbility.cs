@@ -5,7 +5,7 @@ public abstract class AnimalAbility : MonoBehaviour
     public abstract void Init();
     public virtual void UnInit()
     {
-            StopAllCoroutines();
+        StopAllCoroutines();
     }
     protected AnimalControl animal;
     protected Animator anim;
