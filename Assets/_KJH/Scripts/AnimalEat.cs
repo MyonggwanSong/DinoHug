@@ -8,7 +8,7 @@ public class AnimalEat : AnimalAbility
     Collider[] colliders = new Collider[80];
 
     public override void Init()
-    {        
+    {
         //Debug.Log("공룡 Eat] 시작");
         StopCoroutine(nameof(GoToFood));
         StartCoroutine(nameof(GoToFood));
