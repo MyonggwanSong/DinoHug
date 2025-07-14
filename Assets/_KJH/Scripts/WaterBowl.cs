@@ -38,6 +38,8 @@ public class WaterBowl : MonoBehaviour
                 isPlaced = true;
                 if (liquid.fillAmount >= Mathf.Lerp(fillRange.x, fillRange.y, 0.5f))
                 {
+                    if (animalControl.state.Equals(AnimalControl.State.CallFollow)) return;
+
                     animalControl.ChangeState(AnimalControl.State.Drink);
                     StartCoroutine(nameof(Retry));
                 }
