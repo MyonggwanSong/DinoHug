@@ -5,13 +5,8 @@ public class AnimalDrink : AnimalAbility
 {
     [SerializeField] float drinkDistance = 1.5f;
     [SerializeField] float drinkTime = 5f;
-    NavMeshAgent agent;
     Collider[] colliders = new Collider[80];
-    protected override void Awake()
-    {
-        base.Awake();
-        TryGetComponent(out agent);
-    }
+
     public override void Init()
     {
         //Debug.Log("공룡 Drink] 시작");
