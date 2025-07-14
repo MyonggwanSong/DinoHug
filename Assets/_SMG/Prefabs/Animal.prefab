@@ -358,6 +358,8 @@ GameObject:
   - component: {fileID: 1784383178872321421}
   - component: {fileID: 4384470250527163979}
   - component: {fileID: 110454871728686655}
+  - component: {fileID: 5594584743370493817}
+  - component: {fileID: 70366543978951504}
   - component: {fileID: 1988362456717335288}
   - component: {fileID: 6901286869854783086}
   - component: {fileID: 3001875435557390810}
@@ -365,8 +367,6 @@ GameObject:
   - component: {fileID: 4330211342836846150}
   - component: {fileID: 8838021687523227843}
   - component: {fileID: 6837333902963976465}
-  - component: {fileID: 5594584743370493817}
-  - component: {fileID: 70366543978951504}
   m_Layer: 0
   m_Name: Animal
   m_TagString: Untagged
@@ -432,6 +432,72 @@ MonoBehaviour:
   prevState: 0
   testState: 0
   testEffect: 0
+--- !u!114 &5594584743370493817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2738952212004301797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1094a4b656d851748bc264d25ba34506, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectRadius: 2
+  popUpKey: {fileID: 1488353844450583689}
+--- !u!114 &70366543978951504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2738952212004301797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 763889d61763993489751a58eadbb3e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animal: {fileID: 899035968858391802, guid: 221a8c49e75a1af49a9a9ebfa1962849, type: 3}
+  view: {fileID: 0}
+  _init_Bond: 45
+  _init_Hunger: 20
+  _init_Thirsty: 20
+  _init_Bored: 30
+  _figure_Bond_Origin: 0.0025
+  _figure_Bond_Additive: 0
+  _figure_Hunger_Origin: 0.00178
+  _figure_Hunger_Additive: 0.0005
+  _figure_Thirsty_Origin: 0.00198
+  _figure_Thirsty_Additive: 0.0005
+  _figure_Bored_Origin: 0.00205
+  _figure_Bored_Additive: 0.0005
+  nonInteractionTime: 30
+  nonInteractionElapsedTime: 0
+  add_Play:
+    bond: 6
+    hunger: 0.3
+    thirsty: 0.3
+    bored: -5
+  add_Petting:
+    bond: 0.6
+    hunger: 0
+    thirsty: 0
+    bored: -1
+  add_Feed:
+    bond: 2
+    hunger: -10
+    thirsty: 0
+    bored: 0
+  add_GiveWater:
+    bond: 2
+    hunger: 0
+    thirsty: -10
+    bored: 0
+  deadline_Bond: 20
+  deadline_Hunger: 60
+  deadline_Thirsty: 60
+  deadline_Bored: 70
 --- !u!114 &1988362456717335288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -525,72 +591,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   drinkDistance: 2.3
   drinkTime: 5
---- !u!114 &5594584743370493817
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2738952212004301797}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1094a4b656d851748bc264d25ba34506, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  detectRadius: 2
-  popUpKey: {fileID: 1488353844450583689}
---- !u!114 &70366543978951504
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2738952212004301797}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 763889d61763993489751a58eadbb3e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animal: {fileID: 899035968858391802, guid: 221a8c49e75a1af49a9a9ebfa1962849, type: 3}
-  view: {fileID: 0}
-  _init_Bond: 45
-  _init_Hunger: 20
-  _init_Thirsty: 20
-  _init_Bored: 30
-  _figure_Bond_Origin: 0.0025
-  _figure_Bond_Additive: 0
-  _figure_Hunger_Origin: 0.00178
-  _figure_Hunger_Additive: 0.0005
-  _figure_Thirsty_Origin: 0.00198
-  _figure_Thirsty_Additive: 0.0005
-  _figure_Bored_Origin: 0.00205
-  _figure_Bored_Additive: 0.0005
-  nonInteractionTime: 30
-  nonInteractionElapsedTime: 0
-  add_Play:
-    bond: 6
-    hunger: 0.3
-    thirsty: 0.3
-    bored: -5
-  add_Petting:
-    bond: 0.6
-    hunger: 0
-    thirsty: 0
-    bored: -1
-  add_Feed:
-    bond: 2
-    hunger: -10
-    thirsty: 0
-    bored: 0
-  add_GiveWater:
-    bond: 2
-    hunger: 0
-    thirsty: -10
-    bored: 0
-  deadline_Bond: 20
-  deadline_Hunger: 60
-  deadline_Thirsty: 60
-  deadline_Bored: 70
 --- !u!1 &2794477223307757512
 GameObject:
   m_ObjectHideFlags: 0

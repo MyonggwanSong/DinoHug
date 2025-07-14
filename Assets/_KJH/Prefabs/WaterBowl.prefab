@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6373675395391178885}
   - component: {fileID: 3799925563171257905}
   m_Layer: 0
-  m_Name: PrototypeWaterBowl
+  m_Name: WaterBowl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
