@@ -255,6 +255,7 @@ public class AnimalPlay : AnimalAbility
         toy.isThrow = false;
 
         Debug.Log("놀아주기 완료");
+        animal.petStateController.Play();
         agent.SetDestination(transform.position);
         animal.ChangeState(AnimalControl.State.Idle);
 
