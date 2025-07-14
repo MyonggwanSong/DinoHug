@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 public class WaterBottle : MonoBehaviour
 {
+    AnimalControl animalControl;
     XRGrabInteractable xRGrab;
     bool isGrabbed;
     Vector3 startPosition;
@@ -18,6 +19,7 @@ public class WaterBottle : MonoBehaviour
     {
         TryGetComponent(out xRGrab);
         TryGetComponent(out rigid);
+        animalControl = FindAnyObjectByType<AnimalControl>();
         startPosition = transform.position;
         startRotation = transform.rotation;
         particleObj = transform.Find("Bottle").GetChild(0).gameObject;
@@ -234,9 +236,15 @@ public class WaterBottle : MonoBehaviour
                 bowl.liquid.fillAmount = Mathf.Clamp(bowl.liquid.fillAmount, bowl.fillRange.x, bowl.fillRange.y);
                 if (bowl.liquid.fillAmount >= 0.3f * bowl.fillRange.x + 0.7f * bowl.fillRange.y && !isChangeState)
                 {
-                    isChangeState = true;
-                    //animalControl.ChangeState(AnimalControl.State.Drink);
-                    EventManager.Instance.ChangeStateAction.Invoke(AnimalControl.State.Drink);
+                    // Idle, Wander 상태일때만 --> State.Drink로 체인지
+                    if (animalControl.state == AnimalControl.State.Idle || animalControl.state == AnimalControl.State.Wander)
+                    {
+                        if (animalControl.state != AnimalControl.State.Drink)
+                        {
+                            isChangeState = true;
+                            animalControl.ChangeState(AnimalControl.State.Drink);
+                        }
+                    }
                 }
                 else if (bowl.liquid.fillAmount >= bowl.fillRange.y)
                 {
