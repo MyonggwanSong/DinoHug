@@ -54,7 +54,7 @@ public class AnimalPlay : AnimalAbility
         Debug.Log("FollowPlayer 시작");
         // 공에게 이동 (아랫줄만 호출해도 알아서 시간에따라서 이동)
         bool result = agent.SetDestination(toy.transform.position);
-        anim.CrossFade("Move", 0.12f);
+        anim.SetFloat("animation", 21f); // 걷기 모션
 
         // 위에서 목적지까지 도착하기 전까지 대기
         float sqrDistance = (toy.transform.position - transform.position).sqrMagnitude;
@@ -100,7 +100,7 @@ public class AnimalPlay : AnimalAbility
 
         Debug.Log("플레이어 손에있는 공에 도착완료");
         // 플레이어 손에 있는 공에 도착
-        anim.CrossFade("Idle", 0.12f);
+        anim.SetInteger("animation", 21); // 걷기 모션
 
         while(true)
         {

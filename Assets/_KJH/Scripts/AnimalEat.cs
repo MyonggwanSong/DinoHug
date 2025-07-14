@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 public class AnimalEat : AnimalAbility
 {
-    [SerializeField] float eatDistance = 1.5f;
+    [SerializeField] float eatDistance = 0.5f;
     NavMeshAgent agent;
     Collider[] colliders = new Collider[80];
     protected override void Awake()
@@ -57,7 +57,7 @@ public class AnimalEat : AnimalAbility
         agent.destination = target.transform.position;
         float expectTime = Vector3.Distance(target.transform.position, transform.position) / agent.speed;
         float startTime = Time.time;
-        anim.CrossFade("Move", 0.1f);
+        anim.SetInteger("animation", 21); // 걷기 모션
         agent.isStopped = false;
         while (true)
         {
@@ -66,7 +66,7 @@ public class AnimalEat : AnimalAbility
             // 거리가 1.5m보다 가까워지거나.. expectTime의 1.5배보다 오래 걸릴경우(예를들어 벽에 끼여서 제자리 이동중인 경우) 루프 탈출
             if (sqrDistance <= eatDistance * eatDistance || Time.time - startTime > expectTime * 1.5f)
             {
-                anim.CrossFade("Idle", 0.1f);
+                anim.SetInteger("animation", 1); // Idle모션
                 agent.isStopped = true;
                 break;
             }
@@ -106,7 +106,7 @@ public class AnimalEat : AnimalAbility
             yield break;
         }
         // 먹는 애니매이션 재생 + 먹고있는 동안 XR그랩 못하게
-        anim.CrossFade("Eat", 0.1f);
+        anim.SetInteger("animation", 5); // 먹는 모션
         // 효과음 재생
         sfx = AudioManager.Instance.PlayEffect("EatMeat", transform.position, 1.0f);
         target.DisableGrab();

@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.AI;
 public class AnimalDrink : AnimalAbility
 {
-    [SerializeField] float drinkDistance = 1.5f;
+    [SerializeField] float drinkDistance = 0.5f;
     [SerializeField] float drinkTime = 5f;
     NavMeshAgent agent;
     Collider[] colliders = new Collider[80];
@@ -53,7 +53,7 @@ public class AnimalDrink : AnimalAbility
         agent.destination = target.transform.position;
         float expectTime = Vector3.Distance(target.transform.position, transform.position) / agent.speed;
         float startTime = Time.time;
-        anim.CrossFade("Move", 0.1f);
+        anim.SetInteger("animation", 21); // 걷기 모션
         agent.isStopped = false;
         while (true)
         {
@@ -62,7 +62,7 @@ public class AnimalDrink : AnimalAbility
             // 거리가 1.5m보다 가까워지거나.. expectTime의 1.5배보다 오래 걸릴경우(예를들어 벽에 끼여서 제자리 이동중인 경우) 루프 탈출
             if (sqrDistance <= drinkDistance * drinkDistance || Time.time - startTime > expectTime * 1.5f)
             {
-                anim.CrossFade("Idle", 0.1f);
+                anim.SetInteger("animation", 1); // Idle모션
                 agent.isStopped = true;
                 break;
             }
