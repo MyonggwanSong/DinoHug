@@ -1,21 +1,16 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
 
-public class AnimalCall : AnimalAbility
+public class AnimalCallFollow : AnimalAbility
 {
     [Header("Value")]
     [SerializeField] float callDistance;                // Player와의 거리
-    [SerializeField] float callWaitTime;                // Player에게 도착 후 대기시간. => 대기 시간을 넘어가면 다시 wandor 상태로 넘어가기
-    [ReadOnlyInspector] public bool isArrived;
 
     [Header("Player Reference")]
     [ReadOnlyInspector, SerializeField] Transform target;                  // Player Reference
 
     public override void Init()
     {
-        // 상태 시작
-        isArrived = false;
         agent.isStopped = false;
         target = Camera.main.transform;
 
@@ -29,7 +24,6 @@ public class AnimalCall : AnimalAbility
         base.UnInit();
         Debug.Log($"UnInit Call.");
         StopCoroutine(nameof(FollowTarget));
-        agent.isStopped = false;
     }
 
     // 동물이 호출을 받았다면. 실행할 것들
@@ -53,25 +47,10 @@ public class AnimalCall : AnimalAbility
                 Debug.Log("목적지 찾기 실패...");
             }
 
-            Debug.Log($"[Animal Call] : Player에게 다가가는 중...... {Vector3.Distance(gameObject.transform.position, target.transform.position)}");
-
             yield return new WaitForSeconds(0.1f);
         }
 
-        agent.isStopped = true;
-        isArrived = true;
-
-        Debug.Log("Target에 도착했습니다.");
-
-        // 도착한 상태 멈추기
-        yield return new WaitForSeconds(callWaitTime);
-
-        //이 시간 이후에도 동물의 상태가 Call이라면. Idle 상태로 넘어가기
-        if (animal.state.Equals(AnimalControl.State.CallIdle))
-        {
-            Debug.Log("시간 초과... Idle 상태로 이동합니다.");
-            animal.ChangeState(AnimalControl.State.Idle);
-        }
+        animal.ChangeState(AnimalControl.State.CallIdle);
     }
 }
 
