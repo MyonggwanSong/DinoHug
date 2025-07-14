@@ -254,8 +254,9 @@ public class AnimalPlay : AnimalAbility
         toy.EnableGrab();
         toy.isThrow = false;
 
+        animal.petStateController.Play();   // 끝나면 지루함 떨어짐
         Debug.Log("놀아주기 완료");
-
+        
         animal.ChangeState(AnimalControl.State.Idle);
 
 
