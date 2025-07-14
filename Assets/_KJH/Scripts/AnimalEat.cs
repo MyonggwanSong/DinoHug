@@ -5,13 +5,8 @@ using UnityEngine.AI;
 public class AnimalEat : AnimalAbility
 {
     [SerializeField] float eatDistance = 1.5f;
-    NavMeshAgent agent;
     Collider[] colliders = new Collider[80];
-    protected override void Awake()
-    {
-        base.Awake();
-        TryGetComponent(out agent);
-    }
+
     public override void Init()
     {
         //Debug.Log("공룡 Eat] 시작");
