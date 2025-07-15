@@ -1413,7 +1413,6 @@ GameObject:
   - component: {fileID: 1213100696353563077}
   - component: {fileID: 3238455107989923926}
   - component: {fileID: 200317395072619208}
-  - component: {fileID: 2421626715339202455}
   - component: {fileID: 7874355985628839614}
   m_Layer: 0
   m_Name: Dino
@@ -1572,20 +1571,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   drinkDistance: 2.3
   drinkTime: 5
---- !u!114 &2421626715339202455
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6584902946222412427}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1094a4b656d851748bc264d25ba34506, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  detectRadius: 2
-  popUpKey: {fileID: 0}
 --- !u!114 &7874355985628839614
 MonoBehaviour:
   m_ObjectHideFlags: 0
