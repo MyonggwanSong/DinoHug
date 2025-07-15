@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7914855455956480137}
   - component: {fileID: 3251012051572291835}
   m_Layer: 0
-  m_Name: Ball
+  m_Name: Toy
   m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,7 +44,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 541765120928142642}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: -5668984478841134232, guid: 466c1e3dbea979046a484a42e6d52952, type: 3}
 --- !u!23 &5522430671797082907
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -65,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9d54194c4279de548ba209f1f9ead87b, type: 2}
+  - {fileID: -6478536213147159724, guid: 466c1e3dbea979046a484a42e6d52952, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -107,7 +107,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!54 &353535837670536829
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -60,9 +60,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 9747a71791e860c478bf13e8559657cb, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 32407361438858840b4e02de675d1d7a, type: 2}
+    - target: {fileID: -5754084199372789682, guid: 9747a71791e860c478bf13e8559657cb, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -5668984478841134232, guid: 8ea6b4d6fc37cf4419320a39df67be37, type: 3}
     - target: {fileID: 919132149155446097, guid: 9747a71791e860c478bf13e8559657cb, type: 3}
       propertyPath: m_Name
-      value: PrototypeFood
+      value: Food
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

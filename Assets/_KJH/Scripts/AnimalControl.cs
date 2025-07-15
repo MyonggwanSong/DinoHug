@@ -30,9 +30,9 @@ public class AnimalControl : MonoBehaviour
         Dead,
         Handle,
         Drink,
+        GameClear,
         CallFollow,
         CallIdle,
-        GameClear,
     }
     void FSM_Setting()
     {
