@@ -51,6 +51,7 @@ public class AnimalCallFollow : AnimalAbility
         }
 
         animal.ChangeState(AnimalControl.State.CallIdle);
+        yield break;
     }
 }
 
