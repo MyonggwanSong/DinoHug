@@ -49,7 +49,7 @@ public class AnimalWander : AnimalAbility
         agent.destination = target;
         float expectTime = Vector3.Distance(target, transform.position) / agent.speed;
         float startTime = Time.time;
-       anim.SetInteger("animation", 21); // 걷기 모션
+        anim.SetInteger("animation", 21); // 걷기 모션
         agent.isStopped = false;
         while (true)
         {

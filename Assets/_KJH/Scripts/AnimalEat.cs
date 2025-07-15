@@ -6,7 +6,6 @@ public class AnimalEat : AnimalAbility
 {
     [SerializeField] float eatDistance = 1.5f;
     Collider[] colliders = new Collider[80];
-
     public override void Init()
     {
         //Debug.Log("공룡 Eat] 시작");

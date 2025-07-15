@@ -52,8 +52,17 @@ MonoBehaviour:
   - {fileID: 8300000, guid: dd19ee6be8248064c89e1bce654462c9, type: 3}
   - {fileID: 8300000, guid: bde5ee0c77dd3b14ab126ac1d38633f4, type: 3}
   - {fileID: 8300000, guid: 2d7720b85bc428c4ead94d6201c25620, type: 3}
-  - {fileID: 8300000, guid: 6b062082b76559d4794bc2c334b7e641, type: 3}
-  - {fileID: 8300000, guid: 36872291dadbe1d47ac5b4c1f309b445, type: 3}
+  - {fileID: 8300000, guid: 41c97a3da6956974599cf1c7535f926c, type: 3}
+  - {fileID: 8300000, guid: 37b3f2717b9ddea418e850f547f0dac6, type: 3}
+  - {fileID: 8300000, guid: 6464b1465a856b344aa95f4ae14e91ed, type: 3}
+  - {fileID: 8300000, guid: 0c125d85827c1fe43a1774829a053e7a, type: 3}
+  - {fileID: 8300000, guid: 139c11e69829cd3409a759fa4af4384b, type: 3}
+  - {fileID: 8300000, guid: b4e5a03228881ab41bd2962cc894923d, type: 3}
+  - {fileID: 8300000, guid: 647d7d79bb18e0d46b421ad3d921cd16, type: 3}
+  - {fileID: 8300000, guid: b0cee6f4a0c77994d86bd4af274d8fb9, type: 3}
+  - {fileID: 8300000, guid: f641de3925859104d9ac5e31d41491ac, type: 3}
+  - {fileID: 8300000, guid: 3462359ca5299b14ba04c97e9b8ae495, type: 3}
+  - {fileID: 8300000, guid: ec3d7cf527a3d834fa7be99f54876600, type: 3}
   sfxPrefab: {fileID: -6642653840743833105, guid: 8fe898a64822d3f42813a1f6b8c0cb32, type: 3}
   init_Master: 0
   init_Effect: 0

@@ -24,9 +24,12 @@ public class AnimalDetect : MonoBehaviour
             popUpKey.SetActive(true);
 
 
-            if (animal.state != AnimalControl.State.Play) return;
+            if (animal.state == AnimalControl.State.Wander)
+            {
+
+                animal.ChangeState(AnimalControl.State.Idle);
+            }
             
-            animal.ChangeState(AnimalControl.State.Idle);
              
             
 
@@ -39,9 +42,11 @@ public class AnimalDetect : MonoBehaviour
             controller = null;
             popUpKey.SetActive(false);
 
-            if (animal.state != AnimalControl.State.Play) return;
+            if (animal.state == AnimalControl.State.Wander)
+            {
 
-            animal.ChangeState(AnimalControl.State.Idle);
+                animal.ChangeState(AnimalControl.State.Idle);
+            }
         }
     }
     
