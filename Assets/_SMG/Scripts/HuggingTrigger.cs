@@ -24,7 +24,7 @@ public class HuggingTrigger : MonoBehaviour
     float _elapsed;
 
     // 쓰다듬기 상태 변화 딜레이
-    float pettingStateChangeDelay = 0.2f; // 0.2초 딜레이
+    float pettingStateChangeDelay = 1f; // 0.2초 딜레이
     float lastHuggingStateChangeTime = 0f;
 
     // isPetting이 true가 된 후 유예시간
@@ -84,8 +84,8 @@ public class HuggingTrigger : MonoBehaviour
 
         if (input1 == 1f) // 버튼이 눌린 상태
         {
-            // 1. 버튼 클릭시 햅틱반응
-            //leftController\.SendHapticImpulse(0.5f, 0.2f);
+            // 1. 
+
             con1Clicked = true;
             if (ac.state != AnimalControl.State.Handle) // AnimalControl.State.Hug 로 변경
             {
@@ -118,7 +118,7 @@ public class HuggingTrigger : MonoBehaviour
         if (input2 == 1f) // 버튼이 눌린 상태
         {
             // 1. 버튼 클릭시 햅틱반응
-            //rightController.SendHapticImpulse(0.5f, 0.2f);
+           
             con2Clicked = true;
             if (ac.state != AnimalControl.State.Handle) // AnimalControl.State.Hug 로 변경
             {
@@ -140,28 +140,28 @@ public class HuggingTrigger : MonoBehaviour
             // 즉시 쓰다듬기 중단 (딜레이 적용)
             UpdatePettingState(false);
 
-            // 타이머 증가
-            _elapsed += Time.deltaTime;
-            if (_elapsed > 0.5f)
-            {
-                ResetToIdle(false, rightController);
-            }
+
         }
 
         if (con1Clicked && con2Clicked)
         {
-            ah.isHugging = true;
-            leftController.SendHapticImpulse(0.5f, 0.2f);
-            rightController.SendHapticImpulse(0.5f, 0.2f);
+            _elapsed += Time.deltaTime;
+            if (_elapsed > 0.5f)
+            {
+                ah.isHugging = true;
+                leftController.SendHapticImpulse(0.5f, 0.2f);
+                rightController.SendHapticImpulse(0.5f, 0.2f);
 
-            Vector3 hugPos = (con1Position + con2Position) * 0.5f;
+                Vector3 hugPos = (con1Position + con2Position) * 0.5f + Camera.main.transform.forward.normalized * 0.75f;
 
-            ac.transform.position = hugPos;
+                ac.transform.position = hugPos;
 
-            Debug.Log(hugPos);
+                Debug.Log("안아주기 시작 - 유예시간 시작");
+                ac.petStateController.Petting();            // Hugging 으로 바꿔야함
+                ResetToIdle(false, leftController);
+                ResetToIdle(false, rightController);
 
-            Debug.Log("안아주기 시작 - 유예시간 시작");
-            ac.petStateController.Petting();            // Hugging 으로 바꿔야함
+            }
 
         }
     }
