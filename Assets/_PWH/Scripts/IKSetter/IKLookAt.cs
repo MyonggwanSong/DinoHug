@@ -30,7 +30,8 @@ public class IKLookAt : MonoBehaviour
         if (animal.state.Equals(AnimalControl.State.Eat)) return;
         if (animal.state.Equals(AnimalControl.State.Dead)) return;
         if (animal.state.Equals(AnimalControl.State.Drink)) return;
-
+        if (CheckDistance()) return;
+        
         Vector3 toTarget = target.position - transform.position;
         float angle = Vector3.Angle(transform.forward, toTarget.normalized);
         bool shouldLook = angle < maxAngle;
@@ -49,6 +50,13 @@ public class IKLookAt : MonoBehaviour
                 constraint.weight = currentWeight;
             }, targetWeight, transitionTime);
         }
+    }
+
+    bool CheckDistance()
+    {
+        float d = Vector3.Distance(this.transform.position, target.position);
+
+        return d >= maxDistance;
     }
 
     void InitConstraint(Transform target)
