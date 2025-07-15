@@ -1,11 +1,11 @@
 using System;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class PettingTrigger : MonoBehaviour
+public class HandlingingTrigger : MonoBehaviour
 {
-    public ActionBasedController controller;
+    public ActionBasedController leftController;
+    public ActionBasedController rightController;
 
     // 위치 추적 변수
     Vector3 prevPosition;
@@ -20,6 +20,7 @@ public class PettingTrigger : MonoBehaviour
     // 컴포넌트 참조
     AnimalControl ac;
     AnimalPet ap;
+
 
     // 타이머
     float _elapsed;
@@ -41,26 +42,43 @@ public class PettingTrigger : MonoBehaviour
         ap = GetComponentInParent<AnimalPet>();
         if (ap == null)
             Debug.Log("PettingTrigger] AnimalPet 이 없습니다.");
+
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("GameController") && controller == null)
+        if (other.CompareTag("GameController") && (leftController == null || rightController == null))
         {
-            controller = other.GetComponentInParent<ActionBasedController>();
-            controller.SendHapticImpulse(0.5f, 0.2f);
+            ActionBasedController controller = other.GetComponentInParent<ActionBasedController>();
+            if (controller.gameObject.name == "Left Controller")
+            {
+                leftController = controller;
+                leftController.SendHapticImpulse(0.5f, 0.2f);
+            }
+            else
+            {
+                rightController = controller;
+                rightController.SendHapticImpulse(0.5f, 0.2f);
+            }
         }
     }
 
     void OnTriggerStay(Collider other)
     {
-        if (controller == null || controller.activateAction.action == null)
+        if (leftController == null && rightController == null)
             return;
 
-        float input = controller.activateAction.action.ReadValue<float>();
-        //Debug.Log($"Input: {input}");
+        float input1 = -1f;
+        float input2 = -1f;
 
-        if (input == 1f) // 버튼이 눌린 상태
+        if (leftController != null)
+            input1 = leftController.activateAction.action.ReadValue<float>();
+
+        if (rightController != null)
+            input2 = rightController.activateAction.action.ReadValue<float>();
+
+
+        if (input1 == 1f && input2 == 0f) // 왼쪽 버튼만 눌린 상태
         {
             // 1. Handle 상태로 전환
             if (ac.state != AnimalControl.State.Handle)
@@ -70,26 +88,75 @@ public class PettingTrigger : MonoBehaviour
             }
 
             // 2. 위치 추적 및 속도 계산
-            UpdatePosition();
+            UpdatePosition(leftController);
 
             // 3. 쓰다듬기 판정
-            CheckPettingMotion();
+            CheckPettingMotion(leftController);
 
             // 4. 타이머 리셋
             _elapsed = 0f;
         }
-        else // 버튼이 안 눌린 상태
+        if (input1 == 0f) // 왼쪽 버튼이 안 눌린 상태
         {
-            // 즉시 쓰다듬기 중단 (딜레이 적용)
-            UpdatePettingState(false);
+            // 즉시 쓰다듬기, 안아주기 중단 (딜레이 적용)
+            UpdatePettingState(false, leftController);
+            UpdateHuggingState(false);
 
             // 타이머 증가
             _elapsed += Time.deltaTime;
             if (_elapsed > 0.5f)
             {
-                ResetToIdle(false);
+                ResetToIdle(leftController);
             }
         }
+        if (input1 == 0f && input2 == 1f) // 오른쪽 버튼만 눌린 상태
+        {
+            // 1. Handle 상태로 전환
+            if (ac.state != AnimalControl.State.Handle)
+            {
+                ac.ChangeState(AnimalControl.State.Handle);
+                //Debug.Log("상태 변경: Handle");
+            }
+
+            // 2. 위치 추적 및 속도 계산
+            UpdatePosition(rightController);
+
+            // 3. 쓰다듬기 판정
+            CheckPettingMotion(rightController);
+
+            // 4. 타이머 리셋
+            _elapsed = 0f;
+        }
+        if (input2 == 0f) // 오른쪽 버튼이 안 눌린 상태
+        {
+            // 즉시 쓰다듬기 안아주기 중단 (딜레이 적용)
+            UpdatePettingState(false, rightController);
+            UpdateHuggingState(false);
+
+            // 타이머 증가
+            _elapsed += Time.deltaTime;
+            if (_elapsed > 0.5f)
+            {
+                ResetToIdle(rightController);
+            }
+        }
+
+        if (input1 == 1f && input2 == 1f) // 양쪽 버튼이 눌린 상태
+        {
+            // 1. Handle 상태로 전환
+            if (ac.state != AnimalControl.State.Handle)
+            {
+                ac.ChangeState(AnimalControl.State.Handle);
+                //Debug.Log("상태 변경: Handle");
+            }
+            Vector3 hugPos = (leftController.transform.position + rightController.transform.position) * 0.5f + Vector3.forward * 0.75f;
+
+            ac.transform.position = hugPos;
+            UpdateHuggingState(true);
+
+        }
+
+
     }
 
     #region _PWH        
@@ -99,23 +166,26 @@ public class PettingTrigger : MonoBehaviour
     {
         if (ap.isPetting)
         {
-            UpdateParticlePosition();
+            if (leftController.activateAction.action.ReadValue<float>() != 0)
+                UpdateParticlePosition(leftController);
+            if (rightController.activateAction.action.ReadValue<float>() != 0)
+                UpdateParticlePosition(rightController);
         }
     }
 
     float elapsed = 0f;
     [SerializeField] float frequency = 0.2f;
 
-    void UpdateParticlePosition()
+    void UpdateParticlePosition(ActionBasedController con)
     {
-        if (controller == null) return;
+        if (con == null) return;
 
         elapsed += Time.deltaTime;
 
         if (elapsed >= frequency)
         {
             elapsed = 0;
-            center = controller.transform.position;
+            center = con.transform.position;
             ParticleManager.Instance.SpawnParticle(ParticleFlag.Petting, center, Quaternion.identity, this.gameObject.transform);
         }
     }
@@ -123,7 +193,7 @@ public class PettingTrigger : MonoBehaviour
     #endregion
 
 
-    void UpdatePettingState(bool shouldPet)
+    void UpdatePettingState(bool shouldPet, ActionBasedController con)
     {
         // 현재 상태와 원하는 상태가 같으면 아무것도 하지 않음
         if (ap.isPetting == shouldPet)
@@ -152,9 +222,49 @@ public class PettingTrigger : MonoBehaviour
         // isPetting이 true가 되는 순간 시작 시간 기록
         if (shouldPet)
         {
-            controller.SendHapticImpulse(0.5f, 0.2f);
+            con.SendHapticImpulse(0.5f, 0.2f);
             pettingStartTime = Time.time;
             Debug.Log("쓰다듬기 시작 - 유예시간 시작");
+            ac.petStateController.Petting();
+        }
+
+        //Debug.Log($"쓰다듬기 상태 변경: {shouldPet}");
+    }
+
+    void UpdateHuggingState(bool shouldHug)
+    {
+        // 현재 상태와 원하는 상태가 같으면 아무것도 하지 않음
+        if (ap.isHugging == shouldHug)
+            return;
+
+        // 마지막 상태 변경으로부터 충분한 시간이 지났는지 확인
+        if (Time.time - lastPettingStateChangeTime < pettingStateChangeDelay)
+            return;
+
+        // isPetting이 true에서 false로 바뀌는 경우 유예시간 체크
+        if (ap.isHugging == true && shouldHug == false)
+        {
+            // 유예시간이 아직 지나지 않았으면 false로 바꾸지 않음
+            if (Time.time - pettingStartTime < pettingGracePeriod)
+            {
+                //Debug.Log($"유예시간 중 - 남은시간: {pettingGracePeriod - (Time.time - pettingStartTime):F1}초");
+                return;
+            }
+        }
+
+        // 상태 변경
+        ap.isHugging = shouldHug;
+
+        lastPettingStateChangeTime = Time.time;
+
+        // isPetting이 true가 되는 순간 시작 시간 기록
+        if (shouldHug)
+        {
+            leftController.SendHapticImpulse(0.5f, 0.2f);
+            rightController.SendHapticImpulse(0.5f, 0.2f);
+
+            pettingStartTime = Time.time;
+            Debug.Log("안아주기 시작 - 유예시간 시작");
             ac.petStateController.Petting();
         }
 
@@ -189,14 +299,14 @@ public class PettingTrigger : MonoBehaviour
         return true;
     }
 
-    void UpdatePosition()
+    void UpdatePosition(ActionBasedController con)
     {
         // 이전 위치 저장
         if (currPosition != Vector3.zero)
             prevPosition = currPosition;
 
         // 현재 위치 업데이트
-        currPosition = controller.transform.position;
+        currPosition = con.transform.position;
 
         // 첫 번째 프레임은 delta 계산 불가
         if (prevPosition == Vector3.zero)
@@ -207,7 +317,7 @@ public class PettingTrigger : MonoBehaviour
         // 움직임이 너무 작으면 쓰다듬기 중단
         if (delta.sqrMagnitude < 0.001f)
         {
-            UpdatePettingState(false);
+            UpdatePettingState(false, con);
             return;
         }
 
@@ -215,7 +325,7 @@ public class PettingTrigger : MonoBehaviour
         velocity = delta.normalized;
     }
 
-    void CheckPettingMotion()
+    void CheckPettingMotion(ActionBasedController con)
     {
         // 위치 데이터가 충분하지 않으면 리턴
         if (prevPosition == Vector3.zero || currPosition == Vector3.zero)
@@ -224,9 +334,9 @@ public class PettingTrigger : MonoBehaviour
         Vector3 delta = currPosition - prevPosition;
 
         // 상하 움직임이 너무 크면 쓰다듬기 불가
-        if (Math.Abs(velocity.y) > 0.5f)
+        if (Math.Abs(velocity.z) > 0.5f)
         {
-            UpdatePettingState(false);
+            UpdatePettingState(false, con);
             //Debug.Log("상하 움직임 감지 - 쓰다듬기 중단");
             return;
         }
@@ -258,17 +368,31 @@ public class PettingTrigger : MonoBehaviour
                         ac.state == AnimalControl.State.Handle;
 
         // 쓰다듬기 상태 업데이트 (딜레이 적용)
-        UpdatePettingState(shouldPet);
+        UpdatePettingState(shouldPet, con);
 
         //Debug.Log($" Horizontal: {horizontal:F3}, IsPetting: {ap.isPetting}, ShouldPet: {shouldPet}");
     }
 
     void OnTriggerExit(Collider other)
     {
-        ResetToIdle(true);
+        ActionBasedController con = other.GetComponentInParent<ActionBasedController>();
+        if (con == null)
+            return;
+
+        if (con.name == "Left Controller")
+            {
+                ResetToIdle(leftController);
+                leftController = null;
+            }
+
+            else if (con.name == "Right Controller")
+            {
+                ResetToIdle(rightController);
+                rightController = null;
+            }
     }
 
-    void ResetToIdle(bool disconnect)
+    void ResetToIdle(ActionBasedController con)
     {
         //Debug.Log("Idle 상태로 리셋");
 
@@ -279,21 +403,17 @@ public class PettingTrigger : MonoBehaviour
 
         // 상태 초기화
         isFirstMove = true;
-        UpdatePettingState(false); // 딜레이 적용해서 false로 설정
+        UpdatePettingState(false, con); // 딜레이 적용해서 false로 설정
 
-        if(ac.state != AnimalControl.State.Play)
+        if (ac.state != AnimalControl.State.Play)
         {
             ac.ChangeState(AnimalControl.State.Idle);
         }
-        
+
 
         // 타이머 리셋
         _elapsed = 0f;
         lastPettingStateChangeTime = 0f; // 딜레이 타이머 리셋
         pettingStartTime = 0f; // 유예시간 타이머 리셋
-
-        // 컨트롤러 연결 해제
-        if (disconnect)
-            controller = null;
     }
 }

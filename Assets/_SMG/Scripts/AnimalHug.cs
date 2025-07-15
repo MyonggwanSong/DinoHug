@@ -30,6 +30,7 @@ public class AnimalHug : AnimalAbility
     {
         yield return new WaitUntil(() => isHugging);
         transform.LookAt(Camera.main.transform.position);
+        
         anim.SetInteger("animation", 2); // 행복한 모션
                                          //Debug.Log("쓰다듬는 중");
 

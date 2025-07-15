@@ -456,8 +456,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7629335238855823460}
   - component: {fileID: 2966970689800243606}
-  - component: {fileID: 556859185939001561}
   - component: {fileID: 6939445641650351661}
+  - component: {fileID: 7900351109370909609}
   m_Layer: 0
   m_Name: Head_A
   m_TagString: Untagged
@@ -554,20 +554,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.35116562, y: 0.077124655, z: 0}
     m_Extent: {x: 0.28364077, y: 0.37861395, z: 0.33403006}
   m_DirtyAABB: 0
---- !u!114 &556859185939001561
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2336026992373100315}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7629d4f89685434ba3a6c0d9f0f52b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 0}
-  frequency: 0.2
 --- !u!136 &6939445641650351661
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -587,10 +573,25 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.4
-  m_Height: 0.8
+  m_Radius: 0.5
+  m_Height: 0.96
   m_Direction: 1
-  m_Center: {x: 0.6, y: 0, z: -0.02}
+  m_Center: {x: 0.45, y: 0, z: -0.02}
+--- !u!114 &7900351109370909609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2336026992373100315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8a3ef99eff14364a8bf9a0a16362040, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftController: {fileID: 0}
+  rightController: {fileID: 0}
+  frequency: 0.2
 --- !u!1 &2976948749163933576
 GameObject:
   m_ObjectHideFlags: 0
@@ -1413,8 +1414,6 @@ GameObject:
   - component: {fileID: 3238455107989923926}
   - component: {fileID: 200317395072619208}
   - component: {fileID: 2421626715339202455}
-  - component: {fileID: 1548641785479033582}
-  - component: {fileID: 8308374097293113554}
   - component: {fileID: 7874355985628839614}
   m_Layer: 0
   m_Name: Dino
@@ -1558,6 +1557,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
   isPetting: 0
+  isHugging: 0
 --- !u!114 &200317395072619208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1586,33 +1586,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   detectRadius: 2
   popUpKey: {fileID: 0}
---- !u!114 &1548641785479033582
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6584902946222412427}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6136029ceb7841429fedbc437aeb499, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  callDistance: 2.5
-  target: {fileID: 0}
---- !u!114 &8308374097293113554
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6584902946222412427}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e6b2e3453aaac746b8752597b543a0f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  callWaitTime: 5
 --- !u!114 &7874355985628839614
 MonoBehaviour:
   m_ObjectHideFlags: 0
