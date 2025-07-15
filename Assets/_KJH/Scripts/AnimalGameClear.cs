@@ -33,7 +33,7 @@ public class AnimalGameClear : AnimalAbility
         Vector3 forward = camTr.forward;
         forward.y = 0f;
         forward.Normalize();
-        gameClearPanel.transform.position = xrOrigin.transform.position + 1.9f * forward + 1.6f * Vector3.up;
+        gameClearPanel.transform.position = xrOrigin.transform.position + 1.9f * forward + 2f * Vector3.up;
         gameClearPanel.transform.forward = forward;
         gameClearPanel.Activate();
     }
