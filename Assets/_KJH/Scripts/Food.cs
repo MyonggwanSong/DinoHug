@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 public class Food : MonoBehaviour
 {
-    public AnimalControl animalControl;
+    AnimalControl animalControl;
     XRGrabInteractable xRGrab;
     public bool isPlaced;
     bool isGrabbed;
@@ -12,6 +12,7 @@ public class Food : MonoBehaviour
     void Awake()
     {
         TryGetComponent(out xRGrab);
+        animalControl = FindAnyObjectByType<AnimalControl>();
         startPosition = transform.position;
         startRotation = transform.rotation;
     }
@@ -24,31 +25,6 @@ public class Food : MonoBehaviour
     public void OnGrabEnd()
     {
         isGrabbed = false;
-    }
-    void OnCollisionStay(Collision collision)
-    {
-        if (collision.gameObject.layer == 3)
-        {
-            if (isPlaced) return;
-            if (!isGrabbed)
-            {
-                isPlaced = true;
-
-                if (animalControl.state.Equals(AnimalControl.State.CallFollow)) return;
-                
-                animalControl.ChangeState(AnimalControl.State.Eat);
-                StartCoroutine(nameof(Retry));
-            }
-        }
-    }
-    IEnumerator Retry()
-    {
-        while (true)
-        {
-            yield return YieldInstructionCache.WaitForSeconds(5f);
-            yield return new WaitUntil(() => animalControl.state == AnimalControl.State.Idle || animalControl.state == AnimalControl.State.Wander);
-            animalControl.ChangeState(AnimalControl.State.Eat);
-        }
     }
     public void DisableGrab()
     {
@@ -67,6 +43,39 @@ public class Food : MonoBehaviour
         isGrabbed = false;
         StopCoroutine(nameof(Retry));
     }
+    void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.layer == 3)
+        {
+            if (isPlaced) return;
+            if (!isGrabbed)
+            {
+                isPlaced = true;
+                // Idle, Wander 상태일때만 --> State.Eat 으로 체인지
+                if (animalControl.state == AnimalControl.State.Idle || animalControl.state == AnimalControl.State.Wander)
+                {
+                    if(animalControl.state != AnimalControl.State.Eat)
+                        animalControl.ChangeState(AnimalControl.State.Eat);
+                }
+                StartCoroutine(nameof(Retry));
+            }
+        }
+    }
+    // 푸드가 바닥에 떨어져있고 + Idle, Wander 상태일때만 State.Eat 재시도
+    IEnumerator Retry()
+    {
+        while (true)
+        {
+            yield return YieldInstructionCache.WaitForSeconds(5f);
+            yield return new WaitUntil(() => animalControl.state == AnimalControl.State.Idle || animalControl.state == AnimalControl.State.Wander);
+            // Idle, Wander 상태일때만 --> State.Eat 으로 체인지
+            if (animalControl.state != AnimalControl.State.Eat)
+                animalControl.ChangeState(AnimalControl.State.Eat);
+        }
+    }
+
+
+
 
     
 

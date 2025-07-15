@@ -231,10 +231,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8468526844059075994, guid: b9db5e78574a9a74b8e78905e440f381, type: 3}
-      propertyPath: animalControl
-      value: 
-      objectReference: {fileID: 1345392978}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -617,63 +613,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 272354282}
   m_CullTransparentMesh: 1
---- !u!1001 &373970486
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 5773183891106078347, guid: e812d07ce77cdce4895017121d8bf81e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5773183891106078347, guid: e812d07ce77cdce4895017121d8bf81e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5773183891106078347, guid: e812d07ce77cdce4895017121d8bf81e, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5773183891106078347, guid: e812d07ce77cdce4895017121d8bf81e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5773183891106078347, guid: e812d07ce77cdce4895017121d8bf81e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5773183891106078347, guid: e812d07ce77cdce4895017121d8bf81e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5773183891106078347, guid: e812d07ce77cdce4895017121d8bf81e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5773183891106078347, guid: e812d07ce77cdce4895017121d8bf81e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5773183891106078347, guid: e812d07ce77cdce4895017121d8bf81e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5773183891106078347, guid: e812d07ce77cdce4895017121d8bf81e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5933829419371894560, guid: e812d07ce77cdce4895017121d8bf81e, type: 3}
-      propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: e812d07ce77cdce4895017121d8bf81e, type: 3}
 --- !u!1 &646427446
 GameObject:
   m_ObjectHideFlags: 0
@@ -1298,10 +1237,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3652729707201401027, guid: 573ed6f1f93e2764eabf38bed0b9ec27, type: 3}
-      propertyPath: animalControl
-      value: 
-      objectReference: {fileID: 1345392978}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1446,6 +1381,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1157066516}
   m_CullTransparentMesh: 1
+--- !u!1001 &1246863574
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 22914903632589869, guid: 9e7fa687aab2cf442ad6faa6e5f9f9f1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22914903632589869, guid: 9e7fa687aab2cf442ad6faa6e5f9f9f1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22914903632589869, guid: 9e7fa687aab2cf442ad6faa6e5f9f9f1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22914903632589869, guid: 9e7fa687aab2cf442ad6faa6e5f9f9f1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22914903632589869, guid: 9e7fa687aab2cf442ad6faa6e5f9f9f1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22914903632589869, guid: 9e7fa687aab2cf442ad6faa6e5f9f9f1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22914903632589869, guid: 9e7fa687aab2cf442ad6faa6e5f9f9f1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22914903632589869, guid: 9e7fa687aab2cf442ad6faa6e5f9f9f1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22914903632589869, guid: 9e7fa687aab2cf442ad6faa6e5f9f9f1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22914903632589869, guid: 9e7fa687aab2cf442ad6faa6e5f9f9f1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8950735831909307041, guid: 9e7fa687aab2cf442ad6faa6e5f9f9f1, type: 3}
+      propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9e7fa687aab2cf442ad6faa6e5f9f9f1, type: 3}
 --- !u!1 &1248440154
 GameObject:
   m_ObjectHideFlags: 0
@@ -1582,6 +1574,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TutorialPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 2013254401110671474, guid: 57377d99ff8d21942a57bdb3ae3a9349, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1600,10 +1596,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1248440155}
     m_Modifications:
-    - target: {fileID: 6579237757260920981, guid: 48ed329953550d34584a4ed1f9dcb2dc, type: 3}
-      propertyPath: animalControl
-      value: 
-      objectReference: {fileID: 1345392978}
     - target: {fileID: 7330683332793470651, guid: 48ed329953550d34584a4ed1f9dcb2dc, type: 3}
       propertyPath: m_Name
       value: PrototypeWaterBottle
@@ -5806,5 +5798,5 @@ SceneRoots:
   - {fileID: 1248440155}
   - {fileID: 1755304126}
   - {fileID: 2015428926}
-  - {fileID: 373970486}
   - {fileID: 3068979680890242722}
+  - {fileID: 1246863574}

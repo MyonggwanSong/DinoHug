@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 public class WaterBowl : MonoBehaviour
 {
-    public AnimalControl animalControl;
+    AnimalControl animalControl;
     public bool isPlaced;
     public Vector2 fillRange = new Vector2(0.4f, 0.8f);
     XRGrabInteractable xRGrab;
@@ -14,9 +14,11 @@ public class WaterBowl : MonoBehaviour
     void Awake()
     {
         TryGetComponent(out xRGrab);
+        animalControl = FindAnyObjectByType<AnimalControl>();
         startPosition = transform.position;
         startRotation = transform.rotation;
         liquid = GetComponentInChildren<Liquid>();
+        isPlaced = true;
     }
     public void OnGrabStart()
     {
@@ -32,15 +34,19 @@ public class WaterBowl : MonoBehaviour
     {
         if (collision.gameObject.layer == 3)
         {
-            if (isPlaced) return;
             if (!isGrabbed)
             {
                 isPlaced = true;
+            }
+            if (isPlaced)
+            {
                 if (liquid.fillAmount >= Mathf.Lerp(fillRange.x, fillRange.y, 0.5f))
                 {
-                    if (animalControl.state.Equals(AnimalControl.State.CallFollow)) return;
+                    // Idle, Wander 상태일때만 --> State.Drink 으로 체인지
+                    if (animalControl.state == AnimalControl.State.Idle || animalControl.state == AnimalControl.State.Wander)
+                        if (animalControl.state != AnimalControl.State.Drink)
+                            animalControl.ChangeState(AnimalControl.State.Drink);
 
-                    animalControl.ChangeState(AnimalControl.State.Drink);
                     StartCoroutine(nameof(Retry));
                 }
             }
@@ -52,7 +58,9 @@ public class WaterBowl : MonoBehaviour
         {
             yield return YieldInstructionCache.WaitForSeconds(5f);
             yield return new WaitUntil(() => animalControl.state == AnimalControl.State.Idle || animalControl.state == AnimalControl.State.Wander);
-            animalControl.ChangeState(AnimalControl.State.Drink);
+            // Idle, Wander 상태일때만 --> State.Drink 으로 체인지
+            if (animalControl.state != AnimalControl.State.Drink)
+                            animalControl.ChangeState(AnimalControl.State.Drink);
         }
     }
     public void DisableGrab()
@@ -68,7 +76,7 @@ public class WaterBowl : MonoBehaviour
         EnableGrab();
         transform.position = startPosition;
         transform.rotation = startRotation;
-        isPlaced = false;
+        isPlaced = true;
         isGrabbed = false;
         StopCoroutine(nameof(Retry));
     }

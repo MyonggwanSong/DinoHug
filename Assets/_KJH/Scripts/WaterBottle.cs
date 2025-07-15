@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 public class WaterBottle : MonoBehaviour
 {
-    public AnimalControl animalControl;
+    AnimalControl animalControl;
     XRGrabInteractable xRGrab;
     bool isGrabbed;
     Vector3 startPosition;
@@ -19,6 +19,7 @@ public class WaterBottle : MonoBehaviour
     {
         TryGetComponent(out xRGrab);
         TryGetComponent(out rigid);
+        animalControl = FindAnyObjectByType<AnimalControl>();
         startPosition = transform.position;
         startRotation = transform.rotation;
         particleObj = transform.Find("Bottle").GetChild(0).gameObject;
@@ -56,7 +57,7 @@ public class WaterBottle : MonoBehaviour
             float horizontal = Mathf.Abs(rigid.velocity.x) + Mathf.Abs(rigid.velocity.z);
             float angle = grabbingXRController.rotation.eulerAngles.z;
             // 컨트롤러를 기울이고 있을 경우 + 수평으로는 거의 안움직이고 있을경우
-            if (angle >= 110 && angle <= 250 && horizontal < 2)
+            if (angle >= 100 && angle <= 260 && horizontal < 5)
             {
                 //Debug.Log($"angle : {grabbingXRController.rotation.eulerAngles.z}, vertical : {rigid.velocity.y}, horizontal : {horizontal}");
                 //컨트롤러를 적당한 속도와 적당한 주기로 위아래(수직)으로 흔들경우
@@ -235,8 +236,15 @@ public class WaterBottle : MonoBehaviour
                 bowl.liquid.fillAmount = Mathf.Clamp(bowl.liquid.fillAmount, bowl.fillRange.x, bowl.fillRange.y);
                 if (bowl.liquid.fillAmount >= 0.3f * bowl.fillRange.x + 0.7f * bowl.fillRange.y && !isChangeState)
                 {
-                    isChangeState = true;
-                    animalControl.ChangeState(AnimalControl.State.Drink);
+                    // Idle, Wander 상태일때만 --> State.Drink로 체인지
+                    if (animalControl.state == AnimalControl.State.Idle || animalControl.state == AnimalControl.State.Wander)
+                    {
+                        if (animalControl.state != AnimalControl.State.Drink)
+                        {
+                            isChangeState = true;
+                            animalControl.ChangeState(AnimalControl.State.Drink);
+                        }
+                    }
                 }
                 else if (bowl.liquid.fillAmount >= bowl.fillRange.y)
                 {

@@ -4,7 +4,7 @@ using DG.Tweening;
 using TMPro;
 public class TutorialPanel : MonoBehaviour
 {
-    [SerializeField] AnimalControl animal;
+    AnimalControl animal;
     [SerializeField] Transform interactableObjects;
     [SerializeField] GameObject[] pops;
     [SerializeField] TMP_Text[] tmpTexts;
@@ -12,6 +12,10 @@ public class TutorialPanel : MonoBehaviour
     public bool isComplete;
     SFX sfx;
     Tween tweenPop;
+    void Awake()
+    {
+        animal = FindAnyObjectByType<AnimalControl>();
+    }
     IEnumerator Start()
     {
         yield return YieldInstructionCache.WaitForSeconds(0.2f);
