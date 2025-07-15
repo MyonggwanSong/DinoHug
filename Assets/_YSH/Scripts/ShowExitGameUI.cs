@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEditor;
 public class ShowExitGameUI : MonoBehaviour
 {
     public GameObject panelUI; // Panel UI GameObject
@@ -22,7 +22,11 @@ public class ShowExitGameUI : MonoBehaviour
     // 게임 종료 버튼 (StartScene으로 이동)
     public void ExitGameButton()
     {
+#if UNITY_EDITOR
+        EditorApplication.ExitPlaymode();
+#else
         Application.Quit();
+#endif
     }
 
     // UI 끄기 버튼

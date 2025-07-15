@@ -358,8 +358,6 @@ GameObject:
   - component: {fileID: 1784383178872321421}
   - component: {fileID: 4384470250527163979}
   - component: {fileID: 110454871728686655}
-  - component: {fileID: 5594584743370493817}
-  - component: {fileID: 70366543978951504}
   - component: {fileID: 1988362456717335288}
   - component: {fileID: 6901286869854783086}
   - component: {fileID: 3001875435557390810}
@@ -367,6 +365,8 @@ GameObject:
   - component: {fileID: 4330211342836846150}
   - component: {fileID: 8838021687523227843}
   - component: {fileID: 6837333902963976465}
+  - component: {fileID: 5594584743370493817}
+  - component: {fileID: 70366543978951504}
   m_Layer: 0
   m_Name: Animal
   m_TagString: Untagged
@@ -432,6 +432,99 @@ MonoBehaviour:
   prevState: 0
   testState: 0
   testEffect: 0
+--- !u!114 &1988362456717335288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2738952212004301797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cce206d843d195341987e34fab438f69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6901286869854783086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2738952212004301797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7515c8bbd1ac1af4b921db1e7ec3f4e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3001875435557390810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2738952212004301797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db6e34eb5b4c42140adae4d4b165aa6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eatDistance: 2.3
+--- !u!114 &4119659469098547528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2738952212004301797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5fc3e0498497fd4982aac19bd39c822, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stopDistance: 2.5
+  maxTime: 20
+  ballPos: {fileID: 2095021363393768544}
+  toy: {fileID: 0}
+--- !u!114 &4330211342836846150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2738952212004301797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1effdb4feef1f324f8c50c8fa8612c15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8838021687523227843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2738952212004301797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23fcedab0b963564ba54761ecf937e97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 0}
+  isPetting: 0
+--- !u!114 &6837333902963976465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2738952212004301797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82a0729c8d98000458224ea83d8bc520, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drinkDistance: 2.3
+  drinkTime: 5
 --- !u!114 &5594584743370493817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -498,99 +591,6 @@ MonoBehaviour:
   deadline_Hunger: 60
   deadline_Thirsty: 60
   deadline_Bored: 70
---- !u!114 &1988362456717335288
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2738952212004301797}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cce206d843d195341987e34fab438f69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &6901286869854783086
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2738952212004301797}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7515c8bbd1ac1af4b921db1e7ec3f4e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3001875435557390810
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2738952212004301797}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db6e34eb5b4c42140adae4d4b165aa6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eatDistance: 2.3
---- !u!114 &4119659469098547528
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2738952212004301797}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5fc3e0498497fd4982aac19bd39c822, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stopDistance: 2.5
-  maxTime: 20
-  ballPos: {fileID: 2095021363393768544}
-  toy: {fileID: 0}
---- !u!114 &4330211342836846150
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2738952212004301797}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1effdb4feef1f324f8c50c8fa8612c15, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &8838021687523227843
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2738952212004301797}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23fcedab0b963564ba54761ecf937e97, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 0}
-  isPetting: 0
---- !u!114 &6837333902963976465
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2738952212004301797}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82a0729c8d98000458224ea83d8bc520, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  drinkDistance: 2.3
-  drinkTime: 5
 --- !u!1 &2794477223307757512
 GameObject:
   m_ObjectHideFlags: 0

@@ -30,6 +30,7 @@ public class AnimalControl : MonoBehaviour
         Dead,
         Handle,
         Drink,
+        GameClear,
         CallFollow,
         CallIdle,
     }
@@ -44,15 +45,27 @@ public class AnimalControl : MonoBehaviour
     }
     public void ChangeState(State newState)
     {
+        if (state == State.Dead)
+        {
+            Debug.Log("죽었을때는 다른상태로 바꿀 수 없습니다.");
+            return;
+        }
+        if (state == State.GameClear)
+        {
+            Debug.Log("게임 클리어이므로 다른상태로 바꿀 수 없습니다.");
+            return;
+        }
         // 이전 state 스크립트는 Disable 처리
         dictionary[state].UnInit();
         dictionary[state].enabled = false;
+        Debug.Log($"{state} 종료");
         // state 변경
         prevState = state;
         state = newState;
         // 변경할 state 스크립트 Enable 처리
         dictionary[state].enabled = true;
         dictionary[state].Init();
+        Debug.Log($"{state} 시작");
     }
     [HideInInspector] public State prevState;
     Dictionary<State, AnimalAbility> dictionary = new Dictionary<State, AnimalAbility>();
@@ -107,6 +120,21 @@ public class AnimalControl : MonoBehaviour
                 Debug.Log("Player Calling!!");
                 ChangeState(State.CallFollow);
             }
+        }
+        if (petStateController.currentState.hunger >= 100)
+        {
+            if (state != State.Dead)
+                ChangeState(State.Dead);
+        }
+        if (petStateController.currentState.thirsty >= 100)
+        {
+            if (state != State.Dead)
+                ChangeState(State.Dead);
+        }
+        if (petStateController.currentState.bond >= 100)
+        {
+            if (state != State.GameClear)
+                ChangeState(State.GameClear);
         }
     }
     #endregion

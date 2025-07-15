@@ -1,5 +1,7 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class AnimalPlay : AnimalAbility
 {
@@ -50,7 +52,7 @@ public class AnimalPlay : AnimalAbility
         Debug.Log("FollowPlayer 시작");
         // 공에게 이동 (아랫줄만 호출해도 알아서 시간에따라서 이동)
         bool result = agent.SetDestination(toy.transform.position);
-        anim.SetFloat("animation", 21f); // 걷기 모션
+        anim.CrossFade("Move", 0.12f);
 
         // 위에서 목적지까지 도착하기 전까지 대기
         float sqrDistance = (toy.transform.position - transform.position).sqrMagnitude;
@@ -96,7 +98,7 @@ public class AnimalPlay : AnimalAbility
 
         Debug.Log("플레이어 손에있는 공에 도착완료");
         // 플레이어 손에 있는 공에 도착
-        anim.SetInteger("animation", 21); // 걷기 모션
+        anim.CrossFade("Idle", 0.12f);
 
         while(true)
         {
@@ -197,7 +199,7 @@ public class AnimalPlay : AnimalAbility
         float sqrDistance = (playerCam.transform.position - transform.position).sqrMagnitude;
         float startTime = Time.time;
         
-        while (sqrDistance > (stopDistance+1) * (stopDistance+1))
+        while (sqrDistance > (stopDistance + 2f) * (stopDistance + 2f))
         {
             //플레이어가 위치를 계속 바꾸므로 경로도 0,1초마 재 계산
             result = agent.SetDestination(playerCam.transform.position);
@@ -245,14 +247,15 @@ public class AnimalPlay : AnimalAbility
         toy.transform.position = transform.position + look;
         yield return null;
         toy.rb.isKinematic = false;
-        toy.rb.AddForce(look);
+        // toy.rb.AddForce(look);
         yield return null;
         toy.EnableGrab();
         toy.isThrow = false;
 
-        Debug.Log("놀아주기 완료");
-        animal.petStateController.Play();
         agent.SetDestination(transform.position);
+        animal.petStateController.Play();   // 끝나면 지루함 떨어짐
+        Debug.Log("놀아주기 완료");
+        
         animal.ChangeState(AnimalControl.State.Idle);
 
 
@@ -265,12 +268,5 @@ public class AnimalPlay : AnimalAbility
             yield return null;
         }
     }
-
-
-
-
-
-
-
 
 }

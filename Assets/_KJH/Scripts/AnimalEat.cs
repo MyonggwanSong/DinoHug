@@ -6,7 +6,6 @@ public class AnimalEat : AnimalAbility
 {
     [SerializeField] float eatDistance = 1.5f;
     Collider[] colliders = new Collider[80];
-
     public override void Init()
     {
         //Debug.Log("공룡 Eat] 시작");
@@ -100,6 +99,7 @@ public class AnimalEat : AnimalAbility
             animal.ChangeState(AnimalControl.State.Idle);
             yield break;
         }
+        agent.SetDestination(transform.position);
         // 먹는 애니매이션 재생 + 먹고있는 동안 XR그랩 못하게
         anim.CrossFade("Eat", 0.1f);
         // 효과음 재생
