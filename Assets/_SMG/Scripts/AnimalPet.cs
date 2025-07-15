@@ -57,11 +57,11 @@ public class AnimalPet : AnimalAbility
 
 
     }
-     IEnumerator Hug()
+     IEnumerator Hug()  
     {
         yield return new WaitUntil(() => isHugging && !isPetting);
         transform.LookAt(Camera.main.transform.position);
-        anim.SetInteger("animation", 2); // 행복한 모션
+        anim.SetInteger("animation", 27); // 귀여운 모션
                                          //Debug.Log("쓰다듬는 중");
 
         yield return new WaitUntil(() => !isHugging);

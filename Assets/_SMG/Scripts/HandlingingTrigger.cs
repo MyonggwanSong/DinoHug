@@ -78,7 +78,7 @@ public class HandlingingTrigger : MonoBehaviour
             input2 = rightController.activateAction.action.ReadValue<float>();
 
 
-        if (input1 == 1f && input2 == 0f) // 왼쪽 버튼만 눌린 상태
+        if (input1 == 1f && input2 != 1f) // 왼쪽 버튼만 눌린 상태
         {
             // 1. Handle 상태로 전환
             if (ac.state != AnimalControl.State.Handle)
@@ -109,7 +109,7 @@ public class HandlingingTrigger : MonoBehaviour
                 ResetToIdle(leftController);
             }
         }
-        if (input1 == 0f && input2 == 1f) // 오른쪽 버튼만 눌린 상태
+        if (input1 != 1f && input2 == 1f) // 오른쪽 버튼만 눌린 상태
         {
             // 1. Handle 상태로 전환
             if (ac.state != AnimalControl.State.Handle)
@@ -149,8 +149,10 @@ public class HandlingingTrigger : MonoBehaviour
                 ac.ChangeState(AnimalControl.State.Handle);
                 //Debug.Log("상태 변경: Handle");
             }
-            Vector3 hugPos = (leftController.transform.position + rightController.transform.position) * 0.5f + Vector3.forward * 0.75f;
-
+            // 안아주기 위치 = 양 컨트롤러 중앙(높이는 제거) + 카메라 전방 0.75m 앞
+            Vector3 hugPos = (leftController.transform.position + rightController.transform.position) * 0.5f + Camera.main.transform.forward * 0.75f;
+            hugPos.y = 0f;
+    
             ac.transform.position = hugPos;
             UpdateHuggingState(true);
 
@@ -166,9 +168,10 @@ public class HandlingingTrigger : MonoBehaviour
     {
         if (ap.isPetting)
         {
-            if (leftController.activateAction.action.ReadValue<float>() != 0)
+            if (leftController?.activateAction.action.ReadValue<float>() != 0)
                 UpdateParticlePosition(leftController);
-            if (rightController.activateAction.action.ReadValue<float>() != 0)
+
+            if (rightController?.activateAction.action.ReadValue<float>() != 0)
                 UpdateParticlePosition(rightController);
         }
     }
