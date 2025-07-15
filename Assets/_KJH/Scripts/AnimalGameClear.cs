@@ -1,39 +1,41 @@
 using System.Collections;
 using UnityEngine;
 using Unity.XR.CoreUtils;
-public class AnimalDead : AnimalAbility
+public class AnimalGameClear : AnimalAbility
 {
     XROrigin xrOrigin;
-    GameOverPanel gameOverPanel;
+    GameClearPanel gameClearPanel;
     protected override void Awake()
     {
         base.Awake();
         xrOrigin = FindAnyObjectByType<XROrigin>();
-        gameOverPanel = FindAnyObjectByType<GameOverPanel>();
+        gameClearPanel = FindAnyObjectByType<GameClearPanel>();
     }
     public override void Init()
     {
-        StartCoroutine(nameof(Die));
+        StartCoroutine(nameof(Clear));
     }
     public override void UnInit()
     {
         base.UnInit();
     }
-    IEnumerator Die()
+    IEnumerator Clear()
     {
         StartCoroutine(nameof(Look));
+        animal.petStateController.currentState.bond = 100f;
+        animal.petStateController.UpdateBond(animal.petStateController.currentState.bond);
         animal.petStateController.UpdateIsInteraction(true);
-        AudioManager.Instance.PlayEffect("GameOver", transform.position, 0.5f);
+        AudioManager.Instance.PlayEffect("GameClear", transform.position, 0.5f);
         yield return YieldInstructionCache.WaitForSeconds(1f);
-        anim.CrossFade("DieB", 0.2f);
+        anim.SetInteger("animation", 2);
         yield return YieldInstructionCache.WaitForSeconds(1.5f);
         Transform camTr = Camera.main.transform;
         Vector3 forward = camTr.forward;
         forward.y = 0f;
         forward.Normalize();
-        gameOverPanel.transform.position = xrOrigin.transform.position + 1.9f * forward + 1.6f * Vector3.up;
-        gameOverPanel.transform.forward = forward;
-        gameOverPanel.Activate();
+        gameClearPanel.transform.position = xrOrigin.transform.position + 1.9f * forward + 1.6f * Vector3.up;
+        gameClearPanel.transform.forward = forward;
+        gameClearPanel.Activate();
     }
     IEnumerator Look()
     {
