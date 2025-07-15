@@ -1156,7 +1156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animal: {fileID: 899035968858391802, guid: 221a8c49e75a1af49a9a9ebfa1962849, type: 3}
   view: {fileID: 0}
-  _init_Bond: 95
+  _init_Bond: 40
   _init_Hunger: 20
   _init_Thirsty: 20
   _init_Bored: 30
