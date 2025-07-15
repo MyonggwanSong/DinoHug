@@ -1056,6 +1056,8 @@ GameObject:
   - component: {fileID: 9017996367904707185}
   - component: {fileID: 6011866911071368007}
   - component: {fileID: 4099277643471337659}
+  - component: {fileID: 8350680342230410350}
+  - component: {fileID: 5466897004473622344}
   m_Layer: 0
   m_Name: Dino
   m_TagString: Untagged
@@ -1300,6 +1302,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4330ba4db6f81ed41a3aa72aa722de41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8350680342230410350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4467815247824036735}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6136029ceb7841429fedbc437aeb499, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  callDistance: 0
+  target: {fileID: 0}
+--- !u!114 &5466897004473622344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4467815247824036735}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e6b2e3453aaac746b8752597b543a0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  callWaitTime: 0
 --- !u!1 &4852415501730728603
 GameObject:
   m_ObjectHideFlags: 0
