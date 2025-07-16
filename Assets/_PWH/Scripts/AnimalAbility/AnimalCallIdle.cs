@@ -23,8 +23,10 @@ public class AnimalCallIdle : AnimalAbility
     IEnumerator StartCallIdle()
     {
         Debug.Log("Target에 도착했습니다.");
+
         LerpAngle();
 
+        anim.SetInteger("animation", 1);
         agent.isStopped = true;
 
         // 도착한 상태 멈추기
