@@ -24,6 +24,7 @@ public class WaterBowl : MonoBehaviour
     void OnEnable()
     {
         enableTime = Time.time;
+        coolTime = 0f;
     }
     public void OnGrabStart()
     {
@@ -64,6 +65,7 @@ public class WaterBowl : MonoBehaviour
         {
             yield return YieldInstructionCache.WaitForSeconds(5f);
             yield return new WaitUntil(() => animalControl.state == AnimalControl.State.Idle || animalControl.state == AnimalControl.State.Wander);
+            yield return new WaitUntil(() => !isRefuse);
             // Idle, Wander 상태일때만 --> State.Drink 으로 체인지
             if (animalControl.state == AnimalControl.State.Idle || animalControl.state == AnimalControl.State.Wander)
             {
@@ -94,9 +96,24 @@ public class WaterBowl : MonoBehaviour
         if (Time.time - enableTime < 2f) return;
         if (collision.gameObject.layer == 3)
         {
+            if (coolTime > 0 && Time.time - coolTime < 3.5f) return;
             AudioManager.Instance.PlayEffect("Took", transform.position, 0.8f);
             ParticleManager.Instance.SpawnParticle(ParticleFlag.DustSmall, transform.position, Quaternion.identity, null);
+            coolTime = Time.time;
         }
+    }
+    bool isRefuse;
+    float coolTime;
+    public void Refuse()
+    {
+        coolTime = Time.time;
+        isRefuse = true;
+        StartCoroutine(nameof(RefuseWait));
+    }
+    IEnumerator RefuseWait()
+    {
+        yield return YieldInstructionCache.WaitForSeconds(15f);
+        isRefuse = false;
     }
 
 
