@@ -5,6 +5,7 @@ public abstract class AnimalAbility : MonoBehaviour
     public abstract void Init();
     public virtual void UnInit()
     {
+        agent.ResetPath();
         StopAllCoroutines();
     }
     protected AnimalControl animal;
