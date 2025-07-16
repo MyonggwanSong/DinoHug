@@ -30,11 +30,29 @@ public class IKLookAt : MonoBehaviour
         if (animal.state.Equals(AnimalControl.State.Eat)) return;
         if (animal.state.Equals(AnimalControl.State.Dead)) return;
         if (animal.state.Equals(AnimalControl.State.Drink)) return;
-        if (CheckDistance()) return;
-        
+
+        LookAtTarget();
+    }
+
+    void InitConstraint(Transform target)
+    {
+        WeightedTransformArray arr = new WeightedTransformArray(1);
+        arr.SetWeight(0, 1f);
+        arr.SetTransform(0, target);
+
+        var data = constraint.data;
+        data.sourceObjects = arr;
+        constraint.data = data;
+    }
+
+    void LookAtTarget()
+    {
         Vector3 toTarget = target.position - transform.position;
         float angle = Vector3.Angle(transform.forward, toTarget.normalized);
-        bool shouldLook = angle < maxAngle;
+        float dis = Vector3.Distance(target.position, this.transform.position);
+
+        bool shouldLook = angle < maxAngle && dis < maxDistance;
+
         float targetWeight = shouldLook ? 1f : 0f;
 
         if (!Mathf.Approximately(currentWeight, targetWeight))
@@ -50,23 +68,5 @@ public class IKLookAt : MonoBehaviour
                 constraint.weight = currentWeight;
             }, targetWeight, transitionTime);
         }
-    }
-
-    bool CheckDistance()
-    {
-        float d = Vector3.Distance(this.transform.position, target.position);
-
-        return d >= maxDistance;
-    }
-
-    void InitConstraint(Transform target)
-    {
-        WeightedTransformArray arr = new WeightedTransformArray(1);
-        arr.SetWeight(0, 1f);
-        arr.SetTransform(0, target);
-        
-        var data = constraint.data;
-        data.sourceObjects = arr;
-        constraint.data = data;
     }
 }

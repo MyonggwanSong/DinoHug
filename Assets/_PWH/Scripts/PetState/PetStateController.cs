@@ -53,7 +53,7 @@ public class PetStateController : MonoBehaviour
     private float totalBoredVal;
     #endregion
 
-    private bool isInteraction;
+    public bool isInteraction { get; private set; }
 
     void Start()            // 추후에 OnEnable로 변경
     {
