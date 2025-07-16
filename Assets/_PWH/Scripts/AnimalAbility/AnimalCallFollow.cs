@@ -19,7 +19,9 @@ public class AnimalCallFollow : AnimalAbility
         target = Camera.main.transform;
 
         Debug.Log($"Init Call.");
+
         StopCoroutine(nameof(FollowTarget));
+        
         StartCoroutine(nameof(FollowTarget));
     }
 
@@ -34,16 +36,18 @@ public class AnimalCallFollow : AnimalAbility
     IEnumerator FollowTarget()
     {
         if (target == null) yield break;
-
-        ShowIcon();
-        yield return new WaitForSeconds(0.3f);
         
+        DOVirtual.DelayedCall(0.0f, () => ShowIcon());
+        DOVirtual.DelayedCall(0.05f, () => MakeSound());
+        
+        yield return new WaitForSeconds(0.3f);
+
         //돌아보기
         Vector3 targetPosition = target.position;
         targetPosition.y = 0f;
-        transform.DOLookAt(targetPosition, 0.3f);
+        transform.DOLookAt(targetPosition, 0.4f);
 
-        yield return new WaitForSeconds(0.32f);
+        yield return new WaitForSeconds(0.42f);
         anim.SetInteger("animation", 18);
 
         // 거리가 좁혀 질 때까지 다가가기
@@ -65,5 +69,10 @@ public class AnimalCallFollow : AnimalAbility
     void ShowIcon()
     {
         icon.SetActive(true);
+    }
+
+    void MakeSound()
+    {
+        SFX sfx = AudioManager.Instance.PlayEffect("Crying", this.gameObject.transform.position);
     }
 }
