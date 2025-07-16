@@ -12,6 +12,7 @@ public enum ParticleFlag
     Dust,
     DustSmall,
     Twinkle,
+    WaterSplash,
 }
 
 [Serializable]

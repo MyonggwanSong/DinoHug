@@ -276,7 +276,7 @@ public class WaterBottle : MonoBehaviour
     {
         if (collision.gameObject.layer == 3)
         {
-            if (coolTime > 0 && Time.time - coolTime < 1f) return;
+            if (coolTime > 0 && Time.time - coolTime < 4f) return;
             AudioManager.Instance.PlayEffect("Took", transform.position, 0.8f);
             ParticleManager.Instance.SpawnParticle(ParticleFlag.DustSmall, transform.position, Quaternion.identity, null);
             coolTime = Time.time;

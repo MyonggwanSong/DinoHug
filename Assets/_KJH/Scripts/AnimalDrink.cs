@@ -178,11 +178,34 @@ public class AnimalDrink : AnimalAbility
         float startTime = Time.time;
         float range = target.fillRange.y - target.fillRange.x;
         float speed = (1f / drinkTime);
+        ParticleManager.Instance.SpawnParticle(ParticleFlag.WaterSplash, transform.position, Quaternion.identity, null);
+        Vector3 particlePos = transform.position + 0.2f * Vector3.up + 0.8f * transform.forward;
+        int count = 0;
         while (Time.time - startTime < drinkTime)
         {
+            if (Time.time - startTime > 0.2f && count == 0)
+            {
+                count = 1;
+                ParticleManager.Instance.SpawnParticle(ParticleFlag.WaterSplash, particlePos, Quaternion.identity, null);
+            }
+            if (Time.time - startTime > 0.55f && count == 1)
+            {
+                count = 2;
+                ParticleManager.Instance.SpawnParticle(ParticleFlag.WaterSplash, particlePos, Quaternion.identity, null);
+            }
+            if (Time.time - startTime > 0.7f && count == 2)
+            {
+                count = 3;
+                ParticleManager.Instance.SpawnParticle(ParticleFlag.WaterSplash, particlePos, Quaternion.identity, null);
+            }
+            if (Time.time - startTime > 1.1f && count == 3)
+            {
+                count = 4;
+                ParticleManager.Instance.SpawnParticle(ParticleFlag.WaterSplash, particlePos, Quaternion.identity, null);
+            }
             // 여기에 각종 부드러운 처리들 구현
-            target.liquid.fillAmount -= range * speed *Time.deltaTime;
-            if (target.liquid.fillAmount <= target.fillRange.x - 0.05f)
+            target.liquid.fillAmount -= range * speed * Time.deltaTime;
+            if (target.liquid.fillAmount <= target.fillRange.x - 0.02f)
             {
                 sfx?.Stop();
                 break;

@@ -1381,7 +1381,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db6e34eb5b4c42140adae4d4b165aa6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eatDistance: 1.2
+  eatDistance: 1.05
 --- !u!114 &2673350644495991381
 MonoBehaviour:
   m_ObjectHideFlags: 0
