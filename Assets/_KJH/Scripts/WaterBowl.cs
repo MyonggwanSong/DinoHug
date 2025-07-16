@@ -63,7 +63,7 @@ public class WaterBowl : MonoBehaviour
     {
         while (true)
         {
-            yield return YieldInstructionCache.WaitForSeconds(5f);
+            yield return YieldInstructionCache.WaitForSeconds(5.5f);
             yield return new WaitUntil(() => animalControl.state == AnimalControl.State.Idle || animalControl.state == AnimalControl.State.Wander);
             yield return new WaitUntil(() => !isRefuse);
             // Idle, Wander 상태일때만 --> State.Drink 으로 체인지
@@ -112,7 +112,7 @@ public class WaterBowl : MonoBehaviour
     }
     IEnumerator RefuseWait()
     {
-        yield return YieldInstructionCache.WaitForSeconds(15f);
+        yield return YieldInstructionCache.WaitForSeconds(25f);
         isRefuse = false;
     }
 
