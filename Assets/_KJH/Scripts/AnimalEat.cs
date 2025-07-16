@@ -12,6 +12,7 @@ public class AnimalEat : AnimalAbility
         StopCoroutine(nameof(GoToFood));
         StartCoroutine(nameof(GoToFood));
         agent.isStopped = false;
+        animal.petStateController.UpdateIsInteraction(true);
     }
     public override void UnInit()
     {
@@ -23,6 +24,7 @@ public class AnimalEat : AnimalAbility
         {
             target.EnableGrab();
         }
+        animal.petStateController.UpdateIsInteraction(false);
     }
     Food target = null;
     IEnumerator GoToFood()

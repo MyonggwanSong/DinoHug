@@ -20,12 +20,14 @@ public class AnimalPlay : AnimalAbility
         StartCoroutine(nameof(FollowPlayer));
         agent.isStopped = false;
         Debug.Log("AnimalPlay 시작");
+        animal.petStateController.UpdateIsInteraction(true);
     }
     public override void UnInit()
     {
         base.UnInit();
         Debug.Log("AnimalPlay 종료");
         Reset();
+        animal.petStateController.UpdateIsInteraction(false);
     }
     private void Reset()
     {
