@@ -194,6 +194,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ec3d7cf527a3d834fa7be99f54876600, type: 3}
   - {fileID: 8300000, guid: 296f15c0e88a0414bbd63bb836d0d65c, type: 3}
   - {fileID: 8300000, guid: 643d63af7cd4eaf4383ee3c1b685bad9, type: 3}
+  - {fileID: 8300000, guid: 5ed010eff8a20024896f21602603ce4d, type: 3}
+  - {fileID: 8300000, guid: b0a2c17f2f184664c857a0c8698c369d, type: 3}
   sfxPrefab: {fileID: -6642653840743833105, guid: 8fe898a64822d3f42813a1f6b8c0cb32, type: 3}
   init_Master: 0
   init_Effect: 0

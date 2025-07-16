@@ -57,7 +57,7 @@ public class AnimalDrink : AnimalAbility
     // 타겟으로 이동
     IEnumerator GoToTarget()
     {
-        Debug.Log("GoToTarget");
+        //Debug.Log("GoToTarget");
         FindTarget();
         yield return null;
         float distance = Vector3.Distance(target.transform.position, transform.position);
@@ -110,7 +110,7 @@ public class AnimalDrink : AnimalAbility
     // 만약 시작했을때부터 타겟과 너무 가까우면 살짝 뒤로 가기
     IEnumerator BackMoveToTarget()
     {
-        Debug.Log("BackMoveToTarget");
+        //Debug.Log("BackMoveToTarget");
         // 뒤로 갈 지점 정하기
         agent.isStopped = false;
         Vector3 outer = (transform.position - target.transform.position).normalized;
@@ -135,7 +135,7 @@ public class AnimalDrink : AnimalAbility
     IEnumerator LookTarget()
     {
         animal.HeadIKLookPlayerOff();
-        Debug.Log("LookTarget");
+        //Debug.Log("LookTarget");
         // 타겟을 향해 제자리에서 회전
         Vector3 targetForwardXZ = target.transform.position - transform.position;
         targetForwardXZ.y = 0f;
@@ -154,7 +154,7 @@ public class AnimalDrink : AnimalAbility
     // 타겟을 부드럽게 먹어가는 애니매이션 + 연출
     IEnumerator EatTarget()
     {
-        Debug.Log("EatTarget");
+        //Debug.Log("EatTarget");
         // 혹시 모르니 먹기 직전 한번 더 타겟이 제대로 있는지 검사
         float distance = Vector3.Distance(target.transform.position, transform.position);
         if (distance > drinkDistance)
@@ -172,64 +172,84 @@ public class AnimalDrink : AnimalAbility
 
         // 먹는 애니매이션 재생 + 효과음 재생
         target2?.StopWaterFillOut();
-        anim.SetInteger("animation", 24);
-        //target.DisableGrab();
-        sfx = AudioManager.Instance.PlayEffect("Drink", transform.position, 0.8f);
 
-        // Eat 애니매이션 길이에 따라 아래 시간 변경
-        float startTime = Time.time;
-        float range = target.fillRange.y - target.fillRange.x;
-        float speed = (1f / drinkTime);
-        ParticleManager.Instance.SpawnParticle(ParticleFlag.WaterSplash, transform.position, Quaternion.identity, null);
-        Vector3 particlePos = transform.position + 0.2f * Vector3.up + 0.8f * transform.forward;
-        int count = 0;
-        while (Time.time - startTime < drinkTime)
+
+
+
+        // 목마르지 않은 경우 처리
+        if (animal.petStateController.currentState.thirsty < 3)
         {
-            if (Time.time - startTime > 0.2f && count == 0)
-            {
-                count = 1;
-                ParticleManager.Instance.SpawnParticle(ParticleFlag.WaterSplash, particlePos, Quaternion.identity, null);
-            }
-            if (Time.time - startTime > 0.55f && count == 1)
-            {
-                count = 2;
-                ParticleManager.Instance.SpawnParticle(ParticleFlag.WaterSplash, particlePos, Quaternion.identity, null);
-            }
-            if (Time.time - startTime > 0.7f && count == 2)
-            {
-                count = 3;
-                ParticleManager.Instance.SpawnParticle(ParticleFlag.WaterSplash, particlePos, Quaternion.identity, null);
-            }
-            if (Time.time - startTime > 1.1f && count == 3)
-            {
-                count = 4;
-                ParticleManager.Instance.SpawnParticle(ParticleFlag.WaterSplash, particlePos, Quaternion.identity, null);
-            }
-            // 여기에 각종 부드러운 처리들 구현
-            target.liquid.fillAmount -= range * speed * Time.deltaTime;
-            if (target.liquid.fillAmount <= target.fillRange.x - 0.02f)
-            {
-                sfx?.Stop();
-                break;
-            }
-            if (target == null || !target.gameObject.activeInHierarchy || !target.isPlaced)
-            {
-                sfx?.Stop();
-                //Debug.Log("공룡 Drink] 'Bowl오브젝트가 파괴 되었거나' 또는 '플레이어가 Grab 했습니다'. Idle로 전환합니다.");
-                animal.ChangeState(AnimalControl.State.Idle);
-                yield break;
-            }
-            yield return null;
+            anim.SetInteger("animation", 12);
+            sfx = AudioManager.Instance.PlayEffect("DinoNo", transform.position, 1.0f);
+            yield return YieldInstructionCache.WaitForSeconds(2f);
+            sfx?.Stop();
+            target.Refuse();
         }
-        anim.SetInteger("animation", 1);
-        sfx?.Stop();
-        // 먹기 완료
-        animal.petStateController.Drink();
-        //target.Reset();
-        yield return YieldInstructionCache.WaitForSeconds(1f);
-        sfx = AudioManager.Instance.PlayEffect("Drink(1)", transform.position, 0.8f);
-        yield return YieldInstructionCache.WaitForSeconds(2f);
-        sfx?.Stop();
+        else
+        {
+            anim.SetInteger("animation", 24);
+            sfx = AudioManager.Instance.PlayEffect("Drink", transform.position, 0.8f);
+            // Eat 애니매이션 길이에 따라 아래 시간 변경
+            float startTime = Time.time;
+            float range = target.fillRange.y - target.fillRange.x;
+            float speed = (1f / drinkTime);
+            ParticleManager.Instance.SpawnParticle(ParticleFlag.WaterSplash, transform.position, Quaternion.identity, null);
+            Vector3 particlePos = transform.position + 0.2f * Vector3.up + 0.8f * transform.forward;
+            int count = 0;
+            while (Time.time - startTime < drinkTime)
+            {
+                if (Time.time - startTime > 0.2f && count == 0)
+                {
+                    count = 1;
+                    ParticleManager.Instance.SpawnParticle(ParticleFlag.WaterSplash, particlePos, Quaternion.identity, null);
+                }
+                if (Time.time - startTime > 0.55f && count == 1)
+                {
+                    count = 2;
+                    ParticleManager.Instance.SpawnParticle(ParticleFlag.WaterSplash, particlePos, Quaternion.identity, null);
+                }
+                if (Time.time - startTime > 0.7f && count == 2)
+                {
+                    count = 3;
+                    ParticleManager.Instance.SpawnParticle(ParticleFlag.WaterSplash, particlePos, Quaternion.identity, null);
+                }
+                if (Time.time - startTime > 1.1f && count == 3)
+                {
+                    count = 4;
+                    ParticleManager.Instance.SpawnParticle(ParticleFlag.WaterSplash, particlePos, Quaternion.identity, null);
+                }
+                // 여기에 각종 부드러운 처리들 구현
+                target.liquid.fillAmount -= range * speed * Time.deltaTime;
+                if (target.liquid.fillAmount <= target.fillRange.x - 0.02f)
+                {
+                    sfx?.Stop();
+                    break;
+                }
+                if (target == null || !target.gameObject.activeInHierarchy || !target.isPlaced)
+                {
+                    sfx?.Stop();
+                    //Debug.Log("공룡 Drink] 'Bowl오브젝트가 파괴 되었거나' 또는 '플레이어가 Grab 했습니다'. Idle로 전환합니다.");
+                    animal.ChangeState(AnimalControl.State.Idle);
+                    yield break;
+                }
+                yield return null;
+            }
+            anim.SetInteger("animation", 1);
+            sfx?.Stop();
+            // 먹기 완료
+            animal.petStateController.Drink();
+            //target.Reset();
+            yield return YieldInstructionCache.WaitForSeconds(1f);
+            sfx = AudioManager.Instance.PlayEffect("Drink(1)", transform.position, 0.8f);
+            yield return YieldInstructionCache.WaitForSeconds(2f);
+            sfx?.Stop();
+
+
+
+        }
+
+
+
         // 모든 과정 완료후 30% 확률로 Idle 실행, 70% 확률로 Wander 실행
         if (Random.value < 0.3f)
         {
@@ -240,10 +260,10 @@ public class AnimalDrink : AnimalAbility
             animal.ChangeState(AnimalControl.State.Wander);
         }
     }
-    
+
 
 
 
 }
-    
+
 
