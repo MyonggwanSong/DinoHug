@@ -49,3 +49,9 @@ MonoBehaviour:
     pb: {fileID: -8662855667592918548, guid: ace02b5012987fa4db0ababe496072c5, type: 3}
   - flag: 2
     pb: {fileID: 4336882016330855261, guid: 291c008d45af1054f9c7a6b4bea19825, type: 3}
+  - flag: 3
+    pb: {fileID: 2824582835261171513, guid: 8a7bb7bedf6915948bf20c729bfcfba0, type: 3}
+  - flag: 4
+    pb: {fileID: -8085459292270864731, guid: e0a6d284f23415742a518a3bdf7b7c36, type: 3}
+  - flag: 5
+    pb: {fileID: 0}

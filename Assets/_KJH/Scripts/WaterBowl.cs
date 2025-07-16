@@ -20,11 +20,17 @@ public class WaterBowl : MonoBehaviour
         liquid = GetComponentInChildren<Liquid>();
         isPlaced = true;
     }
+    float enableTime;
+    void OnEnable()
+    {
+        enableTime = Time.time;
+    }
     public void OnGrabStart()
     {
         isGrabbed = true;
         isPlaced = false;
         StopCoroutine(nameof(Retry));
+        AudioManager.Instance.PlayEffect("Grab", transform.position, 0.8f);
     }
     public void OnGrabEnd()
     {
@@ -59,8 +65,11 @@ public class WaterBowl : MonoBehaviour
             yield return YieldInstructionCache.WaitForSeconds(5f);
             yield return new WaitUntil(() => animalControl.state == AnimalControl.State.Idle || animalControl.state == AnimalControl.State.Wander);
             // Idle, Wander 상태일때만 --> State.Drink 으로 체인지
-            if (animalControl.state != AnimalControl.State.Drink)
-                            animalControl.ChangeState(AnimalControl.State.Drink);
+            if (animalControl.state == AnimalControl.State.Idle || animalControl.state == AnimalControl.State.Wander)
+            {
+                if (animalControl.state != AnimalControl.State.Drink)
+                    animalControl.ChangeState(AnimalControl.State.Drink);
+            }
         }
     }
     public void DisableGrab()
@@ -79,6 +88,15 @@ public class WaterBowl : MonoBehaviour
         isPlaced = true;
         isGrabbed = false;
         StopCoroutine(nameof(Retry));
+    }
+    void OnCollisionEnter(Collision collision)
+    {
+        if (Time.time - enableTime < 2f) return;
+        if (collision.gameObject.layer == 3)
+        {
+            AudioManager.Instance.PlayEffect("Took", transform.position, 0.8f);
+            ParticleManager.Instance.SpawnParticle(ParticleFlag.DustSmall, transform.position, Quaternion.identity, null);
+        }
     }
 
 

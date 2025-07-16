@@ -277,7 +277,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlaced: 0
-  fillRange: {x: 0.4, y: 0.55}
+  fillRange: {x: 0.35, y: 0.55}
   liquid: {fileID: 0}
 --- !u!114 &6373675395391178885
 MonoBehaviour:
