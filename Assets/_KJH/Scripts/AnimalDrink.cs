@@ -13,6 +13,7 @@ public class AnimalDrink : AnimalAbility
         StopCoroutine(nameof(GoToFood));
         StartCoroutine(nameof(GoToFood));
         agent.isStopped = false;
+        animal.petStateController.UpdateIsInteraction(true);
     }
     public override void UnInit()
     {
@@ -20,6 +21,7 @@ public class AnimalDrink : AnimalAbility
         sfx?.Stop();
         StopCoroutine(nameof(GoToFood));
         agent.isStopped = false;
+        animal.petStateController.UpdateIsInteraction(false);
     }
     SFX sfx;
     IEnumerator GoToFood()
