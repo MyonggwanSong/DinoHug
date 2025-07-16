@@ -34,6 +34,11 @@ public class WaterBottle : MonoBehaviour
         StopCoroutine(nameof(Holding));
         StartCoroutine(nameof(Holding));
         isChangeState = false;
+        AudioManager.Instance.PlayEffect("Grab", transform.position, 0.8f);
+    }
+    void OnEnable()
+    {
+        coolTime = 0f;
     }
     public void OnGrabEnd()
     {
@@ -57,7 +62,7 @@ public class WaterBottle : MonoBehaviour
             float horizontal = Mathf.Abs(rigid.velocity.x) + Mathf.Abs(rigid.velocity.z);
             float angle = grabbingXRController.rotation.eulerAngles.z;
             // 컨트롤러를 기울이고 있을 경우 + 수평으로는 거의 안움직이고 있을경우
-            if (angle >= 100 && angle <= 260 && horizontal < 5)
+            if (angle >= 90 && angle <= 270 && horizontal < 6)
             {
                 //Debug.Log($"angle : {grabbingXRController.rotation.eulerAngles.z}, vertical : {rigid.velocity.y}, horizontal : {horizontal}");
                 //컨트롤러를 적당한 속도와 적당한 주기로 위아래(수직)으로 흔들경우
@@ -155,11 +160,11 @@ public class WaterBottle : MonoBehaviour
                 {
                     coResetShake = StartCoroutine(ResetShakeCount());
                 }
-                if (!(angle >= 110 && angle <= 250))
+                if (!(angle >= 90 && angle <= 270))
                     StopWaterFillOut();
             }
             yield return null;
-            if (shakeCount >= 4)
+            if (shakeCount >= 3)
             {
                 if (coWaterFill == null)
                 {
@@ -264,6 +269,17 @@ public class WaterBottle : MonoBehaviour
             particleObj.SetActive(false);
             StopCoroutine(coWaterFill);
             coWaterFill = null;
+        }
+    }
+    float coolTime = 0f;
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == 3)
+        {
+            if (coolTime > 0 && Time.time - coolTime < 3.5f) return;
+            AudioManager.Instance.PlayEffect("Took", transform.position, 0.8f);
+            ParticleManager.Instance.SpawnParticle(ParticleFlag.DustSmall, transform.position, Quaternion.identity, null);
+            coolTime = Time.time;
         }
     }
 

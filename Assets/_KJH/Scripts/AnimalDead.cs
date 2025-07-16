@@ -23,8 +23,10 @@ public class AnimalDead : AnimalAbility
     {
         StartCoroutine(nameof(Look));
         animal.petStateController.UpdateIsInteraction(true);
+        yield return YieldInstructionCache.WaitForSeconds(0.5f);
+        AudioManager.Instance.PlayEffect("DinoDie", transform.position, 0.6f);
+        yield return YieldInstructionCache.WaitForSeconds(0.5f);
         AudioManager.Instance.PlayEffect("GameOver", transform.position, 0.5f);
-        yield return YieldInstructionCache.WaitForSeconds(1f);
         anim.CrossFade("DieB", 0.2f);
         yield return YieldInstructionCache.WaitForSeconds(1.5f);
         Transform camTr = Camera.main.transform;

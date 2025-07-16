@@ -3,21 +3,24 @@ using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Animations.Rigging;
+using DG.Tweening;
 public class AnimalControl : MonoBehaviour
 {
     [ReadOnlyInspector] public State state;
     [ReadOnlyInspector] public Effect effect;
     [HideInInspector] public PetStateController petStateController;
-    
+    MultiAimConstraint headIK;
     void Awake()
     {
+        GetComponentInChildren<Rig>().transform.Find("HeadLookAtConstraint").TryGetComponent(out headIK);
         TryGetComponent(out petStateController);
         FSM_Setting();
     }
     void Start()
     {
         // 게임 시작시 Idle로
-        ChangeState(State.Eat);
+        ChangeState(State.Idle);
         OnUpdateEffect?.Invoke(effect);
     }
     #region FSM (스크립트 하나만 키고 나머지는 끄는방식)
@@ -157,4 +160,19 @@ public class AnimalControl : MonoBehaviour
         OnUpdateEffect?.Invoke(effect);
     }
 #endif
+
+    Tween tweenHeadIK;
+    public void HeadIKLookPlayerOn()
+    {
+        tweenHeadIK?.Kill();
+        tweenHeadIK = DOTween.To(() => headIK.weight, x => headIK.weight = x, 0.8f, 1.5f);
+    }
+    public void HeadIKLookPlayerOff()
+    {
+        tweenHeadIK?.Kill();
+        tweenHeadIK = DOTween.To(() => headIK.weight, x => headIK.weight = x, 0f, 1.5f);
+    }
+
+
+
 }

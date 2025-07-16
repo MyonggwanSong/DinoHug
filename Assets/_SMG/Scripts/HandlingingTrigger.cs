@@ -4,8 +4,8 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class HandlingingTrigger : MonoBehaviour
 {
-    public ActionBasedController leftController;
-    public ActionBasedController rightController;
+    private ActionBasedController leftController;
+    private ActionBasedController rightController;
 
     // 위치 추적 변수
     Vector3 prevPosition;
@@ -150,7 +150,7 @@ public class HandlingingTrigger : MonoBehaviour
                 //Debug.Log("상태 변경: Handle");
             }
             // 안아주기 위치 = 양 컨트롤러 중앙(높이는 제거) + 카메라 전방 0.75m 앞
-            Vector3 hugPos = (leftController.transform.position + rightController.transform.position) * 0.5f + Camera.main.transform.forward * 0.75f;
+            Vector3 hugPos = (leftController.transform.position + rightController.transform.position) * 0.5f + Camera.main.transform.forward * 0.5f;
             hugPos.y = 0f;
     
             ac.transform.position = hugPos;
@@ -229,6 +229,9 @@ public class HandlingingTrigger : MonoBehaviour
             pettingStartTime = Time.time;
             Debug.Log("쓰다듬기 시작 - 유예시간 시작");
             ac.petStateController.Petting();
+            Vector3 _particleOsset = transform.position + new Vector3(0f, 1.2f, 0f);
+            ParticleManager.Instance.SpawnParticle(ParticleFlag.Twinkle, _particleOsset, Quaternion.identity, null);
+
         }
 
         //Debug.Log($"쓰다듬기 상태 변경: {shouldPet}");
@@ -268,7 +271,11 @@ public class HandlingingTrigger : MonoBehaviour
 
             pettingStartTime = Time.time;
             Debug.Log("안아주기 시작 - 유예시간 시작");
-            ac.petStateController.Petting();
+
+            // 안아주기도 Bond를 오르도록 할 것인가?
+            // ac.petStateController.Petting();
+            Vector3 _particleOsset = transform.position + new Vector3(0f, 1.2f, 0f);
+            ParticleManager.Instance.SpawnParticle(ParticleFlag.Twinkle, _particleOsset, Quaternion.identity, null);
         }
 
         //Debug.Log($"쓰다듬기 상태 변경: {shouldPet}");

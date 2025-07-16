@@ -337,6 +337,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlaced: 0
+  isRefuse: 0
 --- !u!114 &107701947830706527
 MonoBehaviour:
   m_ObjectHideFlags: 0
