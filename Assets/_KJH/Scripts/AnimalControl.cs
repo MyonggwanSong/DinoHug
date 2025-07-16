@@ -118,7 +118,7 @@ public class AnimalControl : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (state.Equals(State.Idle) || state.Equals(State.Wander) || state.Equals(State.CallFollow))
+            if (state.Equals(State.Idle) || state.Equals(State.Wander) || state.Equals(State.CallIdle))
             {
                 Debug.Log("Player Calling!!");
                 ChangeState(State.CallFollow);
