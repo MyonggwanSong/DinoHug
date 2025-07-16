@@ -4,7 +4,7 @@ using UnityEngine.Animations.Rigging;
 
 public class IKLookAt : MonoBehaviour
 {
-    [SerializeField] Transform target;          //Player
+    [SerializeField, ReadOnlyInspector] Transform target;          //Player
     [SerializeField] MultiAimConstraint constraint;
     [SerializeField] float maxDistance = 5f;
     [SerializeField] private float maxAngle = 45f;
@@ -43,6 +43,8 @@ public class IKLookAt : MonoBehaviour
         var data = constraint.data;
         data.sourceObjects = arr;
         constraint.data = data;
+
+        constraint.weight = 0f;
     }
 
     void LookAtTarget()
