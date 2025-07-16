@@ -9,6 +9,10 @@ public enum ParticleFlag
     Eating,
     Drinking,
     Petting,
+    Dust,
+    DustSmall,
+    Twinkle,
+    WaterSplash,
 }
 
 [Serializable]
