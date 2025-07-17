@@ -57,6 +57,7 @@ public class PetStateController : MonoBehaviour
 
     void Start()            // 추후에 OnEnable로 변경
     {
+        animal = GetComponent<AnimalControl>();
         nonInteractionElapsedTime = 0f;
         model = new(view, _init_Bond, _init_Hunger, _init_Thirsty, _init_Bored);
         currentState = new(_init_Bond, _init_Hunger, _init_Thirsty, _init_Bored);
