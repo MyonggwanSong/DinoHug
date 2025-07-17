@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 public class AnimalEat : AnimalAbility
 {
     [SerializeField] float eatDistance = 1.5f;

@@ -93,10 +93,11 @@ public class WaterBowl : MonoBehaviour
     }
     void OnCollisionEnter(Collision collision)
     {
+        if (isGrabbed) return;
         if (Time.time - enableTime < 2f) return;
         if (collision.gameObject.layer == 3)
         {
-            if (coolTime > 0 && Time.time - coolTime < 3.5f) return;
+            if (coolTime > 0 && Time.time - coolTime < 2.2f) return;
             AudioManager.Instance.PlayEffect("Took", transform.position);
             ParticleManager.Instance.SpawnParticle(ParticleFlag.DustSmall, transform.position, Quaternion.identity, null);
             coolTime = Time.time;

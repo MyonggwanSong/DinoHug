@@ -1351,7 +1351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 763889d61763993489751a58eadbb3e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animal: {fileID: 899035968858391802, guid: 221a8c49e75a1af49a9a9ebfa1962849, type: 3}
+  animal: {fileID: 9141987329047380857}
   view: {fileID: 0}
   _init_Bond: 40
   _init_Hunger: 20

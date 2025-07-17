@@ -274,6 +274,7 @@ public class WaterBottle : MonoBehaviour
     float coolTime = 0f;
     void OnCollisionEnter(Collision collision)
     {
+        if (isGrabbed) return;
         if (collision.gameObject.layer == 3)
         {
             if (coolTime > 0 && Time.time - coolTime < 3.5f) return;

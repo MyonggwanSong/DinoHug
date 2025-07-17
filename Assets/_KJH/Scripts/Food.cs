@@ -95,9 +95,10 @@ public class Food : MonoBehaviour
     }
     void OnCollisionEnter(Collision collision)
     {
+        if (isGrabbed) return;
         if (collision.gameObject.layer == 3)
         {
-            if (coolTime > 0 && Time.time - coolTime < 3.5f) return;
+            if (coolTime > 0 && Time.time - coolTime < 2.2f) return;
             AudioManager.Instance.PlayEffect("Took", transform.position);
             ParticleManager.Instance.SpawnParticle(ParticleFlag.Dust, transform.position, Quaternion.identity, null);
             coolTime = Time.time;
