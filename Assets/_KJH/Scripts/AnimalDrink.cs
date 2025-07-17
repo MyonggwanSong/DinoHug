@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.AI;
 public class AnimalDrink : AnimalAbility
 {
     [SerializeField] float drinkDistance = 0.5f;

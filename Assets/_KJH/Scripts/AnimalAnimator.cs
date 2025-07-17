@@ -28,12 +28,12 @@ public class AnimalAnimator : MonoBehaviour
     {
         if (type == Type.Left)
         {
-            AudioManager.Instance.PlayEffect("FootStep", leftFoot.position, 0.8f);
+            AudioManager.Instance.PlayEffect("FootStep", leftFoot.position, 0.66f);
             ParticleManager.Instance.SpawnParticle(ParticleFlag.DustSmall, leftFoot.position, Quaternion.identity, null);
         }
         else
         {
-            AudioManager.Instance.PlayEffect("FootStep", rightFoot.position, 0.8f);
+            AudioManager.Instance.PlayEffect("FootStep", rightFoot.position, 0.66f);
             ParticleManager.Instance.SpawnParticle(ParticleFlag.DustSmall, rightFoot.position, Quaternion.identity, null);
         }
     }
