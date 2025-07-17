@@ -7,6 +7,7 @@ public abstract class AnimalAbility : MonoBehaviour
     {
         agent.ResetPath();
         StopAllCoroutines();
+        animal.petStateController.UpdateIsInteraction(false);
     }
     protected AnimalControl animal;
     protected Animator anim;

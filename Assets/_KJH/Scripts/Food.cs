@@ -23,7 +23,7 @@ public class Food : MonoBehaviour
     }
     public void OnGrabStart()
     {
-        AudioManager.Instance.PlayEffect("Grab", transform.position, 0.8f);
+        AudioManager.Instance.PlayEffect("Grab", transform.position);
         isGrabbed = true;
         isPlaced = false;
         StopCoroutine(nameof(Retry));
@@ -95,10 +95,11 @@ public class Food : MonoBehaviour
     }
     void OnCollisionEnter(Collision collision)
     {
+        if (isGrabbed) return;
         if (collision.gameObject.layer == 3)
         {
-            if (coolTime > 0 && Time.time - coolTime < 3.5f) return;
-            AudioManager.Instance.PlayEffect("Took", transform.position, 0.8f);
+            if (coolTime > 0 && Time.time - coolTime < 2.2f) return;
+            AudioManager.Instance.PlayEffect("Took", transform.position);
             ParticleManager.Instance.SpawnParticle(ParticleFlag.Dust, transform.position, Quaternion.identity, null);
             coolTime = Time.time;
         }
@@ -127,7 +128,7 @@ public class Food : MonoBehaviour
     }
     IEnumerator RefuseWait()
     {
-        yield return YieldInstructionCache.WaitForSeconds(20f);
+        yield return YieldInstructionCache.WaitForSeconds(30f);
         isRefuse = false;
     }
     float coolTime = 0f;

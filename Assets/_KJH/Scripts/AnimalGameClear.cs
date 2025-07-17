@@ -26,6 +26,7 @@ public class AnimalGameClear : AnimalAbility
         animal.petStateController.UpdateBond(animal.petStateController.currentState.bond);
         animal.petStateController.UpdateIsInteraction(true);
         AudioManager.Instance.PlayEffect("GameClear", transform.position, 0.5f);
+        gameClearPanel.StartCoroutine(nameof(gameClearPanel.ConfetiEffect));
         yield return YieldInstructionCache.WaitForSeconds(1f);
         anim.SetInteger("animation", 2);
         yield return YieldInstructionCache.WaitForSeconds(1.5f);

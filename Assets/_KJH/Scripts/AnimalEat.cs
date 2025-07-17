@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 public class AnimalEat : AnimalAbility
 {
     [SerializeField] float eatDistance = 1.5f;
@@ -175,10 +173,10 @@ public class AnimalEat : AnimalAbility
         target.DisableGrab();
 
         // 배고프지 않은 경우 처리
-        if (animal.petStateController.currentState.hunger < 3)
+        if (animal.petStateController.currentState.hunger < 8)
         {
             anim.SetInteger("animation", 12);
-            sfx = AudioManager.Instance.PlayEffect("DinoNo", transform.position, 1.0f);
+            sfx = AudioManager.Instance.PlayEffect("DinoNo", transform.position);
             yield return YieldInstructionCache.WaitForSeconds(2f);
             sfx?.Stop();
             target.EnableGrab();
@@ -190,14 +188,14 @@ public class AnimalEat : AnimalAbility
             // 먹는 애니매이션 재생 + 효과음 재생 + 먹고있는 동안 XR그랩 못하게
 
             anim.SetInteger("animation", 5);
-            sfx = AudioManager.Instance.PlayEffect("EatMeat", transform.position, 1.0f);
+            sfx = AudioManager.Instance.PlayEffect("EatMeat", transform.position);
 
             // Eat 애니매이션 길이에 따라 아래 시간 변경
             float startTime = Time.time;
             while (Time.time - startTime < 0.5f)
             {
                 // 여기에 각종 부드러운 처리들 구현
-                target.transform.position = Vector3.Lerp(target.transform.position, transform.position + 0.8f * Vector3.up + 0.2f * transform.forward, 4f * Time.deltaTime);
+                target.transform.position = Vector3.Lerp(target.transform.position, transform.position + 0.9f * Vector3.up + 0.15f * transform.forward, 4f * Time.deltaTime);
                 yield return null;
             }
             yield return YieldInstructionCache.WaitForSeconds(0.5f);

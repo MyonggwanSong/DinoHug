@@ -57,3 +57,7 @@ MonoBehaviour:
     pb: {fileID: 0}
   - flag: 6
     pb: {fileID: 2171960569115107877, guid: 7eb4a2f7db784c84f866de9199c4e81f, type: 3}
+  - flag: 7
+    pb: {fileID: 4200771666690688500, guid: 0eef230f93d15944a81f24aa5a91268f, type: 3}
+  - flag: 8
+    pb: {fileID: 141604374524190533, guid: e1eaca8ba2f263c47b19556b0bc1b6d5, type: 3}
