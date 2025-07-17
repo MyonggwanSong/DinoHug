@@ -31,7 +31,7 @@ public class MenuControl : MonoBehaviour
 #if UNITY_EDITOR
         EditorApplication.ExitPlaymode();
 #else
-        Application.Quit();
+        SceneManager.LoadScene(0);
 #endif
     }
 }
