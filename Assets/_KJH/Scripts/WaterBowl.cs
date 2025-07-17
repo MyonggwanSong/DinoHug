@@ -20,11 +20,18 @@ public class WaterBowl : MonoBehaviour
         liquid = GetComponentInChildren<Liquid>();
         isPlaced = true;
     }
+    float enableTime;
+    void OnEnable()
+    {
+        enableTime = Time.time;
+        coolTime = 0f;
+    }
     public void OnGrabStart()
     {
         isGrabbed = true;
         isPlaced = false;
         StopCoroutine(nameof(Retry));
+        AudioManager.Instance.PlayEffect("Grab", transform.position, 0.8f);
     }
     public void OnGrabEnd()
     {
@@ -56,11 +63,15 @@ public class WaterBowl : MonoBehaviour
     {
         while (true)
         {
-            yield return YieldInstructionCache.WaitForSeconds(5f);
+            yield return YieldInstructionCache.WaitForSeconds(5.5f);
             yield return new WaitUntil(() => animalControl.state == AnimalControl.State.Idle || animalControl.state == AnimalControl.State.Wander);
+            yield return new WaitUntil(() => !isRefuse);
             // Idle, Wander 상태일때만 --> State.Drink 으로 체인지
-            if (animalControl.state != AnimalControl.State.Drink)
-                            animalControl.ChangeState(AnimalControl.State.Drink);
+            if (animalControl.state == AnimalControl.State.Idle || animalControl.state == AnimalControl.State.Wander)
+            {
+                if (animalControl.state != AnimalControl.State.Drink)
+                    animalControl.ChangeState(AnimalControl.State.Drink);
+            }
         }
     }
     public void DisableGrab()
@@ -79,6 +90,30 @@ public class WaterBowl : MonoBehaviour
         isPlaced = true;
         isGrabbed = false;
         StopCoroutine(nameof(Retry));
+    }
+    void OnCollisionEnter(Collision collision)
+    {
+        if (Time.time - enableTime < 2f) return;
+        if (collision.gameObject.layer == 3)
+        {
+            if (coolTime > 0 && Time.time - coolTime < 3.5f) return;
+            AudioManager.Instance.PlayEffect("Took", transform.position, 0.8f);
+            ParticleManager.Instance.SpawnParticle(ParticleFlag.DustSmall, transform.position, Quaternion.identity, null);
+            coolTime = Time.time;
+        }
+    }
+    bool isRefuse;
+    float coolTime;
+    public void Refuse()
+    {
+        coolTime = Time.time;
+        isRefuse = true;
+        StartCoroutine(nameof(RefuseWait));
+    }
+    IEnumerator RefuseWait()
+    {
+        yield return YieldInstructionCache.WaitForSeconds(25f);
+        isRefuse = false;
     }
 
 

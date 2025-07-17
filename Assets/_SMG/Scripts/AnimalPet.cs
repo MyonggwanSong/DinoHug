@@ -42,21 +42,8 @@ public class AnimalPet : AnimalAbility
         yield return new WaitUntil(() => !isPetting);
         anim.SetInteger("animation", 1); // Idle 모션
         //Debug.Log("쓰다듬기 끝");
-
-        // yield return null;
-        // if (isPetting)
-        // {
-        //     anim.CrossFade("aniClip1", 0.2f);
-        //     Debug.Log("쓰다듬는 중");
-        // }
-        // else
-        // {
-        //     anim.CrossFade("Idle", 0.2f);
-        //        Debug.Log("쓰다듬기 끝");
-        // }
-
-
     }
+    
      IEnumerator Hug()  
     {
         yield return new WaitUntil(() => isHugging && !isPetting);
@@ -67,20 +54,6 @@ public class AnimalPet : AnimalAbility
         yield return new WaitUntil(() => !isHugging);
         anim.SetInteger("animation", 1); // Idle 모션
         //Debug.Log("쓰다듬기 끝");
-
-        // yield return null;
-        // if (isPetting)
-        // {
-        //     anim.CrossFade("aniClip1", 0.2f);
-        //     Debug.Log("쓰다듬는 중");
-        // }
-        // else
-        // {
-        //     anim.CrossFade("Idle", 0.2f);
-        //        Debug.Log("쓰다듬기 끝");
-        // }
-
-
     }
 
 }

@@ -1,13 +1,14 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 using DG.Tweening;
-using TMPro;
 public class TutorialPanel : MonoBehaviour
 {
     AnimalControl animal;
     [SerializeField] Transform interactableObjects;
     [SerializeField] GameObject[] pops;
-    [SerializeField] TMP_Text[] tmpTexts;
+    Text[] texts;
+    string[] originalTexts;
     public int progress = 0;
     public bool isComplete;
     SFX sfx;
@@ -15,9 +16,17 @@ public class TutorialPanel : MonoBehaviour
     void Awake()
     {
         animal = FindAnyObjectByType<AnimalControl>();
+        texts = new Text[pops.Length];
+        originalTexts = new string[pops.Length];
+        for (int i = 0; i < pops.Length; i++)
+        {
+            texts[i] = pops[i].transform.Find("Content").GetComponent<Text>();
+            originalTexts[i] = texts[i].text;
+        }
     }
     IEnumerator Start()
     {
+        texts[0].gameObject.SetActive(false);
         yield return YieldInstructionCache.WaitForSeconds(0.2f);
         animal.petStateController.UpdateIsInteraction(true);
         animal.gameObject.SetActive(false);
@@ -28,17 +37,18 @@ public class TutorialPanel : MonoBehaviour
         isComplete = false;
         yield return YieldInstructionCache.WaitForSeconds(0.5f);
         pops[0].SetActive(true);
-        tmpTexts[0].gameObject.SetActive(false);
         tweenPop?.Kill();
         pops[0].transform.localScale = 0.85f * Vector3.one;
         tweenPop = pops[0].transform.DOScale(1f, 0.4f).SetEase(Ease.OutBounce);
         yield return YieldInstructionCache.WaitForSeconds(0.5f);
-        sfx = AudioManager.Instance.PlayEffect("Tuto1", transform.position, 1.0f);
+        sfx = AudioManager.Instance.PlayEffect("TutorialPop1", transform.position, 1.0f);
+        texts[0].gameObject.SetActive(true);
         if (coShowText != null)
         {
             StopCoroutine(coShowText);
+            coShowText = null;
         }
-        coShowText = StartCoroutine(nameof(ShowText), tmpTexts[0]);
+        coShowText = StartCoroutine(ShowText(0));
     }
     public void NextButton()
     {
@@ -48,14 +58,16 @@ public class TutorialPanel : MonoBehaviour
         pops[progress].SetActive(false);
         progress++;
         pops[progress].SetActive(true);
-        tmpTexts[progress].gameObject.SetActive(true);
         tweenPop?.Kill();
         pops[progress].transform.localScale = 0.85f * Vector3.one;
         tweenPop = pops[progress].transform.DOScale(1f, 0.4f).SetEase(Ease.OutBounce);
-        if (progress == 1)
+        sfx = AudioManager.Instance.PlayEffect($"TutorialPop{progress + 1}", transform.position, 1.0f);
+        if (coShowText != null)
         {
-            sfx = AudioManager.Instance.PlayEffect($"Tuto{progress + 1}", transform.position, 1.0f);
+            StopCoroutine(coShowText);
+            coShowText = null;
         }
+        coShowText = StartCoroutine(ShowText(progress));
     }
     public void PrevButton()
     {
@@ -68,10 +80,13 @@ public class TutorialPanel : MonoBehaviour
         tweenPop?.Kill();
         pops[progress].transform.localScale = 0.85f * Vector3.one;
         tweenPop = pops[progress].transform.DOScale(1f, 0.4f).SetEase(Ease.OutBounce);
-        if (progress == 0)
+        sfx = AudioManager.Instance.PlayEffect($"TutorialPop{progress + 1}", transform.position, 1.0f);
+        if (coShowText != null)
         {
-            sfx = AudioManager.Instance.PlayEffect($"Tuto{progress + 1}", transform.position, 1.0f);
+            StopCoroutine(coShowText);
+            coShowText = null;
         }
+        coShowText = StartCoroutine(ShowText(progress));
     }
     public void CompleteButton()
     {
@@ -87,23 +102,28 @@ public class TutorialPanel : MonoBehaviour
             interactableObjects.GetChild(i).gameObject.SetActive(true);
         }
         animal.ChangeState(AnimalControl.State.Idle);
+        if (coShowText != null)
+        {
+            StopCoroutine(coShowText);
+            coShowText = null;
+        }
     }
     // 임시
     Coroutine coShowText;
-    IEnumerator ShowText(TMP_Text tMP_Text)
+    IEnumerator ShowText(int index)
     {
-        tMP_Text.gameObject.SetActive(true);
-        string original = tMP_Text.text;
+        string original = originalTexts[index];
         string sum = "";
         int length = original.Length;
         for (int i = 0; i < length; i++)
         {
             sum += original.Substring(i, 1);
-            tMP_Text.text = sum;
+            texts[index].text = sum;
             yield return YieldInstructionCache.WaitForSeconds(0.05f);
         }
     }
-
-
     
+
+
+
 }
