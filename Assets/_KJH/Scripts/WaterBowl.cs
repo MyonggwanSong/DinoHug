@@ -31,7 +31,7 @@ public class WaterBowl : MonoBehaviour
         isGrabbed = true;
         isPlaced = false;
         StopCoroutine(nameof(Retry));
-        AudioManager.Instance.PlayEffect("Grab", transform.position, 0.8f);
+        AudioManager.Instance.PlayEffect("Grab", transform.position);
     }
     public void OnGrabEnd()
     {
@@ -97,7 +97,7 @@ public class WaterBowl : MonoBehaviour
         if (collision.gameObject.layer == 3)
         {
             if (coolTime > 0 && Time.time - coolTime < 3.5f) return;
-            AudioManager.Instance.PlayEffect("Took", transform.position, 0.8f);
+            AudioManager.Instance.PlayEffect("Took", transform.position);
             ParticleManager.Instance.SpawnParticle(ParticleFlag.DustSmall, transform.position, Quaternion.identity, null);
             coolTime = Time.time;
         }
@@ -112,7 +112,7 @@ public class WaterBowl : MonoBehaviour
     }
     IEnumerator RefuseWait()
     {
-        yield return YieldInstructionCache.WaitForSeconds(25f);
+        yield return YieldInstructionCache.WaitForSeconds(40f);
         isRefuse = false;
     }
 

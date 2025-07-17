@@ -34,7 +34,7 @@ public class WaterBottle : MonoBehaviour
         StopCoroutine(nameof(Holding));
         StartCoroutine(nameof(Holding));
         isChangeState = false;
-        AudioManager.Instance.PlayEffect("Grab", transform.position, 0.8f);
+        AudioManager.Instance.PlayEffect("Grab", transform.position);
     }
     void OnEnable()
     {
@@ -202,7 +202,7 @@ public class WaterBottle : MonoBehaviour
     {
         sfx = null;
         yield return YieldInstructionCache.WaitForSeconds(0.7f);
-        sfx = AudioManager.Instance.PlayEffect("WaterFill", transform.position, 1.0f);
+        sfx = AudioManager.Instance.PlayEffect("WaterFill", transform.position);
         particleObj.SetActive(true);
         particle.Stop(true);
         particle.Play();
@@ -277,7 +277,7 @@ public class WaterBottle : MonoBehaviour
         if (collision.gameObject.layer == 3)
         {
             if (coolTime > 0 && Time.time - coolTime < 3.5f) return;
-            AudioManager.Instance.PlayEffect("Took", transform.position, 0.8f);
+            AudioManager.Instance.PlayEffect("Took", transform.position);
             ParticleManager.Instance.SpawnParticle(ParticleFlag.DustSmall, transform.position, Quaternion.identity, null);
             coolTime = Time.time;
         }

@@ -177,10 +177,10 @@ public class AnimalDrink : AnimalAbility
 
 
         // 목마르지 않은 경우 처리
-        if (animal.petStateController.currentState.thirsty < 3)
+        if (animal.petStateController.currentState.thirsty < 8)
         {
             anim.SetInteger("animation", 12);
-            sfx = AudioManager.Instance.PlayEffect("DinoNo", transform.position, 1.0f);
+            sfx = AudioManager.Instance.PlayEffect("DinoNo", transform.position);
             yield return YieldInstructionCache.WaitForSeconds(2f);
             sfx?.Stop();
             target.Refuse();
@@ -188,7 +188,7 @@ public class AnimalDrink : AnimalAbility
         else
         {
             anim.SetInteger("animation", 24);
-            sfx = AudioManager.Instance.PlayEffect("Drink", transform.position, 0.8f);
+            sfx = AudioManager.Instance.PlayEffect("Drink", transform.position);
             // Eat 애니매이션 길이에 따라 아래 시간 변경
             float startTime = Time.time;
             float range = target.fillRange.y - target.fillRange.x;
@@ -240,7 +240,7 @@ public class AnimalDrink : AnimalAbility
             animal.petStateController.Drink();
             //target.Reset();
             yield return YieldInstructionCache.WaitForSeconds(1f);
-            sfx = AudioManager.Instance.PlayEffect("Drink(1)", transform.position, 0.8f);
+            sfx = AudioManager.Instance.PlayEffect("Drink(1)", transform.position);
             yield return YieldInstructionCache.WaitForSeconds(2f);
             sfx?.Stop();
 
