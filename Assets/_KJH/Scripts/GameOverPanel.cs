@@ -19,14 +19,14 @@ public class GameOverPanel : MonoBehaviour
     }
     public void ReButton()
     {
-        sfx = AudioManager.Instance.PlayEffect("UIClick1", transform.position);
         sfx?.Stop();
+        sfx = AudioManager.Instance.PlayEffect("UIClick1", transform.position);
         SceneManager.LoadScene(0);
     }
     public void QuitButton()
     {
-        sfx = AudioManager.Instance.PlayEffect("UIClick1", transform.position);
         sfx?.Stop();
+        sfx = AudioManager.Instance.PlayEffect("UIClick1", transform.position);
 #if UNITY_EDITOR
         EditorApplication.ExitPlaymode();
 #else
