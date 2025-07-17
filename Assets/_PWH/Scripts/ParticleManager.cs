@@ -15,6 +15,9 @@ public enum ParticleFlag
     WaterSplash,
     Confetti1,
     Confetti2,
+    WaterUp,
+    MeatUp,
+    ToyUp,
 }
 
 [Serializable]

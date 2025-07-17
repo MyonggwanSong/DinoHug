@@ -161,7 +161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.5019608}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -229,10 +229,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animal: {fileID: 0}
-  img_Lonely: {fileID: 21300000, guid: bbd6a4c223f1d44c4bde769739e768f2, type: 3}
+  img_Lonely: {fileID: 21300000, guid: c606136e9fa24d14799e3fc6569b691f, type: 3}
   img_Hunger: {fileID: 21300000, guid: 8a401058293854ec38fc11f322ac7245, type: 3}
   img_Thirsty: {fileID: 21300000, guid: 12295f694bf1f4803b5ac278f1e09a8c, type: 3}
-  img_Bored: {fileID: 21300000, guid: 3ef4e2ac152fd4eea9ed712e2b83b79c, type: 3}
+  img_Bored: {fileID: 21300000, guid: 3615d2e448a31474da390660f73305ff, type: 3}
   panel: {fileID: 3591614340340936779}
   emoticon: {fileID: 8974139971597095254}
   effects: 
