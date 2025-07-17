@@ -31,7 +31,7 @@ public class AudioManager : BehaviourSingleton<AudioManager>
 
     // 외부에서 효과음을 재생시킬때 쓰는 메소드. 월드 포지션 벡터 버전
     // clipName : 클립이름, spatialBlend(0~1): 2D~3D사운드정도, fixLength:사운드 길이지정(단위: 초) 기본값인 -1일시 wav,mp3파일의 고유한 길이로 재생
-    public SFX PlayEffect(string clipName, Vector3 pos, float spatialBlend = 0, float fixLength = -1)
+    public SFX PlayEffect(string clipName, Vector3 pos, float spatialBlend = 0.88f, float fixLength = -1)
     {
         int find = effectAudio.FindIndex(x => x.name == clipName);
         if (find == -1)
