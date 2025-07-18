@@ -24,6 +24,12 @@ public class AudioManager : BehaviourSingleton<AudioManager>
         bgmAudio.clip = clip;
         bgmAudio.Play();
     }
+
+    public void StopBGM()
+    {
+        bgmAudio.Stop();
+    }
+
     public void SetVolume(SoundType type, float volume)
     {
         mixer.SetFloat(type.ToString(), volume);

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -6,7 +7,7 @@ public class GameManager : BehaviourSingleton<GameManager>
     [SerializeField, ReadOnlyInspector] Material selectedMaterial;
     [SerializeField, ReadOnlyInspector] ColorSelector colorSelector;
     [SerializeField] string inGameScene;
-
+    [SerializeField] House house;
     protected override void Awake()
     {
         base.Awake();
@@ -20,11 +21,19 @@ public class GameManager : BehaviourSingleton<GameManager>
         selectedMaterial = mat;
     }
 
-    public void OnClickInGameButton()
+    public void OnClickGameStartButton()
     {
-        SceneManager.LoadScene(inGameScene);
+        StartCoroutine(StartGame());
     }
 
+    IEnumerator StartGame()
+    {
+        house.OpenDoorEvent();
+
+        yield return new WaitForSeconds(3f);
+        
+        SceneManager.LoadScene(inGameScene);
+    }
 
     #region SceneManager
     void OnEnable() => SceneManager.sceneLoaded += OnSceneLoaded;
@@ -37,11 +46,17 @@ public class GameManager : BehaviourSingleton<GameManager>
         {
             OnInGameSceneLoaded();
         }
+
+        if (scene.name == "Scene_")
+        {
+            if (house == null) return;
+
+            house.ResetHouse();
+        }
     }
 
     void OnInGameSceneLoaded()
     {
-        Debug.Log("Ingame Scene Load");
         AnimalControl animal = FindAnyObjectByType<AnimalControl>();
 
         if (animal == null)
