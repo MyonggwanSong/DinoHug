@@ -133,7 +133,7 @@ public class AnimalDrink : AnimalAbility
     // 타겟에 도착한 다음 타겟쪽으로 천천히 고개 돌리기
     IEnumerator LookTarget()
     {
-        animal.HeadIKLookPlayerOff();
+        animal.HeadIK_OFF();
         //Debug.Log("LookTarget");
         // 타겟을 향해 제자리에서 회전
         Vector3 targetForwardXZ = target.transform.position - transform.position;
@@ -180,6 +180,7 @@ public class AnimalDrink : AnimalAbility
         {
             anim.SetInteger("animation", 12);
             sfx = AudioManager.Instance.PlayEffect("DinoNo", transform.position);
+            animal.ChangeFaceTemporal(AnimalControl.Face.Angry, 4f);
             yield return YieldInstructionCache.WaitForSeconds(2f);
             sfx?.Stop();
             target.Refuse();
@@ -236,7 +237,7 @@ public class AnimalDrink : AnimalAbility
             anim.SetInteger("animation", 1);
             sfx?.Stop();
             // 먹기 완료
-            
+            animal.ChangeFaceTemporal(AnimalControl.Face.Happy, 4f);
             yield return YieldInstructionCache.WaitForSeconds(1f);
             sfx = AudioManager.Instance.PlayEffect("Drink(1)", transform.position);
             yield return YieldInstructionCache.WaitForSeconds(0.5f);

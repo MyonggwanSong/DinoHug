@@ -80,6 +80,7 @@ public class PetEffectViewer : MonoBehaviour
         if (!panel.activeSelf)
         {
             panel.SetActive(true);
+            AudioManager.Instance.PlayEffect("Alert", transform.position, 0.4f);
         }
 
         if (effects.Count <= 1)
@@ -107,7 +108,7 @@ public class PetEffectViewer : MonoBehaviour
 
         seq.AppendCallback(() =>
         {
-            Debug.Log($"Effect : {effects[i]}");
+            //Debug.Log($"Effect : {effects[i]}");
             Sprite sp = emoticonDic[effects[i]];
 
             emoticon.sprite = sp;

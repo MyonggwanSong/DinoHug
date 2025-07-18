@@ -22,7 +22,7 @@ public class AnimalEat : AnimalAbility
         {
             target.EnableGrab();
         }
-        animal.HeadIKLookPlayerOn();
+        animal.HeadIK_ON();
         anim.SetInteger("animation", 1);
         animal.petStateController.UpdateIsInteraction(false);
     }
@@ -132,7 +132,7 @@ public class AnimalEat : AnimalAbility
     // 타겟에 도착한 다음 타겟쪽으로 천천히 고개 돌리기
     IEnumerator LookTarget()
     {
-        animal.HeadIKLookPlayerOff();
+        animal.HeadIK_OFF();
         //Debug.Log("LookTarget");
         // 타겟을 향해 제자리에서 회전
         Vector3 targetForwardXZ = target.transform.position - transform.position;
@@ -177,10 +177,12 @@ public class AnimalEat : AnimalAbility
         {
             anim.SetInteger("animation", 12);
             sfx = AudioManager.Instance.PlayEffect("DinoNo", transform.position);
+            animal.ChangeFaceTemporal(AnimalControl.Face.Angry, 4f);
             yield return YieldInstructionCache.WaitForSeconds(2f);
             sfx?.Stop();
             target.EnableGrab();
             target.Refuse();
+            
         }
         else
         {
@@ -201,6 +203,7 @@ public class AnimalEat : AnimalAbility
             yield return YieldInstructionCache.WaitForSeconds(0.5f);
             ParticleManager.Instance.SpawnParticle(ParticleFlag.Eating, target.transform.position, Quaternion.identity, null);
             // 먹기 완료
+            animal.ChangeFaceTemporal(AnimalControl.Face.Happy, 4f);
             yield return YieldInstructionCache.WaitForSeconds(1.5f);
             sfx?.Stop();
 
