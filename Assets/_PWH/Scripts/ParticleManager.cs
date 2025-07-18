@@ -18,6 +18,7 @@ public enum ParticleFlag
     WaterUp,
     MeatUp,
     ToyUp,
+    Playing
 }
 
 [Serializable]

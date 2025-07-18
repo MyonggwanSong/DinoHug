@@ -46,7 +46,7 @@ public class Toy : MonoBehaviour
     {
         if (collision.gameObject.layer == 3)
         {
-            AudioManager.Instance.PlayEffect("Took", transform.position, 0.8f);
+            AudioManager.Instance.PlayEffect("DollSound", transform.position, 1f);
             ParticleManager.Instance.SpawnParticle(ParticleFlag.Dust, transform.position, Quaternion.identity, null);
         }
     }

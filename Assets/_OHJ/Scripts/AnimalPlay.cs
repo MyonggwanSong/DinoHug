@@ -61,14 +61,14 @@ public class AnimalPlay : AnimalAbility
         bool result = agent.SetDestination(toy.transform.position);
         anim.SetInteger("animation", 18);
 
-        sfx = AudioManager.Instance.PlayEffect("Run", transform.position, 1.0f);
+        sfx = AudioManager.Instance.PlayEffect("Run", transform.position, 0.66f);
 
         // 위에서 목적지까지 도착하기 전까지 대기
         float sqrDistance = (toy.transform.position - transform.position).sqrMagnitude;
         float startTime = Time.time;
         while (sqrDistance > stopDistance * stopDistance)
         {
-            if(Particle_co != null)
+            if (Particle_co != null)
             {
                 StopCoroutine(nameof(PlayParticle));
             }
@@ -161,7 +161,7 @@ public class AnimalPlay : AnimalAbility
         // 공에게 이동 (아랫줄만 호출해도 알아서 시간에따라서 이동)
         bool result = agent.SetDestination(toy.transform.position);
         anim.SetInteger("animation", 18);
-        //sfx = AudioManager.Instance.PlayEffect("Run", transform.position, 1.0f);
+        sfx = AudioManager.Instance.PlayEffect("Run", transform.position, 0.66f);
 
         // 위에서 목적지까지 도착하기 전까지 대기
         float sqrDistance = (toy.transform.position - transform.position).sqrMagnitude;
@@ -224,6 +224,7 @@ public class AnimalPlay : AnimalAbility
         }
 
         yield return new WaitForSeconds(0.5f);
+        AudioManager.Instance.PlayEffect("DollSound", transform.position, 1f);
         anim.SetInteger("animation", 1);
 
         toy.DisableGrab();
@@ -343,7 +344,7 @@ public class AnimalPlay : AnimalAbility
 
     IEnumerator PlayParticle()
     {
-        ParticleManager.Instance.SpawnParticle(ParticleFlag.Twinkle, transform.position + Vector3.up, Quaternion.identity, this.transform);
+        ParticleManager.Instance.SpawnParticle(ParticleFlag.Playing, transform.position + Vector3.up, Quaternion.identity, this.transform);
 
         yield return new WaitForSeconds(0.5f);
     }
