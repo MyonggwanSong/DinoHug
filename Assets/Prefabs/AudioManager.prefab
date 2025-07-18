@@ -200,6 +200,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c825f9e81521e01458daaa202096466e, type: 3}
   - {fileID: 8300000, guid: fbea532a014332e4abe675e00f526c77, type: 3}
   - {fileID: 8300000, guid: 491832ca27e3e4349aab2823998eab20, type: 3}
+  - {fileID: 8300000, guid: 276f529b010069047b3786e691233fbd, type: 3}
   sfxPrefab: {fileID: -6642653840743833105, guid: 8fe898a64822d3f42813a1f6b8c0cb32, type: 3}
   init_Master: 0
   init_Effect: 0
