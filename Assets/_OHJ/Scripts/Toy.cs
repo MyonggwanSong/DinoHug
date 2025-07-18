@@ -22,9 +22,11 @@ public class Toy : MonoBehaviour
     }
     public void GrabStart()
     {
+        AudioManager.Instance.PlayEffect("Grab", transform.position, 0.8f);
         isGrab = true;
+
         // 상태 우선순위 처리
-        if(animalControl.state == AnimalControl.State.Play)
+        if (animalControl.state == AnimalControl.State.Play)
         {
             Debug.Log("이미 Play 상태인데 그랩해서 Play상태 재시도");
         }
@@ -39,6 +41,16 @@ public class Toy : MonoBehaviour
         isThrow = true;
         Throwarc();
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == 3)
+        {
+            AudioManager.Instance.PlayEffect("Took", transform.position, 0.8f);
+            ParticleManager.Instance.SpawnParticle(ParticleFlag.Dust, transform.position, Quaternion.identity, null);
+        }
+    }
+
     public void Throwarc()
     {
         rb = GetComponent<Rigidbody>();
