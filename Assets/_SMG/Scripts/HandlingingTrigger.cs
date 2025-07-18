@@ -147,14 +147,18 @@ public class HandlingingTrigger : MonoBehaviour
             if (ac.state != AnimalControl.State.Handle)
             {
                 ac.ChangeState(AnimalControl.State.Handle);
+                
                 //Debug.Log("상태 변경: Handle");
             }
-            // 안아주기 위치 = 양 컨트롤러 중앙(높이는 제거) + 카메라 전방 0.75m 앞
-            Vector3 hugPos = (leftController.transform.position + rightController.transform.position) * 0.5f + Camera.main.transform.forward * 0.5f;
-            hugPos.y = 0f;
-    
-            ac.transform.position = hugPos;
+            // 안아주기 위치 = 양 컨트롤러 중앙(높이는 조율) + 카메라 전방 0.2m 앞
+            Vector3 offset = new Vector3(Camera.main.transform.forward.x, 0f, Camera.main.transform.forward.z).normalized * 0.54f;
+            Vector3 hugPos = (leftController.transform.position + rightController.transform.position) * 0.5f + offset;
+            hugPos.y -= 0.5f;
+            
             UpdateHuggingState(true);
+            ac.HeadIK_OFF();
+            ac.transform.LookAt(Camera.main.transform.position);
+            ac.transform.position = hugPos;
 
         }
 
@@ -419,8 +423,11 @@ public class HandlingingTrigger : MonoBehaviour
         && ac.state != AnimalControl.State.Drink
         && ac.state != AnimalControl.State.Eat)
         {
-            
-            ac.ChangeState(AnimalControl.State.Idle);
+            if (ac.state != AnimalControl.State.Idle)
+            {
+                ac.HeadIK_ON();
+                ac.ChangeState(AnimalControl.State.Idle);
+            }
         }
 
 
