@@ -28,7 +28,7 @@ public class AnimalDead : AnimalAbility
         yield return YieldInstructionCache.WaitForSeconds(0.5f);
         AudioManager.Instance.PlayEffect("GameOver", transform.position, 0.5f);
         anim.CrossFade("DieB", 0.2f);
-        animal.ChangeFace(AnimalControl.Face.Dead);
+        animal.ChangeFaceTemporal(AnimalControl.Face.Dead, 99999f);
         yield return YieldInstructionCache.WaitForSeconds(1.5f);
         Transform camTr = Camera.main.transform;
         Vector3 forward = camTr.forward;

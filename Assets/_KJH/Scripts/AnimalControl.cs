@@ -147,20 +147,31 @@ public class AnimalControl : MonoBehaviour
         if (petStateController.currentState.hunger >= 100)
         {
             if (state != State.Dead)
+            {
                 ChangeState(State.Dead);
+                petStateController.UpdateIsInteraction(true);
+            } 
         }
         if (petStateController.currentState.thirsty >= 100)
         {
             if (state != State.Dead)
+            {
                 ChangeState(State.Dead);
+                petStateController.UpdateIsInteraction(true);
+            }
         }
         if (petStateController.currentState.bond >= 100)
         {
             if (state != State.GameClear)
+            {
                 ChangeState(State.GameClear);
+                petStateController.UpdateIsInteraction(true);
+            }
         }
+        
         // 바닥에 잘 안붙어서 아래로 붙여줌
-        transform.position += 0.2f * Vector3.down * Time.deltaTime;
+        if (state == State.Wander)
+            transform.position += 0.2f * Vector3.down * Time.deltaTime;
     }
     #endregion
 
@@ -243,7 +254,7 @@ public class AnimalControl : MonoBehaviour
         yield return YieldInstructionCache.WaitForSeconds(time);
         isChangeFaceTemporal = false;
     }
-    public void ChangeFace(Face face)
+    void ChangeFace(Face face)
     {
         switch (face)
         {

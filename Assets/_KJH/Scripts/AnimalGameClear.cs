@@ -29,7 +29,7 @@ public class AnimalGameClear : AnimalAbility
         gameClearPanel.StartCoroutine(nameof(gameClearPanel.ConfetiEffect));
         yield return YieldInstructionCache.WaitForSeconds(1f);
         anim.SetInteger("animation", 2);
-        animal.ChangeFace(AnimalControl.Face.Happy);
+        animal.ChangeFaceTemporal(AnimalControl.Face.Happy, 99999f);
         yield return YieldInstructionCache.WaitForSeconds(1.5f);
         Transform camTr = Camera.main.transform;
         Vector3 forward = camTr.forward;
