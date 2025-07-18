@@ -419,8 +419,8 @@ public class HandlingingTrigger : MonoBehaviour
         && ac.state != AnimalControl.State.Drink
         && ac.state != AnimalControl.State.Eat)
         {
-            
-            ac.ChangeState(AnimalControl.State.Idle);
+            if(ac.state != AnimalControl.State.Idle)
+                ac.ChangeState(AnimalControl.State.Idle);
         }
 
 
