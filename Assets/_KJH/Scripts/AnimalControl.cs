@@ -106,6 +106,7 @@ public class AnimalControl : MonoBehaviour
             return;
         }
         effect = effect | addEffect;
+        AudioManager.Instance.PlayEffect("Alert", transform.position, 0.4f);
         OnUpdateEffect?.Invoke(effect);
     }
     public void RemoveEffect(Effect removeEffect)

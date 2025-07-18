@@ -80,7 +80,6 @@ public class PetEffectViewer : MonoBehaviour
         if (!panel.activeSelf)
         {
             panel.SetActive(true);
-            AudioManager.Instance.PlayEffect("Alert", transform.position, 0.4f);
         }
 
         if (effects.Count <= 1)
