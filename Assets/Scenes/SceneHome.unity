@@ -3522,6 +3522,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1755304126}
     m_Modifications:
+    - target: {fileID: 2043345577643153754, guid: 560bf339c4b0eef4abe2714bf74b14bd, type: 3}
+      propertyPath: particles.Array.data[4].pb
+      value: 
+      objectReference: {fileID: 8319528144578957959, guid: 60ac579b159c73e4c98e61dbfb10054b, type: 3}
     - target: {fileID: 2728064379811301025, guid: 560bf339c4b0eef4abe2714bf74b14bd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -5027,6 +5031,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4126851750180677544, guid: 3b2bf4c8a3cb27c41aca3b585b08ac93, type: 3}
+      propertyPath: m_NavMeshData
+      value: 
+      objectReference: {fileID: 23800000, guid: 92fb162c599febb47aaf7b6b88b5045b, type: 2}
     - target: {fileID: 8651387371545829459, guid: 3b2bf4c8a3cb27c41aca3b585b08ac93, type: 3}
       propertyPath: m_Name
       value: --- LevelDesign
