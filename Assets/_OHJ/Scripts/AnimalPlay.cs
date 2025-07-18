@@ -161,7 +161,7 @@ public class AnimalPlay : AnimalAbility
         // 공에게 이동 (아랫줄만 호출해도 알아서 시간에따라서 이동)
         bool result = agent.SetDestination(toy.transform.position);
         anim.SetInteger("animation", 18);
-        sfx = AudioManager.Instance.PlayEffect("Run", transform.position, 1.0f);
+        //sfx = AudioManager.Instance.PlayEffect("Run", transform.position, 1.0f);
 
         // 위에서 목적지까지 도착하기 전까지 대기
         float sqrDistance = (toy.transform.position - transform.position).sqrMagnitude;

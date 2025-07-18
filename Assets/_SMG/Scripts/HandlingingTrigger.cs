@@ -415,8 +415,11 @@ public class HandlingingTrigger : MonoBehaviour
         isFirstMove = true;
         UpdatePettingState(false, con); // 딜레이 적용해서 false로 설정
 
-        if (ac.state != AnimalControl.State.Play)
+        if (ac.state != AnimalControl.State.Play
+        && ac.state != AnimalControl.State.Drink
+        && ac.state != AnimalControl.State.Eat)
         {
+            
             ac.ChangeState(AnimalControl.State.Idle);
         }
 
