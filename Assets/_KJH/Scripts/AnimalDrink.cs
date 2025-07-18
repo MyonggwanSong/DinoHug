@@ -236,15 +236,16 @@ public class AnimalDrink : AnimalAbility
             anim.SetInteger("animation", 1);
             sfx?.Stop();
             // 먹기 완료
-            animal.petStateController.Drink();
-            //target.Reset();
+            
             yield return YieldInstructionCache.WaitForSeconds(1f);
             sfx = AudioManager.Instance.PlayEffect("Drink(1)", transform.position);
-            yield return YieldInstructionCache.WaitForSeconds(2f);
+            yield return YieldInstructionCache.WaitForSeconds(0.5f);
+            yield return YieldInstructionCache.WaitForSeconds(1f);
             sfx?.Stop();
-
-
-
+            animal.petStateController.Drink();
+            ParticleManager.Instance.SpawnParticle(ParticleFlag.WaterUp, transform.position, Quaternion.identity, null);
+            AudioManager.Instance.PlayEffect("ScoreUp", transform.position, 0.5f);
+            yield return YieldInstructionCache.WaitForSeconds(1.5f);
         }
 
 

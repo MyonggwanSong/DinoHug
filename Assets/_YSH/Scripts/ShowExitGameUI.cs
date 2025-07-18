@@ -24,11 +24,7 @@ public class ShowExitGameUI : MonoBehaviour
     public void ExitGameButton()
     {
         AudioManager.Instance.PlayEffect("UIClick1", transform.position);
-#if UNITY_EDITOR
-        EditorApplication.ExitPlaymode();
-#else
-        Application.Quit();
-#endif
+        SceneManager.LoadScene(0);
     }
 
     // UI 끄기 버튼

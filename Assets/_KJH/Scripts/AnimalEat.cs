@@ -200,12 +200,17 @@ public class AnimalEat : AnimalAbility
             }
             yield return YieldInstructionCache.WaitForSeconds(0.5f);
             ParticleManager.Instance.SpawnParticle(ParticleFlag.Eating, target.transform.position, Quaternion.identity, null);
-            yield return YieldInstructionCache.WaitForSeconds(2f);
-
             // 먹기 완료
+            yield return YieldInstructionCache.WaitForSeconds(1.5f);
             sfx?.Stop();
+
+            yield return YieldInstructionCache.WaitForSeconds(1.5f);
             animal.petStateController.Feed();
+            ParticleManager.Instance.SpawnParticle(ParticleFlag.MeatUp, transform.position, Quaternion.identity, null);
+            AudioManager.Instance.PlayEffect("ScoreUp", transform.position, 0.5f);
+
             target.Reset();
+            yield return YieldInstructionCache.WaitForSeconds(1.5f);
 
         }
 
