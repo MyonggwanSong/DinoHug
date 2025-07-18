@@ -1,6 +1,12 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scenes/SceneHome/NavMesh-Navmesh.asset.meta
 guid: 92fb162c599febb47aaf7b6b88b5045b
 NativeFormatImporter:
+========
+guid: 54fe02337fe113547ac9c2e0dc56aae3
+folderAsset: yes
+DefaultImporter:
+>>>>>>>> 1a6ba77295207731dd61d937dbddc8137cf8b768:Assets/ExternalAssets/Lana Studio.meta
   externalObjects: {}
   mainObjectFileID: 23800000
   userData: 
