@@ -160,7 +160,8 @@ public class AnimalControl : MonoBehaviour
                 ChangeState(State.GameClear);
         }
         // 바닥에 잘 안붙어서 아래로 붙여줌
-        transform.position += 0.2f * Vector3.down * Time.deltaTime;
+        if(state == State.Wander)
+            transform.position += 0.2f * Vector3.down * Time.deltaTime;
     }
     #endregion
 
@@ -191,6 +192,7 @@ public class AnimalControl : MonoBehaviour
         ThreeEffect,
         FourEffect,
         Dead,
+        Joyful,
     }
     // 2초마다 항상 실행되고 있는 루프
     IEnumerator ChangeFaceLoop()
@@ -279,6 +281,9 @@ public class AnimalControl : MonoBehaviour
                 break;
             case Face.Dead:
                 faceMR.material = faceMats[17];
+                break;
+            case Face.Joyful:
+                faceMR.material = faceMats[5];
                 break;
         }
     }
