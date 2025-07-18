@@ -18,7 +18,11 @@ public class House : MonoBehaviour
     public void OpenDoorEvent()
     {
         Sequence seq = DOTween.Sequence();
-        seq.AppendCallback(() => houseUI.SetActive(false))
+        seq.AppendCallback(() =>
+        {
+            houseUI.SetActive(false);
+            AudioManager.Instance.StopBGM();
+        })
             .AppendInterval(0.2f)
             .AppendCallback(()=>
             {

@@ -6,16 +6,8 @@ public class MenuControl : MonoBehaviour
     [SerializeField] GameObject view_Main;
     [SerializeField] GameObject view_Environment;
 
-    public void OnClickGameStartButton()
-    {
-        Debug.Log("OnClick Game Start");
-        SceneManager.LoadScene(1);
-    }
-
     public void OnClickEnvironmentButton()
     {
-        Debug.Log("OnClick Environment");
-
         view_Main.SetActive(false);
 
         if (view_Environment.activeSelf)
