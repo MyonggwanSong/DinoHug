@@ -22,6 +22,7 @@ public class AnimalPlay : AnimalAbility
     }
     public override void Init()
     {
+        animal.petStateController.UpdateIsInteraction(true);
         StopCoroutine(nameof(FollowPlayer));
         StartCoroutine(nameof(FollowPlayer));
         agent.isStopped = false;
@@ -161,7 +162,8 @@ public class AnimalPlay : AnimalAbility
         // 공에게 이동 (아랫줄만 호출해도 알아서 시간에따라서 이동)
         bool result = agent.SetDestination(toy.transform.position);
         anim.SetInteger("animation", 18);
-        sfx = AudioManager.Instance.PlayEffect("Run", transform.position, 0.66f);
+
+        sfx = AudioManager.Instance.PlayEffect("Run", transform.position, 0.5f);
 
         // 위에서 목적지까지 도착하기 전까지 대기
         float sqrDistance = (toy.transform.position - transform.position).sqrMagnitude;
@@ -329,6 +331,9 @@ public class AnimalPlay : AnimalAbility
 
         animal.petStateController.Play();   // 끝나면 지루함 떨어짐
         Debug.Log("놀아주기 완료");
+
+        ParticleManager.Instance.SpawnParticle(ParticleFlag.Twinkle, transform.position + Vector3.up, Quaternion.identity, this.transform);
+        AudioManager.Instance.PlayEffect("ScoreUp", transform.position, 0.5f);
 
         animal.ChangeState(AnimalControl.State.Idle);
 
