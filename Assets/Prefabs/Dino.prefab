@@ -1470,7 +1470,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animal: {fileID: 9141987329047380857}
   view: {fileID: 0}
-  _init_Bond: 25
+  _init_Bond: 40
   _init_Hunger: 20
   _init_Thirsty: 20
   _init_Bored: 30
