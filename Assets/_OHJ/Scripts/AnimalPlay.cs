@@ -12,8 +12,6 @@ public class AnimalPlay : AnimalAbility
 
     private Coroutine Particle_co;
 
-    private SFX sfx;    // 효과음 
-
     protected override void Awake()
     {
         base.Awake();
@@ -61,8 +59,6 @@ public class AnimalPlay : AnimalAbility
         // 공에게 이동 (아랫줄만 호출해도 알아서 시간에따라서 이동)
         bool result = agent.SetDestination(toy.transform.position);
         anim.SetInteger("animation", 18);
-
-        sfx = AudioManager.Instance.PlayEffect("Run", transform.position, 0.66f);
 
         // 위에서 목적지까지 도착하기 전까지 대기
         float sqrDistance = (toy.transform.position - transform.position).sqrMagnitude;
@@ -123,7 +119,7 @@ public class AnimalPlay : AnimalAbility
         Debug.Log("플레이어 손에있는 공에 도착완료");
         // 플레이어 손에 있는 공에 도착
         anim.SetInteger("animation", 1);
-        sfx?.Stop();    // 소리 멈춤
+ 
 
         if (Particle_co != null)
         {
@@ -163,7 +159,7 @@ public class AnimalPlay : AnimalAbility
         bool result = agent.SetDestination(toy.transform.position);
         anim.SetInteger("animation", 18);
 
-        sfx = AudioManager.Instance.PlayEffect("Run", transform.position, 0.5f);
+        
 
         // 위에서 목적지까지 도착하기 전까지 대기
         float sqrDistance = (toy.transform.position - transform.position).sqrMagnitude;
@@ -219,7 +215,7 @@ public class AnimalPlay : AnimalAbility
 
 
         anim.SetInteger("animation", 14);
-        sfx?.Stop();    // 소리 멈춤
+
         if (Particle_co != null)
         {
             StopCoroutine(nameof(PlayParticle));
@@ -326,6 +322,7 @@ public class AnimalPlay : AnimalAbility
         toy.EnableGrab();
         toy.isThrow = false;
 
+        animal.ChangeFaceTemporal(AnimalControl.Face.Happy, 3f);
         agent.angularSpeed = 120f;
         agent.acceleration = 8f;
 
