@@ -4,8 +4,10 @@ public class AnimalEat : AnimalAbility
 {
     [SerializeField] float eatDistance = 1.5f;
     Collider[] colliders = new Collider[80];
+    CapsuleCollider capsule;
     public override void Init()
     {
+        TryGetComponent(out capsule);
         //Debug.Log("공룡 Eat] 시작");
         StopCoroutine(nameof(GoToTarget));
         StartCoroutine(nameof(GoToTarget));
@@ -178,6 +180,22 @@ public class AnimalEat : AnimalAbility
             anim.SetInteger("animation", 12);
             sfx = AudioManager.Instance.PlayEffect("DinoNo", transform.position);
             animal.ChangeFaceTemporal(AnimalControl.Face.Angry, 4f);
+
+            Vector3 right = Camera.main.transform.right;
+            right.y = 0f;
+            right.Normalize();
+            Vector3 particlePos = transform.position + (capsule.height + 0.08f) * Vector3.up + 0.4f * right;
+
+            if (Random.value > 0.5f)
+            {
+                ParticleManager.Instance.SpawnParticle(ParticleFlag.Angry, particlePos, Quaternion.identity, null);
+            }
+            else
+            {
+                ParticleManager.Instance.SpawnParticle(ParticleFlag.DepressCurly, particlePos, Quaternion.identity, null);
+            }
+
+
             yield return YieldInstructionCache.WaitForSeconds(2f);
             sfx?.Stop();
             target.EnableGrab();
