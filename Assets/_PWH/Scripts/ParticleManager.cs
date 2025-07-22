@@ -18,7 +18,10 @@ public enum ParticleFlag
     WaterUp,
     MeatUp,
     ToyUp,
-    Playing
+    Playing,
+    Angry,
+    DepressCurly,
+    DepressVertical,
 }
 
 [Serializable]
@@ -41,8 +44,8 @@ public class ParticleManager : BehaviourSingleton<ParticleManager>
 
         if (pb == null) return null;
 
-        PoolManager.Instance.Spawn(pb, position, rot, parent);
+        var _pb = PoolManager.Instance.Spawn(pb, position, rot, parent);
 
-        return pb;
+        return _pb as PoolableParticle;
     }
 }
