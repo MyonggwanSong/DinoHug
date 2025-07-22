@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 4625136610226005686}
   - component: {fileID: 5795619003455751228}
   - component: {fileID: 5522430671797082907}
-  - component: {fileID: 8684863008573269484}
   - component: {fileID: 353535837670536829}
   - component: {fileID: 7914855455956480137}
   - component: {fileID: 3251012051572291835}
+  - component: {fileID: 4636645671938722641}
   m_Layer: 0
   m_Name: Toy
   m_TagString: Ball
@@ -87,27 +87,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &8684863008573269484
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 541765120928142642}
-  m_Material: {fileID: 13400000, guid: 5680dd1bc2248b74aada5d7a154bc360, type: 2}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!54 &353535837670536829
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -343,3 +322,26 @@ MonoBehaviour:
   coll: {fileID: 0}
   force: 5
   angle: 30
+--- !u!136 &4636645671938722641
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 541765120928142642}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.86
+  m_Height: 2.02
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.88999987, z: 0.19000006}
