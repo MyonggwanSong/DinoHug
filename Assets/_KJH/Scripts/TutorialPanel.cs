@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.Video;
 public class TutorialPanel : MonoBehaviour
 {
     AnimalControl animal;
@@ -13,8 +14,12 @@ public class TutorialPanel : MonoBehaviour
     public bool isComplete;
     SFX sfx;
     Tween tweenPop;
+    public VideoClip[] videoClips;
+    public RenderTexture[] renderTextures;
+    VideoPlayer videoPlayer;
     void Awake()
     {
+        TryGetComponent(out videoPlayer);
         animal = FindAnyObjectByType<AnimalControl>();
         texts = new Text[pops.Length];
         originalTexts = new string[pops.Length];
@@ -68,6 +73,25 @@ public class TutorialPanel : MonoBehaviour
             coShowText = null;
         }
         coShowText = StartCoroutine(ShowText(progress));
+        videoPlayer.Stop();
+        switch (progress)
+        {
+            case 2:
+                videoPlayer.clip = videoClips[0];
+                videoPlayer.targetTexture = renderTextures[0];
+                videoPlayer.Play();
+                break;
+            case 3:
+                videoPlayer.clip = videoClips[1];
+                videoPlayer.targetTexture = renderTextures[1];
+                videoPlayer.Play();
+                break;
+            case 4:
+                videoPlayer.clip = videoClips[2];
+                videoPlayer.targetTexture = renderTextures[2];
+                videoPlayer.Play();
+                break;
+        }
     }
     public void PrevButton()
     {
@@ -87,6 +111,25 @@ public class TutorialPanel : MonoBehaviour
             coShowText = null;
         }
         coShowText = StartCoroutine(ShowText(progress));
+        videoPlayer.Stop();
+        switch (progress)
+        {
+            case 2:
+                videoPlayer.clip = videoClips[0];
+                videoPlayer.targetTexture = renderTextures[0];
+                videoPlayer.Play();
+                break;
+            case 3:
+                videoPlayer.clip = videoClips[1];
+                videoPlayer.targetTexture = renderTextures[1];
+                videoPlayer.Play();
+                break;
+            case 4:
+                videoPlayer.clip = videoClips[2];
+                videoPlayer.targetTexture = renderTextures[2];
+                videoPlayer.Play();
+                break;
+        }
     }
     public void CompleteButton()
     {
@@ -107,6 +150,7 @@ public class TutorialPanel : MonoBehaviour
             StopCoroutine(coShowText);
             coShowText = null;
         }
+        videoPlayer.Stop();
     }
     // 임시
     Coroutine coShowText;
