@@ -1331,7 +1331,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bodyMesh:
   - {fileID: 8621248788529474098}
-  - {fileID: 8044876145009273789}
   - {fileID: 1328614482259208981}
   - {fileID: 2801331454601575934}
   - {fileID: 5899018391660884896}

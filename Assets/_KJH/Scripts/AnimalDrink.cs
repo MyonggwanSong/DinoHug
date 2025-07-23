@@ -5,6 +5,12 @@ public class AnimalDrink : AnimalAbility
     [SerializeField] float drinkDistance = 0.5f;
     [SerializeField] float drinkTime = 5f;
     Collider[] colliders = new Collider[80];
+    CapsuleCollider capsule;
+    protected override void Awake()
+    {
+        base.Awake();
+        TryGetComponent(out capsule);
+    }
     public override void Init()
     {
         //Debug.Log("공룡 Drink] 시작");
@@ -181,6 +187,23 @@ public class AnimalDrink : AnimalAbility
             anim.SetInteger("animation", 12);
             sfx = AudioManager.Instance.PlayEffect("DinoNo", transform.position);
             animal.ChangeFaceTemporal(AnimalControl.Face.Angry, 4f);
+
+            Vector3 right = Camera.main.transform.right;
+            right.y = 0f;
+            right.Normalize();
+            Vector3 particlePos = transform.position + (capsule.height + 0.08f) * Vector3.up + 0.4f * right;
+
+            if (Random.value < 0.6f)
+            {
+                ParticleManager.Instance.SpawnParticle(ParticleFlag.Angry, particlePos, Quaternion.identity, null);
+            }
+            else
+            {
+                ParticleManager.Instance.SpawnParticle(ParticleFlag.DepressCurly, particlePos, Quaternion.identity, null);
+            }
+
+
+
             yield return YieldInstructionCache.WaitForSeconds(2f);
             sfx?.Stop();
             target.Refuse();

@@ -5,9 +5,14 @@ public class AnimalEat : AnimalAbility
     [SerializeField] float eatDistance = 1.5f;
     Collider[] colliders = new Collider[80];
     CapsuleCollider capsule;
+    protected override void Awake()
+    {
+        base.Awake();
+        TryGetComponent(out capsule);
+    }
     public override void Init()
     {
-        TryGetComponent(out capsule);
+
         //Debug.Log("공룡 Eat] 시작");
         StopCoroutine(nameof(GoToTarget));
         StartCoroutine(nameof(GoToTarget));
@@ -186,7 +191,7 @@ public class AnimalEat : AnimalAbility
             right.Normalize();
             Vector3 particlePos = transform.position + (capsule.height + 0.08f) * Vector3.up + 0.4f * right;
 
-            if (Random.value > 0.5f)
+            if (Random.value < 0.6f)
             {
                 ParticleManager.Instance.SpawnParticle(ParticleFlag.Angry, particlePos, Quaternion.identity, null);
             }
