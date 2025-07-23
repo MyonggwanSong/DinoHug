@@ -124,6 +124,7 @@ public class Food : MonoBehaviour
     {
         coolTime = Time.time;
         isRefuse = true;
+        StopCoroutine(nameof(RefuseWait));
         StartCoroutine(nameof(RefuseWait));
     }
     IEnumerator RefuseWait()
