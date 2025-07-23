@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d768549d03bf4414c947451f641b8c74
+guid: ab01fd69d9d3b27439242e26470272ad
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,28 +7,18 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: COSTILLAS
-    second: {fileID: 2100000, guid: 404aa353f697ced4f8d645993b81f7b7, type: 2}
+      name: M_Ghost
+    second: {fileID: 2100000, guid: d8e8f95e8e7a2164bac651fddba678e3, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: FALDONI
-    second: {fileID: 2100000, guid: 73c1187c75450754da6726f888678952, type: 2}
+      name: M_Ground
+    second: {fileID: 2100000, guid: ec2ff1871c24f8a44b2162c31bd90234, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Frascos_Tapas
-    second: {fileID: 2100000, guid: b2ef2b3ee09c40240b81820f9ebf952b, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: HILO
-    second: {fileID: 2100000, guid: c58674481959bc8499fb0b43eacc617d, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Principal
-    second: {fileID: 2100000, guid: 312a7b73b8c5da945895141939077cba, type: 2}
+      name: Outline
+    second: {fileID: 2100000, guid: 81fbf50c0882e0f44ad20fa0f6fec47d, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
