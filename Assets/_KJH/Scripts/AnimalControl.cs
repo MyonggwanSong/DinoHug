@@ -241,14 +241,37 @@ public class AnimalControl : MonoBehaviour
             yield return YieldInstructionCache.WaitForSeconds(UnityEngine.Random.Range(0.2f,2f));
             yield return new WaitUntil(() => !isChangeFaceTemporal);
             yield return new WaitUntil(() => state == State.Idle || state == State.Wander);
+            yield return YieldInstructionCache.WaitForSeconds(3f);
+            if (state != State.Idle && state != State.Wander) continue;
+            Vector3 right = Camera.main.transform.right;
+            right.y = 0f;
+            right.Normalize();
             if (EffectCount() >= 1)
             {
-                var particle = ParticleManager.Instance.SpawnParticle(ParticleFlag.DepressVertical, Vector3.zero, Quaternion.identity, null);
+                PoolableParticle particle;
+                int select = 0;
+                if (UnityEngine.Random.value < 0.6f)
+                {
+                    particle = ParticleManager.Instance.SpawnParticle(ParticleFlag.DepressVertical, Vector3.zero, Quaternion.identity, null);
+                    select = 0;
+                }
+                else
+                {
+                    particle = ParticleManager.Instance.SpawnParticle(ParticleFlag.DepressCurly, Vector3.zero, Quaternion.identity, null);
+                    select = 1;
+                }
                 float elpased = 0f;
                 while (elpased < 4f)
                 {
                     elpased += Time.deltaTime;
-                    particle.transform.position = transform.position + 1.1f * Vector3.up;
+                    if (select == 0)
+                    {
+                        particle.transform.position = transform.position + 1.1f * Vector3.up;
+                    }
+                    else
+                    {
+                        particle.transform.position = transform.position + 1.25f * Vector3.up + 0.6f * right;
+                    }
                     yield return null;
                     if (state != State.Idle && state != State.Wander)
                     {
@@ -262,11 +285,9 @@ public class AnimalControl : MonoBehaviour
                         }
                         break;
                     }
-
-
                 }
             }
-            yield return YieldInstructionCache.WaitForSeconds(UnityEngine.Random.Range(2.5f,8f));
+            yield return YieldInstructionCache.WaitForSeconds(UnityEngine.Random.Range(0.5f,6f));
         }
     }
     bool isChangeFaceTemporal = false;

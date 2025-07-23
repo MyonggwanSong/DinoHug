@@ -5,11 +5,13 @@ public class AnimalGameClear : AnimalAbility
 {
     XROrigin xrOrigin;
     GameClearPanel gameClearPanel;
+    GameObject effectEmoticonBox;
     protected override void Awake()
     {
         base.Awake();
         xrOrigin = FindAnyObjectByType<XROrigin>();
         gameClearPanel = FindAnyObjectByType<GameClearPanel>();
+        effectEmoticonBox = transform.Find("EffectEmoticonBox").gameObject;
     }
     public override void Init()
     {
@@ -26,6 +28,7 @@ public class AnimalGameClear : AnimalAbility
         animal.petStateController.UpdateBond(animal.petStateController.currentState.bond);
         animal.petStateController.UpdateIsInteraction(true);
         AudioManager.Instance.PlayEffect("GameClear", transform.position, 0.5f);
+        effectEmoticonBox.SetActive(false);
         gameClearPanel.StartCoroutine(nameof(gameClearPanel.ConfetiEffect));
         yield return YieldInstructionCache.WaitForSeconds(1f);
         anim.SetInteger("animation", 2);
