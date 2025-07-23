@@ -84,7 +84,7 @@ public class Food : MonoBehaviour
             {
                 isPlaced = true;
                 // Idle, Wander 상태일때만 --> State.Eat 으로 체인지
-                if (animalControl.state == AnimalControl.State.Idle || animalControl.state == AnimalControl.State.Wander)
+                if (animalControl.state == AnimalControl.State.Idle || animalControl.state == AnimalControl.State.Wander || animalControl.state == AnimalControl.State.CallIdle)
                 {
                     if (animalControl.state != AnimalControl.State.Eat)
                         animalControl.ChangeState(AnimalControl.State.Eat);

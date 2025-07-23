@@ -29,7 +29,10 @@ public class AnimalControl : MonoBehaviour
     void OnEnable()
     {
         StopCoroutine(nameof(ChangeFaceLoop));
+        StopCoroutine(nameof(ParticleLoop));
+        //
         StartCoroutine(nameof(ChangeFaceLoop));
+        StartCoroutine(nameof(ParticleLoop));
     }
     #region FSM (스크립트 하나만 키고 나머지는 끄는방식)
     public enum State
@@ -229,6 +232,41 @@ public class AnimalControl : MonoBehaviour
             {
                 ChangeFace(Face.FourEffect);
             }
+        }
+    }
+    IEnumerator ParticleLoop()
+    {
+        while (true)
+        {
+            yield return YieldInstructionCache.WaitForSeconds(UnityEngine.Random.Range(0.2f,2f));
+            yield return new WaitUntil(() => !isChangeFaceTemporal);
+            yield return new WaitUntil(() => state == State.Idle || state == State.Wander);
+            if (EffectCount() >= 1)
+            {
+                var particle = ParticleManager.Instance.SpawnParticle(ParticleFlag.DepressVertical, Vector3.zero, Quaternion.identity, null);
+                float elpased = 0f;
+                while (elpased < 4f)
+                {
+                    elpased += Time.deltaTime;
+                    particle.transform.position = transform.position + 1.1f * Vector3.up;
+                    yield return null;
+                    if (state != State.Idle && state != State.Wander)
+                    {
+                        try
+                        {
+                            particle.Despawn();
+                        }
+                        catch
+                        {
+
+                        }
+                        break;
+                    }
+
+
+                }
+            }
+            yield return YieldInstructionCache.WaitForSeconds(UnityEngine.Random.Range(2.5f,8f));
         }
     }
     bool isChangeFaceTemporal = false;
