@@ -196,11 +196,14 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 643d63af7cd4eaf4383ee3c1b685bad9, type: 3}
   - {fileID: 8300000, guid: 5ed010eff8a20024896f21602603ce4d, type: 3}
   - {fileID: 8300000, guid: b0a2c17f2f184664c857a0c8698c369d, type: 3}
-  - {fileID: 8300000, guid: 02820d0d9c0c86b4db99fa4b62da0b36, type: 3}
+  - {fileID: 8300000, guid: 3493b5c19cf1d5b4e9bff2d357900349, type: 3}
   - {fileID: 8300000, guid: c825f9e81521e01458daaa202096466e, type: 3}
   - {fileID: 8300000, guid: fbea532a014332e4abe675e00f526c77, type: 3}
   - {fileID: 8300000, guid: 276f529b010069047b3786e691233fbd, type: 3}
   - {fileID: 8300000, guid: 7c1780e2df9e6bb4b98630f8f96655b1, type: 3}
+  - {fileID: 8300000, guid: e07c51be9b3e01946a33cbd8be48f083, type: 3}
+  - {fileID: 8300000, guid: 643b4be987a90094cb0bbf976a99396d, type: 3}
+  - {fileID: 8300000, guid: b60911b5171f01242bd18f57dc7a91f5, type: 3}
   sfxPrefab: {fileID: -6642653840743833105, guid: 8fe898a64822d3f42813a1f6b8c0cb32, type: 3}
   init_Master: 0
   init_Effect: 0
