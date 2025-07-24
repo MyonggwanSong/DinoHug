@@ -31,8 +31,9 @@ public class GameManager : BehaviourSingleton<GameManager>
         house.OpenDoorEvent();
 
         yield return new WaitForSeconds(3f);
-        
-        SceneManager.LoadScene(inGameScene);
+
+        // SceneManager.LoadScene(inGameScene);
+        LoadingControl.LoadScene(inGameScene);
     }
 
     #region SceneManager

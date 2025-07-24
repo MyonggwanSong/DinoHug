@@ -53,6 +53,7 @@ public class SoundView : MonoBehaviour
 
     public void OnClickBack()
     {
+        Debug.Log("OnClickBack");
         slider_BGM.value = pre_BGM;
         slider_Effect.value = pre_Effect;
 
