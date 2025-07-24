@@ -12,10 +12,10 @@ public class PetStateView : MonoBehaviour
     [SerializeField] Slider bar_Bored;
 
     [Header("TMP")]
-    [SerializeField] TextMeshProUGUI percent_Bond;
-    [SerializeField] TextMeshProUGUI percent_Hunger;
-    [SerializeField] TextMeshProUGUI percent_Thirsty;
-    [SerializeField] TextMeshProUGUI percent_Bored;
+    [SerializeField] TextMesh percent_Bond;
+    [SerializeField] TextMesh percent_Hunger;
+    [SerializeField] TextMesh percent_Thirsty;
+    [SerializeField] TextMesh percent_Bored;
 
     public void UpdateBond(float amount)
     {
