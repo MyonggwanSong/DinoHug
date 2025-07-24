@@ -15,6 +15,10 @@ GameObject:
   - component: {fileID: 3652729707201401027}
   - component: {fileID: 6373675395391178885}
   - component: {fileID: 3799925563171257905}
+<<<<<<< Updated upstream
+=======
+  - component: {fileID: 78126716697371533}
+>>>>>>> Stashed changes
   m_Layer: 0
   m_Name: WaterBowl
   m_TagString: Untagged

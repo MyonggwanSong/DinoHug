@@ -15,6 +15,12 @@ GameObject:
   - component: {fileID: 7914855455956480137}
   - component: {fileID: 3251012051572291835}
   - component: {fileID: 4636645671938722641}
+<<<<<<< Updated upstream
+=======
+  - component: {fileID: 4148553183832007687}
+  - component: {fileID: 2066981335161248700}
+  - component: {fileID: 6123435403470383486}
+>>>>>>> Stashed changes
   m_Layer: 0
   m_Name: Toy
   m_TagString: Ball

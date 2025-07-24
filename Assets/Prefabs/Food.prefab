@@ -17,6 +17,10 @@ GameObject:
   - component: {fileID: 9179529948731465183}
   - component: {fileID: 5883244226459090554}
   - component: {fileID: 6494852378264578925}
+<<<<<<< Updated upstream
+=======
+  - component: {fileID: 2973207678377685388}
+>>>>>>> Stashed changes
   m_Layer: 0
   m_Name: Food
   m_TagString: Untagged
