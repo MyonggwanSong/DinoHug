@@ -84,7 +84,7 @@ public class HandlingingTrigger : MonoBehaviour
             if (ac.state != AnimalControl.State.Handle)
             {
                 ac.ChangeState(AnimalControl.State.Handle);
-                //Debug.Log("상태 변경: Handle");
+//              Debug.Log("상태 변경: Handle");
             }
 
             // 2. 위치 추적 및 속도 계산
@@ -115,7 +115,7 @@ public class HandlingingTrigger : MonoBehaviour
             if (ac.state != AnimalControl.State.Handle)
             {
                 ac.ChangeState(AnimalControl.State.Handle);
-                //Debug.Log("상태 변경: Handle");
+//              Debug.Log("상태 변경: Handle");
             }
 
             // 2. 위치 추적 및 속도 계산
@@ -148,7 +148,7 @@ public class HandlingingTrigger : MonoBehaviour
             {
                 ac.ChangeState(AnimalControl.State.Handle);
                 
-                //Debug.Log("상태 변경: Handle");
+//              Debug.Log("상태 변경: Handle");
             }
             // 안아주기 위치 = 양 컨트롤러 중앙(높이는 조율) + 카메라 전방 0.2m 앞
             Vector3 offset = new Vector3(Camera.main.transform.forward.x, 0f, Camera.main.transform.forward.z).normalized * 0.54f;
@@ -216,7 +216,7 @@ public class HandlingingTrigger : MonoBehaviour
             // 유예시간이 아직 지나지 않았으면 false로 바꾸지 않음
             if (Time.time - pettingStartTime < pettingGracePeriod)
             {
-                //Debug.Log($"유예시간 중 - 남은시간: {pettingGracePeriod - (Time.time - pettingStartTime):F1}초");
+//              Debug.Log($"유예시간 중 - 남은시간: {pettingGracePeriod - (Time.time - pettingStartTime):F1}초");
                 return;
             }
         }
@@ -231,14 +231,15 @@ public class HandlingingTrigger : MonoBehaviour
         {
             con.SendHapticImpulse(0.5f, 0.2f);
             pettingStartTime = Time.time;
-            Debug.Log("쓰다듬기 시작 - 유예시간 시작");
-            ac.petStateController.Petting();
+//          Debug.Log("쓰다듬기 시작 - 유예시간 시작");
+            ac.petStateController.Petting(); // 유대감 증가
             Vector3 _particleOsset = transform.position + new Vector3(0f, 1.2f, 0f);
-            ParticleManager.Instance.SpawnParticle(ParticleFlag.Twinkle, _particleOsset, Quaternion.identity, null);
+            ParticleManager.Instance.SpawnParticle(ParticleFlag.Twinkle, _particleOsset, Quaternion.identity, null); // particle
+            AudioManager.Instance.PlayEffect("Petting", transform.position + Vector3.up * 1.2f, 1f); // SFX
 
         }
 
-        //Debug.Log($"쓰다듬기 상태 변경: {shouldPet}");
+//      Debug.Log($"쓰다듬기 상태 변경: {shouldPet}");
     }
 
     void UpdateHuggingState(bool shouldHug)
@@ -257,7 +258,7 @@ public class HandlingingTrigger : MonoBehaviour
             // 유예시간이 아직 지나지 않았으면 false로 바꾸지 않음
             if (Time.time - pettingStartTime < pettingGracePeriod)
             {
-                //Debug.Log($"유예시간 중 - 남은시간: {pettingGracePeriod - (Time.time - pettingStartTime):F1}초");
+//              Debug.Log($"유예시간 중 - 남은시간: {pettingGracePeriod - (Time.time - pettingStartTime):F1}초");
                 return;
             }
         }
@@ -274,7 +275,7 @@ public class HandlingingTrigger : MonoBehaviour
             rightController.SendHapticImpulse(0.5f, 0.2f);
 
             pettingStartTime = Time.time;
-            Debug.Log("안아주기 시작 - 유예시간 시작");
+//          Debug.Log("안아주기 시작 - 유예시간 시작");
 
             // 안아주기도 Bond를 오르도록 할 것인가?
             // ac.petStateController.Petting();
@@ -282,7 +283,7 @@ public class HandlingingTrigger : MonoBehaviour
             ParticleManager.Instance.SpawnParticle(ParticleFlag.Twinkle, _particleOsset, Quaternion.identity, null);
         }
 
-        //Debug.Log($"쓰다듬기 상태 변경: {shouldPet}");
+//      Debug.Log($"쓰다듬기 상태 변경: {shouldPet}");
     }
 
     bool IsValidPettingDirection(Vector3 delta)
@@ -290,14 +291,14 @@ public class HandlingingTrigger : MonoBehaviour
         // 1. 최소 움직임 크기 체크 (너무 작으면 방향 설정 안함)
         if (delta.magnitude < 0.01f)
         {
-            //Debug.Log("움직임이 너무 작음");
+//          Debug.Log("움직임이 너무 작음");
             return false;
         }
 
         // 2. 상하 움직임 제한 (Z축 움직임이 30도 이상이면 안됨)
         if (Math.Abs(velocity.z) > 0.5f)
         {
-            //Debug.Log("앞뒤 움직임이 너무 큼");
+//          Debug.Log("앞뒤 움직임이 너무 큼");
             return false;
         }
 
@@ -305,11 +306,11 @@ public class HandlingingTrigger : MonoBehaviour
         float horizontalMovement = Mathf.Sqrt(velocity.x * velocity.x + velocity.y * velocity.y);
         if (horizontalMovement < 0.7f) // 전체 움직임의 70% 이상이 좌우 움직임이어야 함
         {
-            //Debug.Log($"좌우 움직임 부족: {horizontalMovement:F3}");
+//          Debug.Log($"좌우 움직임 부족: {horizontalMovement:F3}");
             return false;
         }
 
-        //Debug.Log($"유효한 쓰다듬기 방향 - 수평이동: {horizontalMovement:F3}");
+//      Debug.Log($"유효한 쓰다듬기 방향 - 수평이동: {horizontalMovement:F3}");
         return true;
     }
 
@@ -351,7 +352,7 @@ public class HandlingingTrigger : MonoBehaviour
         if (Math.Abs(velocity.z) > 0.5f)
         {
             UpdatePettingState(false, con);
-            //Debug.Log("상하 움직임 감지 - 쓰다듬기 중단");
+//          Debug.Log("상하 움직임 감지 - 쓰다듬기 중단");
             return;
         }
 
@@ -362,11 +363,11 @@ public class HandlingingTrigger : MonoBehaviour
             {
                 firstDirection = velocity;
                 isFirstMove = false;
-                //Debug.Log($"첫 번째 방향 설정: {firstDirection}");
+//              Debug.Log($"첫 번째 방향 설정: {firstDirection}");
             }
             else
             {
-                //Debug.Log("유효하지 않은 방향 - firstDirection 설정 안함");
+//              Debug.Log("유효하지 않은 방향 - firstDirection 설정 안함");
             }
         }
 
@@ -384,7 +385,7 @@ public class HandlingingTrigger : MonoBehaviour
         // 쓰다듬기 상태 업데이트 (딜레이 적용)
         UpdatePettingState(shouldPet, con);
 
-        //Debug.Log($" Horizontal: {horizontal:F3}, IsPetting: {ap.isPetting}, ShouldPet: {shouldPet}");
+//      Debug.Log($" Horizontal: {horizontal:F3}, IsPetting: {ap.isPetting}, ShouldPet: {shouldPet}");
     }
 
     void OnTriggerExit(Collider other)
@@ -408,7 +409,7 @@ public class HandlingingTrigger : MonoBehaviour
 
     void ResetToIdle(ActionBasedController con)
     {
-        //Debug.Log("Idle 상태로 리셋");
+//      Debug.Log("Idle 상태로 리셋");
 
         // 위치 데이터 초기화
         prevPosition = Vector3.zero;
