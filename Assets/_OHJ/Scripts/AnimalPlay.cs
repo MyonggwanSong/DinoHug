@@ -231,7 +231,7 @@ public class AnimalPlay : AnimalAbility
 
         toy.transform.SetParent(ballPos);
         startTime = Time.time;
-        float duration = 2f;
+        float duration = 0.5f;
         while (Time.time - startTime < duration)
         {
             float t = (Time.time - startTime) / duration;
