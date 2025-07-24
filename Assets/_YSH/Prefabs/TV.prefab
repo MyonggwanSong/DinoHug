@@ -2745,7 +2745,7 @@ MonoBehaviour:
   bar_Hunger: {fileID: 1999939828505975225}
   bar_Thirsty: {fileID: 6883149039730563981}
   bar_Bored: {fileID: 2317286786845220621}
-  percent_Bond: {fileID: 0}
-  percent_Hunger: {fileID: 0}
-  percent_Thirsty: {fileID: 0}
-  percent_Bored: {fileID: 0}
+  percent_Bond: {fileID: 3850499204263413107}
+  percent_Hunger: {fileID: 6169150071315202675}
+  percent_Thirsty: {fileID: 6219218083455591460}
+  percent_Bored: {fileID: 4956571032493679917}
