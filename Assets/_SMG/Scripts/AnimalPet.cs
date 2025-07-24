@@ -56,6 +56,8 @@ public class AnimalPet : AnimalAbility
                                           //Debug.Log("쓰다듬는 중");
         animal.ChangeFace(AnimalControl.Face.Joyful); // 표정 변화
         AudioManager.Instance.PlayEffect("Delight", transform.position + Vector3.up * 1.2f, 1f); // SFX
+        AudioManager.Instance.PlayEffect("Petting", transform.position + Vector3.up * 1.2f, 0.5f); // SFX
+
 
         agent.updatePosition = false;  // 이동 위치를 직접 제어
 
