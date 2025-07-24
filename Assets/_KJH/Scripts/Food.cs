@@ -55,6 +55,8 @@ public class Food : MonoBehaviour
         transform.rotation = startRotation;
         isPlaced = false;
         isGrabbed = false;
+        rigidbody.interpolation = RigidbodyInterpolation.None;
+        rigidbody.collisionDetectionMode = CollisionDetectionMode.Discrete;
         StopCoroutine(nameof(Retry));
         StopCoroutine(nameof(RefuseWait));
         StartCoroutine(Reset_co());
@@ -62,17 +64,19 @@ public class Food : MonoBehaviour
     IEnumerator Reset_co()
     {
         xRGrab.enabled = false;
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 15; i++)
         {
             transform.position = startPosition;
             transform.rotation = startRotation;
-            yield return YieldInstructionCache.WaitForSeconds(0.05f);
+            yield return YieldInstructionCache.WaitForSeconds(0.02f);
             rigidbody.useGravity = true;
             rigidbody.isKinematic = false;
-            yield return YieldInstructionCache.WaitForSeconds(0.05f);
+            yield return YieldInstructionCache.WaitForSeconds(0.02f);
             transform.position = startPosition;
             transform.rotation = startRotation;
         }
+        rigidbody.interpolation = RigidbodyInterpolation.Interpolate;
+        rigidbody.collisionDetectionMode = CollisionDetectionMode.Continuous;
         xRGrab.enabled = true;
     }
     void OnCollisionStay(Collision collision)
