@@ -42,7 +42,7 @@ public class GameManager : BehaviourSingleton<GameManager>
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "SceneHome_Fixed")
+        if (scene.name == inGameScene)
         {
             OnInGameSceneLoaded();
         }

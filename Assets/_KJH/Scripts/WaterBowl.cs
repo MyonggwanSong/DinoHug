@@ -47,7 +47,7 @@ public class WaterBowl : MonoBehaviour
             }
             if (isPlaced)
             {
-                if (liquid.fillAmount >= Mathf.Lerp(fillRange.x, fillRange.y, 0.5f))
+                if (liquid.fillAmount >= Mathf.Lerp(fillRange.x, fillRange.y, 0.3f))
                 {
                     // Idle, Wander 상태일때만 --> State.Drink 으로 체인지
                     if (animalControl.state == AnimalControl.State.Idle || animalControl.state == AnimalControl.State.Wander)
@@ -89,6 +89,7 @@ public class WaterBowl : MonoBehaviour
         transform.rotation = startRotation;
         isPlaced = true;
         isGrabbed = false;
+        StopCoroutine(nameof(RefuseWait));
         StopCoroutine(nameof(Retry));
     }
     void OnCollisionEnter(Collision collision)
@@ -113,7 +114,7 @@ public class WaterBowl : MonoBehaviour
     }
     IEnumerator RefuseWait()
     {
-        yield return YieldInstructionCache.WaitForSeconds(40f);
+        yield return YieldInstructionCache.WaitForSeconds(35f);
         isRefuse = false;
     }
 

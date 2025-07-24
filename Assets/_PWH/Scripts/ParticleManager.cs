@@ -22,6 +22,7 @@ public enum ParticleFlag
     Angry,
     DepressCurly,
     DepressVertical,
+    PlayUp
 }
 
 [Serializable]

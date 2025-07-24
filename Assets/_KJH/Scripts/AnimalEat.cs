@@ -3,7 +3,7 @@ using UnityEngine;
 public class AnimalEat : AnimalAbility
 {
     [SerializeField] float eatDistance = 1.5f;
-    Collider[] colliders = new Collider[80];
+    Collider[] colliders = new Collider[500];
     CapsuleCollider capsule;
     protected override void Awake()
     {
@@ -37,7 +37,7 @@ public class AnimalEat : AnimalAbility
     // 타겟 찾기
     void FindTarget()
     {
-        int count = Physics.OverlapSphereNonAlloc(transform.position, 50f, colliders, ~0, QueryTriggerInteraction.Ignore);
+        int count = Physics.OverlapSphereNonAlloc(transform.position, 50f, colliders, ~0 , QueryTriggerInteraction.Ignore);
         int find = -1;
         target = null;
         for (int i = 0; i < count; i++)

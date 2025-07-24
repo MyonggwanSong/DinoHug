@@ -329,7 +329,7 @@ public class AnimalPlay : AnimalAbility
         animal.petStateController.Play();   // 끝나면 지루함 떨어짐
         Debug.Log("놀아주기 완료");
 
-        ParticleManager.Instance.SpawnParticle(ParticleFlag.Twinkle, transform.position + Vector3.up, Quaternion.identity, this.transform);
+        ParticleManager.Instance.SpawnParticle(ParticleFlag.PlayUp, transform.position, Quaternion.identity, this.transform);
         AudioManager.Instance.PlayEffect("ScoreUp", transform.position, 0.5f);
 
         animal.ChangeState(AnimalControl.State.Idle);

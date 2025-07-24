@@ -72,23 +72,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: ad7925c81c02cf64e80d1f0a5d65aa58, type: 3}
       propertyPath: m_LocalPosition.x
-<<<<<<< Updated upstream
-      value: -1.56636
-=======
-      value: -2.756
->>>>>>> Stashed changes
+      value: -1.65
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ad7925c81c02cf64e80d1f0a5d65aa58, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.365
+      value: 1.563
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ad7925c81c02cf64e80d1f0a5d65aa58, type: 3}
       propertyPath: m_LocalPosition.z
-<<<<<<< Updated upstream
-      value: 2.1530676
-=======
-      value: 1.5
->>>>>>> Stashed changes
+      value: 1.887
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ad7925c81c02cf64e80d1f0a5d65aa58, type: 3}
       propertyPath: m_LocalRotation.w
@@ -126,13 +118,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WaterBottle
       objectReference: {fileID: 0}
-<<<<<<< Updated upstream
-=======
     - target: {fileID: 919132149155446097, guid: ad7925c81c02cf64e80d1f0a5d65aa58, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
->>>>>>> Stashed changes
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 8513859187771203891, guid: ad7925c81c02cf64e80d1f0a5d65aa58, type: 3}
@@ -163,6 +152,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ad7925c81c02cf64e80d1f0a5d65aa58, type: 3}
       insertIndex: -1
       addedObject: {fileID: 394454475501884874}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ad7925c81c02cf64e80d1f0a5d65aa58, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7070359442994439019}
     - targetCorrespondingSourceObject: {fileID: -6475698432325073768, guid: ad7925c81c02cf64e80d1f0a5d65aa58, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5461756801173859482}
@@ -458,10 +450,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cdf13f29845c9e4cab53db221a30028, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  renderer: {fileID: 7815765826691656609}
   eventHandler: {fileID: 394454475501884874}
-  outlineFill_Prefab: {fileID: 2100000, guid: 0c4a0d014f61e154e8fc7327ead2c7c4, type: 2}
-  outlineMask_Prefab: {fileID: 2100000, guid: aac71b105816a6941afe786b14514338, type: 2}
+  outline: {fileID: 0}
 --- !u!114 &394454475501884874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -475,11 +465,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactor: {fileID: 0}
---- !u!23 &7815765826691656609 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 364111982436210763, guid: ad7925c81c02cf64e80d1f0a5d65aa58, type: 3}
-  m_PrefabInstance: {fileID: 7600590143053181930}
+--- !u!114 &7070359442994439019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7330683332793470651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0, g: 1, b: 0.8771584, a: 1}
+  outlineWidth: 5
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!4 &7993890482498851841 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ad7925c81c02cf64e80d1f0a5d65aa58, type: 3}

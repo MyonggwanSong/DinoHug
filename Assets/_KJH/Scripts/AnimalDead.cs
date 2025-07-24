@@ -5,11 +5,13 @@ public class AnimalDead : AnimalAbility
 {
     XROrigin xrOrigin;
     GameOverPanel gameOverPanel;
+    GameObject effectEmoticonBox;
     protected override void Awake()
     {
         base.Awake();
         xrOrigin = FindAnyObjectByType<XROrigin>();
         gameOverPanel = FindAnyObjectByType<GameOverPanel>();
+        effectEmoticonBox = transform.Find("EffectEmoticonBox").gameObject;
     }
     public override void Init()
     {
@@ -24,6 +26,7 @@ public class AnimalDead : AnimalAbility
         StartCoroutine(nameof(Look));
         animal.petStateController.UpdateIsInteraction(true);
         yield return YieldInstructionCache.WaitForSeconds(0.5f);
+        effectEmoticonBox.SetActive(false);
         AudioManager.Instance.PlayEffect("DinoDie", transform.position, 0.5f);
         yield return YieldInstructionCache.WaitForSeconds(0.5f);
         AudioManager.Instance.PlayEffect("GameOver", transform.position, 0.5f);
