@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 01f7780c42f79b9428b2669b7809df0c, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -53927,7 +53927,7 @@ GameObject:
   - component: {fileID: 4920999461024792608}
   - component: {fileID: 5091653300038480942}
   - component: {fileID: 6743855660799624638}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Rug
   m_TagString: Untagged
   m_Icon: {fileID: 0}
