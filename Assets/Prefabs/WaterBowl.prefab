@@ -15,7 +15,8 @@ GameObject:
   - component: {fileID: 3652729707201401027}
   - component: {fileID: 6373675395391178885}
   - component: {fileID: 3799925563171257905}
-  m_Layer: 0
+  - component: {fileID: 78126716697371533}
+  m_Layer: 7
   m_Name: WaterBowl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -291,10 +292,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cdf13f29845c9e4cab53db221a30028, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  renderer: {fileID: 3860534250903102028}
   eventHandler: {fileID: 3799925563171257905}
-  outlineFill_Prefab: {fileID: 2100000, guid: 0c4a0d014f61e154e8fc7327ead2c7c4, type: 2}
-  outlineMask_Prefab: {fileID: 2100000, guid: aac71b105816a6941afe786b14514338, type: 2}
+  outline: {fileID: 0}
 --- !u!114 &3799925563171257905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -308,6 +307,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactor: {fileID: 0}
+--- !u!114 &78126716697371533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1595455048357033778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0, g: 1, b: 0.8771584, a: 1}
+  outlineWidth: 5
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &4378882770031890171
 GameObject:
   m_ObjectHideFlags: 0

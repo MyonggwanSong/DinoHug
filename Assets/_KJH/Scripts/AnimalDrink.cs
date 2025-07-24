@@ -4,7 +4,7 @@ public class AnimalDrink : AnimalAbility
 {
     [SerializeField] float drinkDistance = 0.5f;
     [SerializeField] float drinkTime = 5f;
-    Collider[] colliders = new Collider[80];
+    Collider[] colliders = new Collider[500];
     CapsuleCollider capsule;
     protected override void Awake()
     {
