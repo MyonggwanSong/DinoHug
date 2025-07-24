@@ -38,7 +38,8 @@ public class AnimalPet : AnimalAbility
         yield return new WaitUntil(() => isPetting && !isHugging);
         anim.SetInteger("animation", 2); // 행복한 모션
                                          //Debug.Log("쓰다듬는 중");
-        animal.ChangeFace(AnimalControl.Face.Joyful);
+        animal.ChangeFace(AnimalControl.Face.Joyful); // 표정 변화
+        AudioManager.Instance.PlayEffect("Happy", transform.position + Vector3.up * 1.2f, 1f); // SFX
 
         yield return new WaitUntil(() => !isPetting);
         anim.SetInteger("animation", 1); // Idle 모션
@@ -53,7 +54,9 @@ public class AnimalPet : AnimalAbility
 
         anim.SetInteger("animation", 27); // 귀여운 모션
                                           //Debug.Log("쓰다듬는 중");
-        animal.ChangeFace(AnimalControl.Face.Joyful);
+        animal.ChangeFace(AnimalControl.Face.Joyful); // 표정 변화
+        AudioManager.Instance.PlayEffect("Delight", transform.position + Vector3.up * 1.2f, 1f); // SFX
+
         agent.updatePosition = false;  // 이동 위치를 직접 제어
 
         yield return new WaitUntil(() => !isHugging);
