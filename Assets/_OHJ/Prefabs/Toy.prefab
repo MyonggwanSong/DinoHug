@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 4148553183832007687}
   - component: {fileID: 2066981335161248700}
   - component: {fileID: 6123435403470383486}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Toy
   m_TagString: Ball
   m_Icon: {fileID: 0}
@@ -68,7 +68,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -6478536213147159724, guid: 466c1e3dbea979046a484a42e6d52952, type: 3}
+  - {fileID: 2100000, guid: ab33158be76bd604d945973532160759, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
