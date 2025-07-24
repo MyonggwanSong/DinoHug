@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEditor;
 using DG.Tweening;
 public class ShowExitGameUI : MonoBehaviour
 {
@@ -27,6 +26,18 @@ public class ShowExitGameUI : MonoBehaviour
 
     // 게임 종료 버튼 (StartScene으로 이동)
     public void ExitGameButton()
+    {
+        panelUI.SetActive(false);
+        AudioManager.Instance.PlayEffect("UIClick1", transform.position);
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.ExitPlaymode();
+#else
+        Application.Quit();
+#endif
+    }
+
+    // 처음 화면으로 버튼 (StartScene으로 이동)
+    public void StartSceneButton()
     {
         panelUI.SetActive(false);
         AudioManager.Instance.PlayEffect("UIClick1", transform.position);
