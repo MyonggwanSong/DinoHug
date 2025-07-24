@@ -16,6 +16,7 @@ public class ShowExitGameUI : MonoBehaviour
     // VR에서 버튼을 누르면 이 함수를 호출
     public void ShowGameExitPanel()
     {
+        if (panelUI.activeInHierarchy) return;
         AudioManager.Instance.PlayEffect("UIClick1", transform.position);
         panelUI.SetActive(true);
     }
@@ -23,6 +24,7 @@ public class ShowExitGameUI : MonoBehaviour
     // 게임 종료 버튼 (StartScene으로 이동)
     public void ExitGameButton()
     {
+        panelUI.SetActive(false);
         AudioManager.Instance.PlayEffect("UIClick1", transform.position);
         SceneManager.LoadScene(0);
     }
