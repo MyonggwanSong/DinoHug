@@ -220,7 +220,7 @@ public class AnimalEat : AnimalAbility
             while (Time.time - startTime < 0.5f)
             {
                 // 여기에 각종 부드러운 처리들 구현
-                target.transform.position = Vector3.Lerp(target.transform.position, transform.position + 0.9f * Vector3.up + 0.15f * transform.forward, 4f * Time.deltaTime);
+                target.transform.position = Vector3.Lerp(target.transform.position, transform.position + 0.68f * Vector3.up + 0.21f * transform.forward, 4f * Time.deltaTime);
                 yield return null;
             }
             yield return YieldInstructionCache.WaitForSeconds(0.5f);
