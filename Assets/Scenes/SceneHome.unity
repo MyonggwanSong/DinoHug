@@ -54687,6 +54687,18 @@ PrefabInstance:
       propertyPath: interactableObjects
       value: 
       objectReference: {fileID: 1248440155}
+    - target: {fileID: 8089701222257323049, guid: b1218939249af374983adabd62c7a633, type: 3}
+      propertyPath: videoClips.Array.data[0]
+      value: 
+      objectReference: {fileID: 32900000, guid: dc1ce3ab25dce9449b13749bd5f6c22c, type: 3}
+    - target: {fileID: 8089701222257323049, guid: b1218939249af374983adabd62c7a633, type: 3}
+      propertyPath: videoClips.Array.data[1]
+      value: 
+      objectReference: {fileID: 32900000, guid: dc1ce3ab25dce9449b13749bd5f6c22c, type: 3}
+    - target: {fileID: 8089701222257323049, guid: b1218939249af374983adabd62c7a633, type: 3}
+      propertyPath: videoClips.Array.data[2]
+      value: 
+      objectReference: {fileID: 32900000, guid: dc1ce3ab25dce9449b13749bd5f6c22c, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
