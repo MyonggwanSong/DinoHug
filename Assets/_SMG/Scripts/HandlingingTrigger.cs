@@ -33,6 +33,13 @@ public class HandlingingTrigger : MonoBehaviour
     float pettingGracePeriod = 1f; // 1초 유예시간
     float pettingStartTime = 0f;
 
+
+    float huggingStateChangeDelay = 1f; // 1초 딜레이
+    float lastHuggingStateChangeTime = 0f;
+
+    // isHugging이 true가 된 후 유예시간
+    float huggingGracePeriod = 1f; // 1초 유예시간
+    float huggingStartTime = 0f;
     void Awake()
     {
         ac = GetComponentInParent<AnimalControl>();
@@ -147,18 +154,18 @@ public class HandlingingTrigger : MonoBehaviour
             if (ac.state != AnimalControl.State.Handle)
             {
                 ac.ChangeState(AnimalControl.State.Handle);
-                
-//              Debug.Log("상태 변경: Handle");
+
+                //              Debug.Log("상태 변경: Handle");
             }
-            // 안아주기 위치 = 양 컨트롤러 중앙(높이는 조율) + 카메라 전방 0.2m 앞
-            Vector3 offset = new Vector3(Camera.main.transform.forward.x, 0f, Camera.main.transform.forward.z).normalized * 0.54f;
+            // 안아주기 위치 = 양 컨트롤러 중앙(높이는 조율) + 카메라 전방 0.5m 앞
+            Vector3 offset = new Vector3(Camera.main.transform.forward.x, 0f, Camera.main.transform.forward.z).normalized * 0.5f;
             Vector3 hugPos = (leftController.transform.position + rightController.transform.position) * 0.5f + offset;
             hugPos.y -= 0.5f;
-            
-            UpdateHuggingState(true);
-            ac.HeadIK_OFF();
             ac.transform.LookAt(Camera.main.transform.position);
             ac.transform.position = hugPos;
+            if (ac.state == AnimalControl.State.Handle)
+                UpdateHuggingState(true);
+
 
         }
 
@@ -242,49 +249,52 @@ public class HandlingingTrigger : MonoBehaviour
 //      Debug.Log($"쓰다듬기 상태 변경: {shouldPet}");
     }
 
-    void UpdateHuggingState(bool shouldHug)
+   void UpdateHuggingState(bool shouldHug)
+{
+    // 현재 상태와 원하는 상태가 같으면 아무것도 하지 않음
+    if (ap.isHugging == shouldHug)
+        return;
+
+    // 마지막 상태 변경으로부터 충분한 시간이 지났는지 확인
+    if (Time.time - lastHuggingStateChangeTime < huggingStateChangeDelay)
+        return;
+
+    // isHugging이 true에서 false로 바뀌는 경우 유예시간 체크
+    if (ap.isHugging == true && shouldHug == false)
     {
-        // 현재 상태와 원하는 상태가 같으면 아무것도 하지 않음
-        if (ap.isHugging == shouldHug)
-            return;
-
-        // 마지막 상태 변경으로부터 충분한 시간이 지났는지 확인
-        if (Time.time - lastPettingStateChangeTime < pettingStateChangeDelay)
-            return;
-
-        // isPetting이 true에서 false로 바뀌는 경우 유예시간 체크
-        if (ap.isHugging == true && shouldHug == false)
+        // 유예시간이 아직 지나지 않았으면 false로 바꾸지 않음
+        if (Time.time - huggingStartTime < huggingGracePeriod)
         {
-            // 유예시간이 아직 지나지 않았으면 false로 바꾸지 않음
-            if (Time.time - pettingStartTime < pettingGracePeriod)
-            {
-//              Debug.Log($"유예시간 중 - 남은시간: {pettingGracePeriod - (Time.time - pettingStartTime):F1}초");
-                return;
-            }
+            Debug.Log($"안아주기 유예시간 중 - 남은시간: {huggingGracePeriod - (Time.time - huggingStartTime):F1}초");
+            return;
         }
+    }
 
-        // 상태 변경
-        ap.isHugging = shouldHug;
+    // 상태 변경
+    ap.isHugging = shouldHug;
+    lastHuggingStateChangeTime = Time.time;
 
-        lastPettingStateChangeTime = Time.time;
-
-        // isPetting이 true가 되는 순간 시작 시간 기록
-        if (shouldHug)
-        {
+    // isHugging이 true가 되는 순간 시작 시간 기록
+    if (shouldHug)
+    {
+        if (leftController != null)
             leftController.SendHapticImpulse(0.5f, 0.2f);
+        if (rightController != null)
             rightController.SendHapticImpulse(0.5f, 0.2f);
 
-            pettingStartTime = Time.time;
-//          Debug.Log("안아주기 시작 - 유예시간 시작");
+        huggingStartTime = Time.time;
+        Debug.Log("안아주기 시작 - 유예시간 시작");
 
-            // 안아주기도 Bond를 오르도록 할 것인가?
-            // ac.petStateController.Petting();
-            Vector3 _particleOsset = transform.position + new Vector3(0f, 1.2f, 0f);
-            ParticleManager.Instance.SpawnParticle(ParticleFlag.Twinkle, _particleOsset, Quaternion.identity, null);
-        }
-
-//      Debug.Log($"쓰다듬기 상태 변경: {shouldPet}");
+        // 안아주기도 Bond를 오르도록 할 것인가?
+        // ac.petStateController.Petting();
+        Vector3 _particleOsset = transform.position + new Vector3(0f, 1.2f, 0f);
+        ParticleManager.Instance.SpawnParticle(ParticleFlag.Twinkle, _particleOsset, Quaternion.identity, null);
     }
+    else
+    {
+        Debug.Log("안아주기 종료");
+    }
+}
 
     bool IsValidPettingDirection(Vector3 delta)
     {
@@ -409,7 +419,7 @@ public class HandlingingTrigger : MonoBehaviour
 
     void ResetToIdle(ActionBasedController con)
     {
-//      Debug.Log("Idle 상태로 리셋");
+        // Debug.Log("Idle 상태로 리셋");
 
         // 위치 데이터 초기화
         prevPosition = Vector3.zero;
@@ -419,6 +429,7 @@ public class HandlingingTrigger : MonoBehaviour
         // 상태 초기화
         isFirstMove = true;
         UpdatePettingState(false, con); // 딜레이 적용해서 false로 설정
+        UpdateHuggingState(false); // 딜레이 적용해서 false로 설정
 
         if (ac.state != AnimalControl.State.Play
         && ac.state != AnimalControl.State.Drink
@@ -431,10 +442,18 @@ public class HandlingingTrigger : MonoBehaviour
             }
         }
 
-
         // 타이머 리셋
         _elapsed = 0f;
-        lastPettingStateChangeTime = 0f; // 딜레이 타이머 리셋
-        pettingStartTime = 0f; // 유예시간 타이머 리셋
-    }
+
+        // 쓰다듬기 관련 타이머 리셋
+        lastPettingStateChangeTime = 0f;
+        pettingStartTime = 0f;
+
+        // 안아주기 관련 타이머 리셋
+        lastHuggingStateChangeTime = 0f;
+        huggingStartTime = 0f;
+    
+
+    
+}
 }

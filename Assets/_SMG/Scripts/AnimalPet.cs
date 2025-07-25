@@ -51,21 +51,22 @@ public class AnimalPet : AnimalAbility
     IEnumerator Hug()
     {
         yield return new WaitUntil(() => isHugging && !isPetting);
+        agent.updatePosition = false;  // 이동 위치를 직접 제어
 
         anim.SetInteger("animation", 27); // 귀여운 모션
                                           //Debug.Log("쓰다듬는 중");
         animal.ChangeFace(AnimalControl.Face.Joyful); // 표정 변화
         AudioManager.Instance.PlayEffect("Delight", transform.position + Vector3.up * 1.2f, 1f); // SFX
         AudioManager.Instance.PlayEffect("Petting", transform.position + Vector3.up * 1.2f, 0.5f); // SFX
+        animal.HeadIK_OFF();
 
-
-        agent.updatePosition = false;  // 이동 위치를 직접 제어
 
         yield return new WaitUntil(() => !isHugging);
+        agent.nextPosition = transform.position;        // 에이젼트 연결
+        agent.updatePosition = true;
         anim.SetInteger("animation", 1); // Idle 모션
         animal.ChangeFace(AnimalControl.Face.Default);
-        agent.nextPosition = transform.position;
-        agent.updatePosition = true;
+        animal.HeadIK_ON();
         //Debug.Log("쓰다듬기 끝");
     }
 

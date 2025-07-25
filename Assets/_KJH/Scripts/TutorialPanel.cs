@@ -163,7 +163,7 @@ public class TutorialPanel : MonoBehaviour
         {
             sum += original.Substring(i, 1);
             texts[index].text = sum;
-            yield return YieldInstructionCache.WaitForSeconds(0.05f);
+            yield return YieldInstructionCache.WaitForSeconds(0.03f);
         }
     }
     
