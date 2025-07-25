@@ -39,6 +39,8 @@ public class Food : MonoBehaviour
         xRGrab.enabled = false;
         rigidbody.useGravity = false;
         rigidbody.isKinematic = true;
+        rigidbody.interpolation = RigidbodyInterpolation.None;
+        rigidbody.collisionDetectionMode = CollisionDetectionMode.Discrete;
         //collider.enabled = false;
     }
     public void EnableGrab()
@@ -46,6 +48,8 @@ public class Food : MonoBehaviour
         xRGrab.enabled = true;
         rigidbody.useGravity = true;
         rigidbody.isKinematic = false;
+        rigidbody.interpolation = RigidbodyInterpolation.Interpolate;
+        rigidbody.collisionDetectionMode = CollisionDetectionMode.Continuous;
         //collider.enabled = true;
     }
     public void Reset()
@@ -64,6 +68,8 @@ public class Food : MonoBehaviour
     IEnumerator Reset_co()
     {
         xRGrab.enabled = false;
+        rigidbody.interpolation = RigidbodyInterpolation.None;
+        rigidbody.collisionDetectionMode = CollisionDetectionMode.Discrete;
         for (int i = 0; i < 15; i++)
         {
             transform.position = startPosition;
