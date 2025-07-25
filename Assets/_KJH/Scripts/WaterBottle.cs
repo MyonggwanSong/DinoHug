@@ -59,21 +59,15 @@ public class WaterBottle : MonoBehaviour
         bool isShakeUpStart = false;
         while (true)
         {
-            if (!isGrabbed)
-            {
-                StopCoroutine(coResetShake);
-                StopWaterFillOut();
-                yield break;
-            }
             float horizontal = Mathf.Abs(rigid.velocity.x) + Mathf.Abs(rigid.velocity.z);
             float angle = transform.rotation.eulerAngles.z;
             //Debug.Log($"{angle},{rigid.velocity.y}");
             // 컨트롤러를 기울이고 있을 경우 + 수평으로는 거의 안움직이고 있을경우
-            if (angle >= 90 && angle <= 270 && horizontal < 10)
+            if (angle >= 90 && angle <= 270 && horizontal < 15)
             {
                 //Debug.Log($"angle : {grabbingXRController.rotation.eulerAngles.z}, vertical : {rigid.velocity.y}, horizontal : {horizontal}");
                 //컨트롤러를 적당한 속도와 적당한 주기로 위아래(수직)으로 흔들경우
-                if (rigid.velocity.y > 1.8f)
+                if (rigid.velocity.y > 0.15f)
                 {
                     if (shakeCount == 0)
                     {
@@ -113,7 +107,7 @@ public class WaterBottle : MonoBehaviour
                         }
                     }
                 }
-                else if (rigid.velocity.y < -1.8f)
+                else if (rigid.velocity.y < -0.15f)
                 {
                     if (shakeCount == 0)
                     {
@@ -171,7 +165,7 @@ public class WaterBottle : MonoBehaviour
                     StopWaterFillOut();
             }
             yield return null;
-            if (shakeCount >= 3)
+            if (shakeCount >= 2)
             {
                 if (coWaterFill == null)
                 {
