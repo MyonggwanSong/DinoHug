@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class PettingParticleHandler : MonoBehaviour
 {
-    [SerializeField] AnimalPet ap;
+    [SerializeField] AnimalHandle ah;
 
     void Update()
     {
-        if (ap.isPetting)
+        if (ah.isPlaying)
         {
             ShowParticle();
         }
@@ -15,8 +15,7 @@ public class PettingParticleHandler : MonoBehaviour
     void ShowParticle()
     {
         // if (animal.controller == null) return;
-
-        Vector3 point = ap.controller.transform.position;
+        Vector3 point = ah.controllerTr.position;
         ParticleManager.Instance.SpawnParticle(ParticleFlag.Petting, point, Quaternion.identity, this.gameObject.transform);
     }
 }
