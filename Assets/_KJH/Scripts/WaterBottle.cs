@@ -73,7 +73,7 @@ public class WaterBottle : MonoBehaviour
             {
                 //Debug.Log($"angle : {grabbingXRController.rotation.eulerAngles.z}, vertical : {rigid.velocity.y}, horizontal : {horizontal}");
                 //컨트롤러를 적당한 속도와 적당한 주기로 위아래(수직)으로 흔들경우
-                if (rigid.velocity.y > 1.8f)
+                if (rigid.velocity.y > 1.1f)
                 {
                     if (shakeCount == 0)
                     {
@@ -113,7 +113,7 @@ public class WaterBottle : MonoBehaviour
                         }
                     }
                 }
-                else if (rigid.velocity.y < -1.8f)
+                else if (rigid.velocity.y < -1.1f)
                 {
                     if (shakeCount == 0)
                     {

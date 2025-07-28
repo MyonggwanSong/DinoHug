@@ -1664,7 +1664,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6136029ceb7841429fedbc437aeb499, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  callDistance: 3
+  callDistance: 2
   target: {fileID: 0}
   icon: {fileID: 3722785466572658099}
 --- !u!114 &5466897004473622344
