@@ -32,12 +32,14 @@ public class AnimalHandle : AnimalAbility
         animal.ChangeFace(AnimalControl.Face.Default); // 원래 표정으로
         animal.HeadIK_ON();
     }
+    PoolableParticle partice;
     IEnumerator StartLoop()
     {
         prevPosition = controllerTr.position;
         currPosition = controllerTr.position;
         prevPlayerPosition = camearaTr.position;
         currPlayerPosition = camearaTr.position;
+        partice = null;
         while (true)
         {
             yield return null;
@@ -51,14 +53,16 @@ public class AnimalHandle : AnimalAbility
                     Debug.Log($"쓰다 듬기 성공");
                     Vector3 particlePos = controllerTr.position;
                     animal.petStateController.Petting(); // 유대감 증가
-                    PoolableParticle pp = ParticleManager.Instance.SpawnParticle(ParticleFlag.Petting, particlePos, Quaternion.identity, null);
-                    pp.transform.localScale = Random.Range(0.4f,0.8f) * Vector3.one;
-                    pp.transform.localRotation = Random.rotation;
+                    partice = ParticleManager.Instance.SpawnParticle(ParticleFlag.Petting, particlePos, Quaternion.identity, null);
+                    partice.transform.localScale = Random.Range(0.4f, 0.8f) * Vector3.one;
+                    partice.transform.localRotation = Random.rotation;
                     if (coSuccess == null)
                     {
                         coSuccess = StartCoroutine(SuccessAnimation());
                     }
                 }
+                if (partice != null)
+                    partice.transform.position = controllerTr.position;
                 // 쓰다듬기 성공시.. 다시 성공하려면 0.2초 쿨타임 기다려야함
                 if (coCoolTime == null)
                 {
