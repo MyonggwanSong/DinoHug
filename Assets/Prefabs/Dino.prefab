@@ -1447,6 +1447,7 @@ MonoBehaviour:
   effect: 0
   petStateController: {fileID: 0}
   prevState: 0
+  inputAsset: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   faceMats:
   - {fileID: 2100000, guid: fd522d915c89c234185aa429839595a5, type: 2}
   - {fileID: 2100000, guid: 9146c14ebfba8b546adbcff3dc3ccbf5, type: 2}
