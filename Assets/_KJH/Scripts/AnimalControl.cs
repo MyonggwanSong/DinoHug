@@ -53,6 +53,7 @@ public class AnimalControl : MonoBehaviour
         GameClear,
         CallFollow,
         CallIdle,
+        Hug,
     }
     void FSM_Setting()
     {
@@ -179,8 +180,8 @@ public class AnimalControl : MonoBehaviour
                 ChangeState(State.GameClear);
         }
         // 바닥에 잘 안붙어서 아래로 붙여줌
-        if(state == State.Wander)
-            transform.position += 0.2f * Vector3.down * Time.deltaTime;
+        if(state == State.Idle || state == State.Wander)
+            transform.position += 1f * Vector3.down * Time.deltaTime;
     }
     #endregion
 
