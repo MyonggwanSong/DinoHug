@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Animations.Rigging;
+using UnityEngine.InputSystem;
 using DG.Tweening;
 using NaughtyAttributes;
 public class AnimalControl : MonoBehaviour
@@ -33,6 +34,11 @@ public class AnimalControl : MonoBehaviour
         //
         StartCoroutine(nameof(ChangeFaceLoop));
         StartCoroutine(nameof(ParticleLoop));
+        inputAsset.FindActionMap("XRI LeftHand Interaction").FindAction("XButton").performed += OnXButton;
+    }
+    void OnDestroy()
+    {
+        inputAsset.FindActionMap("XRI LeftHand Interaction").FindAction("XButton").performed -= OnXButton;
     }
     #region FSM (스크립트 하나만 키고 나머지는 끄는방식)
     public enum State
@@ -137,16 +143,26 @@ public class AnimalControl : MonoBehaviour
 
     #region PWH_ 
     public UnityAction<Effect> OnUpdateEffect;
+    [SerializeField]
+    private InputActionAsset inputAsset;
+    private void OnXButton(InputAction.CallbackContext context)
+    {
+        if (state.Equals(State.Idle) || state.Equals(State.Wander) || state.Equals(State.CallIdle))
+        {
+            Debug.Log("Player Calling!!");
+            ChangeState(State.CallFollow);
+        }
+    }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (state.Equals(State.Idle) || state.Equals(State.Wander) || state.Equals(State.CallIdle))
-            {
-                Debug.Log("Player Calling!!");
-                ChangeState(State.CallFollow);
-            }
-        }
+        // if (Input.GetKeyDown(KeyCode.Space))
+        // {
+        //     if (state.Equals(State.Idle) || state.Equals(State.Wander) || state.Equals(State.CallIdle))
+        //     {
+        //         Debug.Log("Player Calling!!");
+        //         ChangeState(State.CallFollow);
+        //     }
+        // }
         if (petStateController.currentState.hunger >= 100)
         {
             if (state != State.Dead)

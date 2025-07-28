@@ -773,7 +773,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6128767432977962097
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1065,7 +1065,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uAC8C\uC784 \uACC4\uC18D\uD558\uAE30"
+  m_Text: "\uCC98\uC74C\uBD80\uD130"
 --- !u!114 &7618554499235689485
 MonoBehaviour:
   m_ObjectHideFlags: 0

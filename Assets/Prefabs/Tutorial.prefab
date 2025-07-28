@@ -2520,9 +2520,9 @@ MonoBehaviour:
   progress: 0
   isComplete: 0
   videoClips:
-  - {fileID: 32900000, guid: 29051e81bafaa864995304f45a889978, type: 3}
-  - {fileID: 32900000, guid: e58b17c11c6cd0f4d87cb62bbd46f024, type: 3}
-  - {fileID: 32900000, guid: f15d9b29807b0fc4d95d214ba4900e33, type: 3}
+  - {fileID: 32900000, guid: dc1ce3ab25dce9449b13749bd5f6c22c, type: 3}
+  - {fileID: 32900000, guid: e4c37d64750e7834abdb0a1c6d867803, type: 3}
+  - {fileID: 32900000, guid: dc1ce3ab25dce9449b13749bd5f6c22c, type: 3}
   renderTextures:
   - {fileID: 8400000, guid: 448d396a1cc23014eb7ce49056ccc7b6, type: 2}
   - {fileID: 8400000, guid: b851fe69e50a17d4c83468c78c6938af, type: 2}
