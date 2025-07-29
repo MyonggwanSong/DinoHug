@@ -23,7 +23,8 @@ public class MenuControl : MonoBehaviour
 #if UNITY_EDITOR
         EditorApplication.ExitPlaymode();
 #else
-        SceneManager.LoadScene(0);
+        //SceneManager.LoadScene(0);
+        Application.Quit();
 #endif
     }
 }
