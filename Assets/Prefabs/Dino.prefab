@@ -372,7 +372,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8a3ef99eff14364a8bf9a0a16362040, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frequency: 0.2
 --- !u!1 &1553789592686736292
 GameObject:
   m_ObjectHideFlags: 0
@@ -1360,6 +1359,7 @@ GameObject:
   - component: {fileID: 4099277643471337659}
   - component: {fileID: 8350680342230410350}
   - component: {fileID: 5466897004473622344}
+  - component: {fileID: 2963079230615716507}
   m_Layer: 0
   m_Name: Dino
   m_TagString: Untagged
@@ -1447,6 +1447,7 @@ MonoBehaviour:
   effect: 0
   petStateController: {fileID: 0}
   prevState: 0
+  inputAsset: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   faceMats:
   - {fileID: 2100000, guid: fd522d915c89c234185aa429839595a5, type: 2}
   - {fileID: 2100000, guid: 9146c14ebfba8b546adbcff3dc3ccbf5, type: 2}
@@ -1622,9 +1623,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23fcedab0b963564ba54761ecf937e97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 0}
-  isPetting: 0
-  isHugging: 0
+  isPlaying: 0
+  controllerTr: {fileID: 0}
+  coolTime: 0.3
 --- !u!114 &6011866911071368007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1663,7 +1664,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6136029ceb7841429fedbc437aeb499, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  callDistance: 3
+  callDistance: 2
   target: {fileID: 0}
   icon: {fileID: 3722785466572658099}
 --- !u!114 &5466897004473622344
@@ -1679,6 +1680,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   callWaitTime: 5
+--- !u!114 &2963079230615716507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4467815247824036735}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62d7590978dd7694f9585f1c43c51bb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPlaying: 0
+  leftControllerTr: {fileID: 0}
+  rightControllerTr: {fileID: 0}
 --- !u!1 &4852415501730728603
 GameObject:
   m_ObjectHideFlags: 0
