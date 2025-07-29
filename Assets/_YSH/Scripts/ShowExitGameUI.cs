@@ -41,7 +41,7 @@ public class ShowExitGameUI : MonoBehaviour
     {
         panelUI.SetActive(false);
         AudioManager.Instance.PlayEffect("UIClick1", transform.position);
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("SceneLobby");
     }
 
     // UI 끄기 버튼

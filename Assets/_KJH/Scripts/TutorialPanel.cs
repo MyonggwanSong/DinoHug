@@ -31,6 +31,13 @@ public class TutorialPanel : MonoBehaviour
     }
     IEnumerator Start()
     {
+        yield return new WaitUntil(() => GameManager.Instance != null);
+
+        if (!GameManager.Instance.isFirst)
+        {
+            yield break;
+        }
+
         texts[0].gameObject.SetActive(false);
         yield return YieldInstructionCache.WaitForSeconds(0.2f);
         animal.petStateController.UpdateIsInteraction(true);
@@ -151,6 +158,8 @@ public class TutorialPanel : MonoBehaviour
             coShowText = null;
         }
         videoPlayer.Stop();
+
+        GameManager.Instance.isFirst = false;
     }
     // 임시
     Coroutine coShowText;

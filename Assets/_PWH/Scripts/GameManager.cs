@@ -8,10 +8,13 @@ public class GameManager : BehaviourSingleton<GameManager>
     [SerializeField, ReadOnlyInspector] ColorSelector colorSelector;
     [SerializeField] string inGameScene;
     [SerializeField] House house;
+
+    [SerializeField, ReadOnlyInspector] public bool isFirst;
+
     protected override void Awake()
     {
         base.Awake();
-
+        isFirst = true;
         colorSelector = FindAnyObjectByType<ColorSelector>();
         colorSelector.OnUpdateSelectedMaterial += SetSelectedMaterial;
     }
@@ -28,11 +31,8 @@ public class GameManager : BehaviourSingleton<GameManager>
 
     IEnumerator StartGame()
     {
-        house.OpenDoorEvent();
-
         yield return new WaitForSeconds(3f);
 
-        // SceneManager.LoadScene(inGameScene);
         LoadingControl.LoadScene(inGameScene);
     }
 
