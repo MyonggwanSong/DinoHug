@@ -488,7 +488,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: e151c272a1c9dda429d898badfabd6f9, type: 3}
+  m_Texture: {fileID: 2800000, guid: d3af03a11f7cfe14db8acbbdead64d77, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -2522,7 +2522,7 @@ MonoBehaviour:
   videoClips:
   - {fileID: 32900000, guid: dc1ce3ab25dce9449b13749bd5f6c22c, type: 3}
   - {fileID: 32900000, guid: e4c37d64750e7834abdb0a1c6d867803, type: 3}
-  - {fileID: 32900000, guid: dc1ce3ab25dce9449b13749bd5f6c22c, type: 3}
+  - {fileID: 32900000, guid: 1ecac1377169b6b46800523cd36c97bf, type: 3}
   renderTextures:
   - {fileID: 8400000, guid: 448d396a1cc23014eb7ce49056ccc7b6, type: 2}
   - {fileID: 8400000, guid: b851fe69e50a17d4c83468c78c6938af, type: 2}
@@ -3373,7 +3373,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1.1
-  m_Text: "\uBB3C\uAC74 \uC9D1\uC5B4\uB4E4\uAE30\uB294 '\uC5C4\uC9C0 \uD2B8\uB9AC\uAC70
+  m_Text: "\uBB3C\uAC74 \uC9D1\uC5B4\uB4E4\uAE30\uB294 '\uC911\uC9C0 \uD2B8\uB9AC\uAC70
     \uBC84\uD2BC'\uC73C\uB85C \uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
 --- !u!114 &206596412757730467
 MonoBehaviour:
@@ -5282,7 +5282,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC5C4\uC9C0 \uD2B8\uB9AC\uAC70 \uBC84\uD2BC"
+  m_Text: "\uC911\uC9C0 \uD2B8\uB9AC\uAC70 \uBC84\uD2BC"
 --- !u!114 &4770834065870358931
 MonoBehaviour:
   m_ObjectHideFlags: 0

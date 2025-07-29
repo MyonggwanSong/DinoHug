@@ -1168,7 +1168,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -1201,7 +1201,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -2218,7 +2218,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -2658,7 +2658,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3745613769784315403, guid: 95d0fab3a02df4a4ca2ffc5fc93f78f7, type: 3}
       propertyPath: m_Name
-      value: --- LevelDesign_Final (1)
+      value: --- LevelDesign_Final
       objectReference: {fileID: 0}
     - target: {fileID: 3745613769784315403, guid: 95d0fab3a02df4a4ca2ffc5fc93f78f7, type: 3}
       propertyPath: m_IsActive
@@ -2934,18 +2934,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1441032745833663758, guid: f5a56158314edca4e95bc361a6881a43, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4afa50d75d1d573448bafef444bc74f3, type: 2}
     - target: {fileID: 1670006901089270753, guid: f5a56158314edca4e95bc361a6881a43, type: 3}
       propertyPath: view
       value: 
       objectReference: {fileID: 1980693403}
     - target: {fileID: 1670006901089270753, guid: f5a56158314edca4e95bc361a6881a43, type: 3}
       propertyPath: _init_Hunger
-      value: 95
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1670006901089270753, guid: f5a56158314edca4e95bc361a6881a43, type: 3}
       propertyPath: _init_Thirsty
-      value: 95
+      value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 1740813628266027635, guid: f5a56158314edca4e95bc361a6881a43, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4afa50d75d1d573448bafef444bc74f3, type: 2}
+    - target: {fileID: 1954946354231589483, guid: f5a56158314edca4e95bc361a6881a43, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4afa50d75d1d573448bafef444bc74f3, type: 2}
+    - target: {fileID: 2673125529784579690, guid: f5a56158314edca4e95bc361a6881a43, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4afa50d75d1d573448bafef444bc74f3, type: 2}
     - target: {fileID: 2673350644495991381, guid: f5a56158314edca4e95bc361a6881a43, type: 3}
       propertyPath: toy
       value: 
@@ -2954,6 +2970,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dino
       objectReference: {fileID: 0}
+    - target: {fileID: 5126107770991018220, guid: f5a56158314edca4e95bc361a6881a43, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4afa50d75d1d573448bafef444bc74f3, type: 2}
+    - target: {fileID: 5196913882157709212, guid: f5a56158314edca4e95bc361a6881a43, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4afa50d75d1d573448bafef444bc74f3, type: 2}
     - target: {fileID: 6598824615315154700, guid: f5a56158314edca4e95bc361a6881a43, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

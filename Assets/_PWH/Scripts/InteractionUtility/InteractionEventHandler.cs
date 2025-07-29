@@ -18,8 +18,16 @@ public abstract class InteractionEventHandler : MonoBehaviour
 
     void OnEnable()
     {
-        interactable.hoverEntered.AddListener(OnHoverEnter);
-        interactable.hoverExited.AddListener(OnHoverExit);
+        try
+        {
+            interactable.hoverEntered.AddListener(OnHoverEnter);
+            interactable.hoverExited.AddListener(OnHoverExit);
+        }
+        catch
+        {
+            
+        }
+        
     }
 
     void OnDisable()
