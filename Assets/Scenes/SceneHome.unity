@@ -1224,6 +1224,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WaterBowl
       objectReference: {fileID: 0}
+    - target: {fileID: 1595455048357033778, guid: 573ed6f1f93e2764eabf38bed0b9ec27, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2121161637306887560, guid: 573ed6f1f93e2764eabf38bed0b9ec27, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.312
@@ -2668,6 +2672,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: 35261150e5398c0439d6fd7481f62b62, type: 2}
+    - target: {fileID: 6738804323160275911, guid: 95d0fab3a02df4a4ca2ffc5fc93f78f7, type: 3}
+      propertyPath: m_NavMeshData
+      value: 
+      objectReference: {fileID: 23800000, guid: 47fe2d210266a0845b1e161a2f26ca6f, type: 2}
     - target: {fileID: 7162756145287363538, guid: 95d0fab3a02df4a4ca2ffc5fc93f78f7, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -3708,18 +3716,6 @@ PrefabInstance:
       propertyPath: interactableObjects
       value: 
       objectReference: {fileID: 1248440155}
-    - target: {fileID: 8089701222257323049, guid: b1218939249af374983adabd62c7a633, type: 3}
-      propertyPath: videoClips.Array.data[0]
-      value: 
-      objectReference: {fileID: 32900000, guid: dc1ce3ab25dce9449b13749bd5f6c22c, type: 3}
-    - target: {fileID: 8089701222257323049, guid: b1218939249af374983adabd62c7a633, type: 3}
-      propertyPath: videoClips.Array.data[1]
-      value: 
-      objectReference: {fileID: 32900000, guid: dc1ce3ab25dce9449b13749bd5f6c22c, type: 3}
-    - target: {fileID: 8089701222257323049, guid: b1218939249af374983adabd62c7a633, type: 3}
-      propertyPath: videoClips.Array.data[2]
-      value: 
-      objectReference: {fileID: 32900000, guid: dc1ce3ab25dce9449b13749bd5f6c22c, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
