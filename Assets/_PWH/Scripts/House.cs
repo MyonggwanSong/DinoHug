@@ -14,7 +14,14 @@ public class House : MonoBehaviour
         houseUI.SetActive(true);
     }
 
-    public void OpenDoorEvent()
+    public void OnClickGameStartButton()
+    {
+        if (GameManager.Instance == null) return;
+        OpenDoorEvent();
+        GameManager.Instance.OnClickGameStartButton();
+    }
+
+    void OpenDoorEvent()
     {
         Sequence seq = DOTween.Sequence();
         seq.AppendCallback(() =>
@@ -23,7 +30,7 @@ public class House : MonoBehaviour
             AudioManager.Instance.StopBGM();
         })
             .AppendInterval(0.2f)
-            .AppendCallback(()=>
+            .AppendCallback(() =>
             {
                 SFX doorbell = AudioManager.Instance.PlayEffect("Doorbell", transform.position);
                 door.transform.DOLocalRotate(targetRot, 1.0f);

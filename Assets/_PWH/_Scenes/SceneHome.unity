@@ -1658,63 +1658,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1419526050}
   m_CullTransparentMesh: 1
---- !u!1001 &1472883418
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 7212671197239729570, guid: 4d547b89d81459345a8d4a87be5901d4, type: 3}
-      propertyPath: m_Name
-      value: Dino00
-      objectReference: {fileID: 0}
-    - target: {fileID: 8021859341556123416, guid: 4d547b89d81459345a8d4a87be5901d4, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8021859341556123416, guid: 4d547b89d81459345a8d4a87be5901d4, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8021859341556123416, guid: 4d547b89d81459345a8d4a87be5901d4, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 4.2000003
-      objectReference: {fileID: 0}
-    - target: {fileID: 8021859341556123416, guid: 4d547b89d81459345a8d4a87be5901d4, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.39556932
-      objectReference: {fileID: 0}
-    - target: {fileID: 8021859341556123416, guid: 4d547b89d81459345a8d4a87be5901d4, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8021859341556123416, guid: 4d547b89d81459345a8d4a87be5901d4, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.9184361
-      objectReference: {fileID: 0}
-    - target: {fileID: 8021859341556123416, guid: 4d547b89d81459345a8d4a87be5901d4, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8021859341556123416, guid: 4d547b89d81459345a8d4a87be5901d4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8021859341556123416, guid: 4d547b89d81459345a8d4a87be5901d4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -133.397
-      objectReference: {fileID: 0}
-    - target: {fileID: 8021859341556123416, guid: 4d547b89d81459345a8d4a87be5901d4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 4d547b89d81459345a8d4a87be5901d4, type: 3}
 --- !u!1 &1630846513
 GameObject:
   m_ObjectHideFlags: 0
@@ -2991,6 +2934,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1441032745833663758, guid: f5a56158314edca4e95bc361a6881a43, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4afa50d75d1d573448bafef444bc74f3, type: 2}
     - target: {fileID: 1670006901089270753, guid: f5a56158314edca4e95bc361a6881a43, type: 3}
       propertyPath: view
       value: 
@@ -3003,6 +2950,18 @@ PrefabInstance:
       propertyPath: _init_Thirsty
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 1740813628266027635, guid: f5a56158314edca4e95bc361a6881a43, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4afa50d75d1d573448bafef444bc74f3, type: 2}
+    - target: {fileID: 1954946354231589483, guid: f5a56158314edca4e95bc361a6881a43, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4afa50d75d1d573448bafef444bc74f3, type: 2}
+    - target: {fileID: 2673125529784579690, guid: f5a56158314edca4e95bc361a6881a43, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4afa50d75d1d573448bafef444bc74f3, type: 2}
     - target: {fileID: 2673350644495991381, guid: f5a56158314edca4e95bc361a6881a43, type: 3}
       propertyPath: toy
       value: 
@@ -3011,6 +2970,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dino
       objectReference: {fileID: 0}
+    - target: {fileID: 5126107770991018220, guid: f5a56158314edca4e95bc361a6881a43, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4afa50d75d1d573448bafef444bc74f3, type: 2}
+    - target: {fileID: 5196913882157709212, guid: f5a56158314edca4e95bc361a6881a43, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4afa50d75d1d573448bafef444bc74f3, type: 2}
     - target: {fileID: 6598824615315154700, guid: f5a56158314edca4e95bc361a6881a43, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3867,4 +3834,3 @@ SceneRoots:
   - {fileID: 2015428926}
   - {fileID: 2473385930762896604}
   - {fileID: 677170144}
-  - {fileID: 1472883418}
