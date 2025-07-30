@@ -29,11 +29,11 @@ public class House : MonoBehaviour
             houseUI.SetActive(false);
             AudioManager.Instance.StopBGM();
         })
-            .AppendInterval(0.2f)
-            .AppendCallback(() =>
-            {
-                SFX doorbell = AudioManager.Instance.PlayEffect("Doorbell", transform.position);
-                door.transform.DOLocalRotate(targetRot, 1.0f);
-            });
+        .AppendInterval(0.2f)
+        .AppendCallback(() =>
+        {
+            SFX doorbell = AudioManager.Instance.PlayEffect("Doorbell", transform.position, 0);
+            door.transform.DOLocalRotate(targetRot, 1.0f);
+        });
     }
 }

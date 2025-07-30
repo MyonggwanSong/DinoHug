@@ -16,7 +16,9 @@ public class ColorButton : MonoBehaviour
         button.onClick.AddListener(OnClickButton);
     }
 
-    void OnClickButton(){
+    void OnClickButton()
+    {
         OnClickColorButton?.Invoke(color);
+        AudioManager.Instance.PlayEffect("UIClick1", transform.position, 0);
     }
 }
