@@ -156,14 +156,6 @@ public class AnimalControl : MonoBehaviour
     }
     void Update()
     {
-        // if (Input.GetKeyDown(KeyCode.Space))
-        // {
-        //     if (state.Equals(State.Idle) || state.Equals(State.Wander) || state.Equals(State.CallIdle))
-        //     {
-        //         Debug.Log("Player Calling!!");
-        //         ChangeState(State.CallFollow);
-        //     }
-        // }
         if (petStateController.currentState.hunger >= 100)
         {
             if (state != State.Dead)

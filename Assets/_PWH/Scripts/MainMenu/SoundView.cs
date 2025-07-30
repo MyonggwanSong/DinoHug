@@ -33,6 +33,7 @@ public class SoundView : MonoBehaviour
 
         AudioManager.Instance.SetVolume(SoundType.BGM, slider_BGM.value);
     }
+    
 
     public void OnUpdateValueEffect()
     {
@@ -74,10 +75,5 @@ public class SoundView : MonoBehaviour
 
         pre_BGM = slider_BGM.value;
         pre_Effect = slider_Effect.value;
-    }
-
-    void OnDisable()
-    {
-        
     }
 }

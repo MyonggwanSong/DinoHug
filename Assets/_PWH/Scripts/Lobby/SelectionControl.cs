@@ -33,11 +33,4 @@ public class SelectionControl : MonoBehaviour
             animator.SetTrigger("Happy");
         }
     }
-
-    // public void MoveToTarget()
-    // {
-    //     Sequence seq = DOTween.Sequence();
-
-
-    // }
 }
